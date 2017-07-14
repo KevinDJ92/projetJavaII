@@ -21,7 +21,7 @@ public class UtilisateursManager {
 		ArrayList<Utilisateur> retour = null;
 
 		try {
-			PreparedStatement ps = (PreparedStatement) ConnexionBD.getConnection().prepareStatement(queryGetyAll);
+			PreparedStatement ps =  (PreparedStatement) ConnexionBD.getConnection().prepareStatement(queryGetyAll);
 			ResultSet result = (ResultSet) ps.executeQuery();
 
 			if (result.isBeforeFirst()) {
