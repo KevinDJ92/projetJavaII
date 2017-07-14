@@ -18,34 +18,34 @@ public class UtilisateurAction {
 		return (mesUtil != null ? true : false);
 	}
 
-//	public static boolean insertUtilisateur(Utilisateur utilToAdd) {
-//		boolean retour = false;
-//
-//		if (Utilisateur.insert2(utilToAdd)) {
-//			retour = true;
-//		}
-//
-//		return retour;
-//	}
-//
-//	public static boolean updateUtilisateur(Utilisateur utilToUpdate) {
-//		boolean retour = false;
-//
-//		if (UtilisateursManager.update(utilToUpdate)) {
-//			retour = true;
-//		}
-//
-//		return retour;
-//	}
-//
-//	public static boolean deleteUtilisateur(int idUtilisateur){
-//		boolean retour= false;		
-//		
-//		if(UtilisateursManager.delete(idUtilisateur))
-//			retour =true;
-//		
-//		return retour;
-//	}
+	public static boolean insertUtilisateur(Utilisateur utilToAdd) {
+		boolean retour = false;
+
+		if (UtilisateursManager.insert2(utilToAdd)) {
+			retour = true;
+		}
+
+		return retour;
+	}
+
+	public static boolean updateUtilisateur(Utilisateur utilToUpdate) {
+		boolean retour = false;
+
+		if (UtilisateursManager.update(utilToUpdate)) {
+			retour = true;
+		}
+
+		return retour;
+	}
+	
+	public static boolean deleteUtilisateur(int idUtilisateur){
+		boolean retour= false;		
+		
+		if(UtilisateursManager.delete(idUtilisateur))
+			retour =true;
+		
+		return retour;
+	}
 	
 	public static boolean utilisateurExiste (Utilisateur util){	 	
 		boolean retour = false ;
