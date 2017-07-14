@@ -55,8 +55,21 @@ public class Utilisateur implements Serializable{
 		this.secureQ = secureQ;
 		this.repSecureQ = repSecureQ;
 	}
-
 	
+	public Utilisateur(String nom, String prenom, String tel, String adresse, String codePostal, String imgLink,
+			String email, String password, String secureQ,String repSecureQ) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.telNum = tel;
+		this.adresse = adresse;
+		this.codePostal = codePostal;
+		this.email = email;
+		this.password = password;
+		this.secureQ = secureQ;
+		this.repSecureQ = repSecureQ;
+		this.imgLink = imgLink;
+	}
 	
 	public String getAdresse() {
 		return adresse;
