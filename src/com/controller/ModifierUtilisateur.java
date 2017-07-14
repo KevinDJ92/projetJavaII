@@ -16,7 +16,6 @@ import com.entities.Utilisateur;
 public class ModifierUtilisateur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-   
     public ModifierUtilisateur() {
         super();
     }
@@ -24,6 +23,7 @@ public class ModifierUtilisateur extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String idString = request.getParameter("id");
 		String nom = request.getParameter("nomInsert");
 		String prenom = request.getParameter("prenomInsert");
 		String email = request.getParameter("emailInsert");
@@ -36,8 +36,17 @@ public class ModifierUtilisateur extends HttpServlet {
 		String reponseSecurity = request.getParameter("reponseSecurityInsert");	
 		String imglink = request.getParameter("imgLinkInsert");	
 
+		System.out.println(nom + prenom + email + password + passwordConfirm + telephone + adresse + codePostal);
+		
+		
 		if (password == passwordConfirm){
-			Utilisateur util = new Utilisateur(nom, prenom, email, password, telephone, adresse, codePostal, questionSecurity, reponseSecurity, imglink);			
+			if(idString != null){
+				Utilisateur util = new Utilisateur(nom, prenom, email, password, telephone, adresse, codePostal, questionSecurity, reponseSecurity, imglink);			
+				UtilisateurAction.updateUtilisateur(util);
+			} else {
+				Utilisateur util = new Utilisateur(nom, prenom, email, password, telephone, adresse, codePostal, questionSecurity, reponseSecurity, imglink);			
+				UtilisateurAction.insertUtilisateur(util);	
+			}
 		}
 	}
 }
