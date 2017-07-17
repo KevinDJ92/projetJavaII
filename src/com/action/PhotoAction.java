@@ -8,6 +8,7 @@ import com.entities.PhotoProduit;
 import com.manager.PhotoProduitManager;
 
 public class PhotoAction {
+	//private  ArrayList<PhotoProduit> photoPro= new ArrayList<>();
 	public static boolean afficherPhotoProd(HttpServletRequest request) {
 
 		ArrayList<PhotoProduit> photoProd = PhotoProduitManager.getAll();

@@ -92,9 +92,9 @@ public class AfficherProduit extends HttpServlet {
 		//pour afficher les image des produits trouver
 		if(urlRedirect!= Constante.cefErrorPage){
 			ArrayList<Produit> produits = (ArrayList<Produit>)request.getAttribute("listeProd");
-			for(Produit prod : produits){
-				PhotoAction.afficherPhotoProdwithId(request, prod.getId());
-			}
+			
+				PhotoAction.afficherPhotoProd(request);
+			
 		}
 		request.getRequestDispatcher(urlRedirect).forward(request, response);
 	}
