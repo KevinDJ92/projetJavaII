@@ -11,10 +11,12 @@ import com.service.ConnexionBD;
 
 public class PhotoProduitManager {
 	private static String queryGetyAll = "select * from photo_prod";
-	private static String queryGetByIdProduit = "select * from photo_prod where id_prod = ?";
+	private static String queryGetByIdProduit = "select * from photo_prod where id_produit = ?";
+	private static String queryGetByIdProduitAndIsDefault = "select * from photo_prod where id_produit = ? and is_default = ?"
+			+ "";
 	private static String queryInsert = "insert into photo_prod(id_produit,chemin_ftp,extension_pic,alt,is_default) value(?,?,?,?,?)";
 	private static String queryUpdate = "update photo_prod set chemin_ftp=?, extension_pic = ?, alt =?,is_default = ? where id_pic = ?";
-	private static String querydelete = "delete from produits where id_prod = ?";
+	private static String querydelete = "delete from produits where id_produit = ?";
 
 	public static ArrayList<PhotoProduit> getAll() {
 		ArrayList<PhotoProduit> retour = null;
@@ -85,6 +87,42 @@ public class PhotoProduitManager {
 		return retour;
 	}
 	
+	
+	
+	public static ArrayList<PhotoProduit> getByIdProduitAndIsDefault(int idProd) {
+		ArrayList<PhotoProduit> retour = null;
+
+		try {
+			PreparedStatement ps = ConnexionBD.getConnection().prepareStatement(queryGetByIdProduitAndIsDefault);
+			
+			ps.setInt(1, idProd);
+			ResultSet result = ps.executeQuery();
+
+			if (result.isBeforeFirst()) {
+				
+				retour = new ArrayList<>();
+
+				while (result.next()) {
+					PhotoProduit photo = new PhotoProduit();
+					photo.setIdPic(result.getInt("id_pic"));
+					photo.setIdProd(result.getInt("id_produit"));
+					photo.setCheminFtp(result.getString("chemin_ftp"));
+					photo.setExtensionPic(result.getString("extension_pic"));
+					photo.setAlt(result.getString("alt"));
+					photo.setIsDefault(result.getInt("is_default"));
+
+					retour.add(photo);
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ConnexionBD.closeConnection();
+		
+		return retour;
+	}
 	
 	//INSERTION DANS LA TABLE PRODUIT
 	

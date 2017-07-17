@@ -40,7 +40,8 @@
 
 <%
  	ArrayList<Produit> produits = (ArrayList<Produit>)request.getAttribute("listeProd");
-	ArrayList<PhotoProduit> photoProds = (ArrayList<PhotoProduit>)request.getAttribute("listeProd");
+	ArrayList<PhotoProduit> photoProds = (ArrayList<PhotoProduit>)request.getAttribute("listePhotoProd");
+	PhotoProduit photoForProd = null ;
 %>
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -125,11 +126,17 @@
 
 					<%
 						for(Produit produit : produits){
+							for(PhotoProduit photo : photoProds){
+								if(photo.getIdProd() == produit.getId() && photo.getIsDefault()==1){
+									photoForProd = photo;
+								}
+								
+							}
 					%>
 					
 					<div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
+                            <img src="http://placehold.it/320x150" alt="<%= (photoForProd!=null?photoForProd.getAlt():"") %>">
                             <div class="caption">
                                 <h4 class="pull-right">$<%= produit.getPrix() %></h4>
                                 <h4><a href="#"><%=produit.getNom() %></a>
