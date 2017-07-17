@@ -1,5 +1,5 @@
 package com.enumeration;
 
 public enum PRODUIT_TABLE {
-
+	ID_PROD, NOM_PROD, DETAIL_PROD, PRIX_PROD, ETAT_PROD, CATEGORIE_PROD, QTE_STOCK
 }
