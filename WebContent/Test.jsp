@@ -15,7 +15,7 @@
   /* Produit produit = new Produit("hfhfh","qwerty",4,"neuf","hdjf",1.5);
  	ProduitManager.insert(produit); */
 
- 	ArrayList<Produit> produits = ProduitManager.getByName("hfhfh");
+ 	ArrayList<Produit> produits = (ArrayList<Produit>)request.getAttribute("listeProd");
 if(produits!=null){
 for(Produit prod : produits){
 	
