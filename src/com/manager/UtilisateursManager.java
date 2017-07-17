@@ -10,83 +10,17 @@ import com.mysql.jdbc.Statement;
 import com.service.ConnexionBD;
 
 public class UtilisateursManager {
-	private static String queryGetyAll = "SELECT * FROM utilisateurs";
-	private static String queryGetById = "SELECT * FROM utilisateurs WHERE id = ?";
+	private static String tableList[] = new String[]{"id_ut", "nom", "prenom",  "email", "password", "tel_num", "adressed",
+											"code_postal", "secure_q","rep_secure_q","photo_profil"};
+	
 	private static String queryInsert = "INSERT INTO utilisateurs(nom, prenom, email, password, tel_num, adresse, code_postal, secure_q, rep_secure_q, photo_profil) VALUE(?,?,?,?,?,?,?,?,?,?)";
 	private static String queryUpdate = "UPDATE utilisateurs SET nom = ?, prenom = ?, email = ?, password = ?, tel_num = ?, adresse = ?, code_postal = ?, secure_q = ?, rep_secure_q = ?, photo_profil = ?";
-	private static String queryDelete = "DELETE FROM utilisateurs WHERE id = ?";
+	private static String queryDelete = "DELETE FROM utilisateurs WHERE id_ut = ?";
 	private static String queryConnexion = "SELECT * FROM utilisateurs WHERE email= ? AND password= ?";
 	
-	public static ArrayList<Utilisateur> getAll() {
-		ArrayList<Utilisateur> retour = null;
-
-		try {
-			PreparedStatement ps =  (PreparedStatement) ConnexionBD.getConnection().prepareStatement(queryGetyAll);
-			ResultSet result = (ResultSet) ps.executeQuery();
-
-			if (result.isBeforeFirst()) {
-				
-				retour = new ArrayList<>();
-
-				while (result.next()) {
-					Utilisateur util = new Utilisateur();
-					util.setId(result.getInt("id_ut"));
-					util.setNom(result.getString("nom"));
-					util.setPrenom(result.getString("prenom"));
-					util.setEmail(result.getString("email"));
-					util.setPassword(result.getString("password"));
-					util.setTelNum(result.getString("tel_num"));
-					util.setAdresse(result.getString("adresse"));
-					util.setCodePostal(result.getString("code_postal"));
-					util.setSecureQ( result.getString("secure_q") );
-					util.setRepSecureQ(result.getString("rep_secure_q"));
-					util.setImgLink(result.getString("photo_profil"));
-					retour.add(util);
-				
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		ConnexionBD.closeConnection();
-		
-		return retour;
-	}
-	
-	public static Utilisateur getById(int id) {
-		Utilisateur retour = null;
-		
-		try {
-			PreparedStatement ps = (PreparedStatement) ConnexionBD.getConnection().prepareStatement(queryGetById);
-			ps.setInt(1, id);
-			
-			ResultSet result = (ResultSet) ps.executeQuery();
-
-			if (result.isBeforeFirst()) {
-				
-				retour = new Utilisateur();	
-				
-				while (result.next()) {					
-					retour.setId(result.getInt("id_ut"));
-					retour.setNom(result.getString("nom"));
-					retour.setPrenom(result.getString("prenom"));
-					retour.setEmail(result.getString("email"));
-					retour.setPassword(result.getString("password"));
-					retour.setTelNum(result.getString("tel_num"));
-					retour.setAdresse(result.getString("adresse"));
-					retour.setCodePostal(result.getString("code_postal"));
-					retour.setSecureQ(result.getString("secure_q"));
-					retour.setRepSecureQ(result.getString("rep_secure_q"));
-					retour.setImgLink(result.getString("photo_profil"));
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		ConnexionBD.closeConnection();
-		return retour;
-	}
+	private static String queryGetyAll = "SELECT * FROM utilisateurs";
+	private static String queryGetById = "SELECT * FROM utilisateurs WHERE id_ut = ?";
+	private static String queryGetBy = "SELECT * FROM utilisateurs WHERE ? = ?";
 	
 	public static boolean insert(Utilisateur utilisateur){
 		boolean retour = false;
@@ -143,7 +77,7 @@ public class UtilisateursManager {
 			e.printStackTrace();
 		}
 		
-		if(nbLigne >0 )
+		if(nbLigne > 0)
 			retour = true;	
 		
 		ConnexionBD.closeConnection();
@@ -221,5 +155,158 @@ public class UtilisateursManager {
 		return retour;
 	}
 	
+	public static ArrayList<Utilisateur> getAll() {
+		ArrayList<Utilisateur> retour = null;
 
+		try {
+			PreparedStatement ps =  (PreparedStatement) ConnexionBD.getConnection().prepareStatement(queryGetyAll);
+			ResultSet result = (ResultSet) ps.executeQuery();
+
+			if (result.isBeforeFirst()) {
+				
+				retour = new ArrayList<>();
+
+				while (result.next()) {
+					Utilisateur util = new Utilisateur();
+					util.setId(result.getInt(tableList[0]));
+					util.setNom(result.getString(tableList[1]));
+					util.setPrenom(result.getString(tableList[2]));
+					util.setEmail(result.getString(tableList[3]));
+					util.setPassword(result.getString(tableList[4]));
+					util.setTelNum(result.getString(tableList[5]));
+					util.setAdresse(result.getString(tableList[6]));
+					util.setCodePostal(result.getString(tableList[7]));
+					util.setSecureQ( result.getString(tableList[8]));
+					util.setRepSecureQ(result.getString(tableList[9]));
+					util.setImgLink(result.getString(tableList[10]));
+					retour.add(util);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		ConnexionBD.closeConnection();
+		
+		return retour;
+	}
+	
+	public static Utilisateur getById(int id) {
+		Utilisateur retour = null;
+		
+		try {
+			PreparedStatement ps = (PreparedStatement) ConnexionBD.getConnection().prepareStatement(queryGetById);
+			ps.setInt(1, id);
+			
+			ResultSet result = (ResultSet) ps.executeQuery();
+
+			if (result.isBeforeFirst()) {
+				
+				retour = new Utilisateur();	
+				
+				while (result.next()) {					
+					retour.setId(result.getInt(tableList[0]));
+					retour.setNom(result.getString(tableList[1]));
+					retour.setPrenom(result.getString(tableList[2]));
+					retour.setEmail(result.getString(tableList[3]));
+					retour.setPassword(result.getString(tableList[4]));
+					retour.setTelNum(result.getString(tableList[5]));
+					retour.setAdresse(result.getString(tableList[6]));
+					retour.setCodePostal(result.getString(tableList[7]));
+					retour.setSecureQ(result.getString(tableList[8]));
+					retour.setRepSecureQ(result.getString(tableList[9]));
+					retour.setImgLink(result.getString(tableList[10]));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ConnexionBD.closeConnection();
+		return retour;
+	}
+	
+	public enum TABLE {
+	    NOM, PRENOM, EMAIL, TELNUM, ADRESSE, CODEPOSTAL,
+	    SECURE_Q, REP_SECURE_Q, IMG_LINK
+	}
+	
+	public static Utilisateur getBy(TABLE table, String nom){
+		
+		String tableName = null;
+		Utilisateur retour = null;
+		tableName = getTableName(table);
+		
+		try {
+			
+			PreparedStatement ps = (PreparedStatement) ConnexionBD.getConnection().prepareStatement(queryGetBy);
+			ps.setString(1, tableName);
+			ps.setString(2, nom);
+			
+			ResultSet result = (ResultSet) ps.executeQuery();
+
+			if (result.isBeforeFirst()) {
+				
+				retour = new Utilisateur();	
+				
+				while (result.next()) {					
+					retour.setId(result.getInt(tableList[0]));
+					retour.setNom(result.getString(tableList[1]));
+					retour.setPrenom(result.getString(tableList[2]));
+					retour.setEmail(result.getString(tableList[3]));
+					retour.setPassword(result.getString(tableList[4]));
+					retour.setTelNum(result.getString(tableList[5]));
+					retour.setAdresse(result.getString(tableList[6]));
+					retour.setCodePostal(result.getString(tableList[7]));
+					retour.setSecureQ(result.getString(tableList[8]));
+					retour.setRepSecureQ(result.getString(tableList[9]));
+					retour.setImgLink(result.getString(tableList[10]));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ConnexionBD.closeConnection();
+		return retour;
+	}
+	
+	public static String getTableName(TABLE table){
+		String tableName = null;
+		
+		switch(table){
+		// tableList[0] est "id_ut"
+		
+		case  NOM:
+			tableName = tableList[1];
+			break;
+		case PRENOM:
+			tableName = tableList[2];
+			break;
+		case EMAIL:
+			tableName = tableList[3];
+			break;
+			
+		// tableList[3] est password
+			
+		case TELNUM:
+			tableName = tableList[5];
+			break;
+		case ADRESSE:
+			tableName = tableList[6];
+			break;
+		case CODEPOSTAL:
+			tableName = tableList[7];
+			break;
+		case SECURE_Q:
+			tableName = tableList[8];
+			break;
+		case REP_SECURE_Q:
+			tableName = tableList[9];
+			break;	
+		case IMG_LINK:
+			tableName = tableList[10];
+			break;		
+		}
+
+		return tableName;
+	}
 }

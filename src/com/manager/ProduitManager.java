@@ -10,8 +10,6 @@ import com.entities.Produit;
 import com.service.ConnexionBD;
 
 public class ProduitManager {
-
-	
 	private static String queryGetyAll = "select * from produits";
 	private static String queryGetByName = "select * from produits where nom_prod like ?";
 	private static String queryGetByCategorie = "select * from produits where categorie_prod like ?";
