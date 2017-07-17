@@ -17,7 +17,7 @@ public class ProduitAction {
 		return (produits != null ? true : false);
 	}
 	
-	public static boolean afficherProduitParCategorie(HttpServletRequest request,String categorie) {
+	public static boolean afficherProduitParCategorie(HttpServletRequest request, String categorie) {
 
 		ArrayList<Produit> produits = ProduitManager.getByCategorie(categorie);
 
@@ -26,7 +26,7 @@ public class ProduitAction {
 		return (produits != null ? true : false);
 	}
 	
-	public static boolean afficherProduitParId(HttpServletRequest request,int id) {
+	public static boolean afficherProduitParId(HttpServletRequest request, int id) {
 
 		ArrayList<Produit> produits = ProduitManager.getById(id);
 
@@ -35,7 +35,7 @@ public class ProduitAction {
 		return (produits != null ? true : false);
 	}
 	
-	public static boolean afficherProduitParNom(HttpServletRequest request,String name) {
+	public static boolean afficherProduitParNom(HttpServletRequest request, String name) {
 
 		ArrayList<Produit> produits = ProduitManager.getByName(name);
 

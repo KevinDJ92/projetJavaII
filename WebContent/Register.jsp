@@ -14,15 +14,11 @@
 		<title>Inscription</title>
 	</head>
 	<body>
-	<%-- <%	Utilisateur user = new Utilisateur(1, "a", "b", "c", "d","e", "f", "g", "h", "e","j");
- 	UtilisateursManager.insert(user); 
- 	%> --%>
-	
 	 	<h1>Inscription</h1>
 		<fieldset>
 			<legend>Veuillez entrer vos informations personnelles</legend>
 			<form action="ModifierUtilisateur" method="post">
-				Nom      <input type="text" name="nomInsert" value="" /> 	          <br/>
+				Nom      <input type="text" name="nomInsert" value="" /> 	   	   <br/>
 				Prenom   <input type="text" name="prenomInsert" value="" />        <br/>
 				Email    <input type="text" name="emailInsert" value=""/>           <br/>
 				Password <input type="password" name="passwordInsert" value=""/> <br/> 

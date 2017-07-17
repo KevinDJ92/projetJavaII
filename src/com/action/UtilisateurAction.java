@@ -1,18 +1,16 @@
 package com.action;
 
 import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 
-import com.entities.Produit;
 import com.entities.Utilisateur;
-import com.manager.ProduitManager;
 import com.manager.UtilisateursManager;
+import com.enumeration.UTILISATEUR_TABLE;
 
 public class UtilisateurAction {
+	
 	public static boolean afficherUtilisateur(HttpServletRequest request) {
 		boolean retour = false;
-
 		ArrayList<Utilisateur> mesUtil = UtilisateursManager.getAll();
 
 		request.setAttribute("listeUtil", mesUtil);
@@ -20,11 +18,10 @@ public class UtilisateurAction {
 		return (mesUtil != null ? true : false);
 	}
 	
-	public static boolean afficherUtilisateurParNom(HttpServletRequest request) {
+	public static boolean afficherUtilisateurPar(HttpServletRequest request, UTILISATEUR_TABLE table, String nom) {
 		boolean retour = false;
 
-		ArrayList<Utilisateur> mesUtil = UtilisateursManager.getAll();
-
+		ArrayList<Utilisateur> mesUtil = UtilisateursManager.getBy(table, nom);
 		request.setAttribute("listeUtil", mesUtil);
 
 		return (mesUtil != null ? true : false);

@@ -26,7 +26,7 @@ public class ModifierUtilisateur extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Utilisateur utils = (Utilisateur) request.getSession().getAttribute(Constante.clefSession);
 		System.out.println("Utilisateur: " + utils);
-
+		
 		String nom = request.getParameter("nomInsert");
 		String prenom = request.getParameter("prenomInsert");
 		String email = request.getParameter("emailInsert");
@@ -43,16 +43,13 @@ public class ModifierUtilisateur extends HttpServlet {
 		
 		if (password.equals(passwordConfirm)){
 			if(utils != null){
-				Utilisateur util = new Utilisateur(nom, prenom, email, password, telephone, adresse, codePostal, questionSecurity, reponseSecurity, imglink);			
+				Utilisateur util = new Utilisateur(utils.getId(), nom, prenom, email, password, telephone, adresse, codePostal, questionSecurity, reponseSecurity, imglink);			
 				UtilisateurAction.updateUtilisateur(util);
 				System.out.println("\nupdate");
 			} else {
 				Utilisateur util = new Utilisateur(nom, prenom, email, password, telephone, adresse, codePostal, questionSecurity, reponseSecurity, imglink);			
 				UtilisateurAction.insertUtilisateur(util);	
 				System.out.println("\ninsert");
-
-				Utilisateur currentUser = UtilisateursManager.getById(1);
-				GestionSession.ajouterEtudianToSession(request, currentUser);
 			}
 	}
 	}

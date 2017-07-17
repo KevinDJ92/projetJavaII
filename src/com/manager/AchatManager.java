@@ -9,6 +9,7 @@ import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 import com.service.ConnexionBD;
+import com.enumeration.ACHAT_TABLE;
 
 public class AchatManager {
 	private static String tableName = "achat";
@@ -195,7 +196,7 @@ public class AchatManager {
 		return retour;
 	}
 	
-	public static Achat getBy(TABLE table, String nom){
+	public static Achat getBy(ACHAT_TABLE table, String nom){
 		
 		String tableName = null;
 		Achat retour = null;
@@ -229,7 +230,7 @@ public class AchatManager {
 		return retour;
 	}
 	
-	public static String getTableName(TABLE table){
+	public static String getTableName(ACHAT_TABLE table){
 		String tableName = null;
 		
 		switch(table){

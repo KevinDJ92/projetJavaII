@@ -8,6 +8,7 @@ import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 import com.service.ConnexionBD;
+import com.enumeration.UTILISATEUR_TABLE;
 
 public class UtilisateursManager {
 	private static String tableList[] = new String[]{"id_ut", "nom", "prenom",  "email", "password", "tel_num", "adressed",
@@ -225,15 +226,10 @@ public class UtilisateursManager {
 		return retour;
 	}
 	
-	public enum TABLE {
-	    NOM, PRENOM, EMAIL, TELNUM, ADRESSE, CODEPOSTAL,
-	    SECURE_Q, REP_SECURE_Q, IMG_LINK
-	}
-	
-	public static Utilisateur getBy(TABLE table, String nom){
-		
+	public static  ArrayList<Utilisateur> getBy(UTILISATEUR_TABLE table, String nom){
 		String tableName = null;
-		Utilisateur retour = null;
+		ArrayList<Utilisateur> retour = null;
+		
 		tableName = getTableName(table);
 		
 		try {
@@ -245,31 +241,35 @@ public class UtilisateursManager {
 			ResultSet result = (ResultSet) ps.executeQuery();
 
 			if (result.isBeforeFirst()) {
-				
-				retour = new Utilisateur();	
+				retour = new ArrayList<>();
 				
 				while (result.next()) {					
-					retour.setId(result.getInt(tableList[0]));
-					retour.setNom(result.getString(tableList[1]));
-					retour.setPrenom(result.getString(tableList[2]));
-					retour.setEmail(result.getString(tableList[3]));
-					retour.setPassword(result.getString(tableList[4]));
-					retour.setTelNum(result.getString(tableList[5]));
-					retour.setAdresse(result.getString(tableList[6]));
-					retour.setCodePostal(result.getString(tableList[7]));
-					retour.setSecureQ(result.getString(tableList[8]));
-					retour.setRepSecureQ(result.getString(tableList[9]));
-					retour.setImgLink(result.getString(tableList[10]));
+					Utilisateur util = new Utilisateur();
+					
+					util.setId(result.getInt(tableList[0]));
+					util.setNom(result.getString(tableList[1]));
+					util.setPrenom(result.getString(tableList[2]));
+					util.setEmail(result.getString(tableList[3]));
+					util.setPassword(result.getString(tableList[4]));
+					util.setTelNum(result.getString(tableList[5]));
+					util.setAdresse(result.getString(tableList[6]));
+					util.setCodePostal(result.getString(tableList[7]));
+					util.setSecureQ(result.getString(tableList[8]));
+					util.setRepSecureQ(result.getString(tableList[9]));
+					util.setImgLink(result.getString(tableList[10]));
+				
+					retour.add(util);
 				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		ConnexionBD.closeConnection();
+		
 		return retour;
 	}
 	
-	public static String getTableName(TABLE table){
+	public static String getTableName(UTILISATEUR_TABLE table){
 		String tableName = null;
 		
 		switch(table){
