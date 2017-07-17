@@ -49,6 +49,8 @@ public class ModifierUtilisateur extends HttpServlet {
 			} else {
 				Utilisateur util = new Utilisateur(nom, prenom, email, password, telephone, adresse, codePostal, questionSecurity, reponseSecurity, imglink);			
 				UtilisateurAction.insertUtilisateur(util);	
+				request.getRequestDispatcher("Login.jsp").forward(request, response);
+
 				System.out.println("\ninsert");
 			}
 	}
