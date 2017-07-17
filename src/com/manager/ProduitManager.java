@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import com.entities.Produit;
 import com.service.ConnexionBD;
 
@@ -200,7 +201,7 @@ public class ProduitManager {
 		return retour;
 	}
 	
-	public static ArrayList<Produit> getByPrice(int price) {
+	public static ArrayList<Produit> getByPrice(double price) {
 		ArrayList<Produit> retour = null;
 
 		try {
@@ -236,7 +237,7 @@ public class ProduitManager {
 		return retour;
 	}
 	
-	public static ArrayList<Produit> getByPriceBetween(int priceMin, int priceMax) {
+	public static ArrayList<Produit> getByPriceBetween(double priceMin, double priceMax) {
 		ArrayList<Produit> retour = null;
 
 		try {
