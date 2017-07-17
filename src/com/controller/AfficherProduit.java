@@ -28,7 +28,10 @@ public class AfficherProduit extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String linkR = request.getParameter("link");
+		if(linkR == null){
+			linkR = "index.jsp";
+		}
 		String urlRedirect = Constante.cefErrorPage;
 		String categorie = request.getParameter("categorie");
 		String prixMin = request.getParameter("prixMin");
@@ -41,14 +44,14 @@ public class AfficherProduit extends HttpServlet {
 				idProd == null){
 			
 			if(ProduitAction.afficherProduit(request)){
-				urlRedirect = "Test.jsp";
+				urlRedirect = linkR;
 			}
 		}else{
 			if(prixMin == null 
 					&& prixMax == null && nomProd == null &&
 					idProd == null){
 				if(ProduitAction.afficherProduitParCategorie(request, categorie)){
-					urlRedirect = "Test.jsp";
+					urlRedirect = linkR;
 				}
 				
 			}
@@ -56,7 +59,7 @@ public class AfficherProduit extends HttpServlet {
 			else if(categorie == null && prixMax == null &&
 					nomProd == null && idProd == null){
 				if(ProduitAction.afficherProduitParPrix(request, Double.parseDouble(prixMin))){
-					urlRedirect = "Test.jsp";
+					urlRedirect = linkR;
 				}
 			}
 			
@@ -64,7 +67,7 @@ public class AfficherProduit extends HttpServlet {
 					&& prixMin == null && prixMax == null &&
 					idProd == null){
 				if(ProduitAction.afficherProduitParNom(request, nomProd)){
-					urlRedirect = "Test.jsp";
+					urlRedirect = linkR;
 				}
 			}
 			
@@ -72,13 +75,13 @@ public class AfficherProduit extends HttpServlet {
 					&& prixMin == null && prixMax == null &&
 					nomProd == null){
 				if(ProduitAction.afficherProduitParId(request, Integer.parseInt(idProd))){
-					urlRedirect = "Test.jsp";
+					urlRedirect = linkR;
 				}
 			}
 			
 			else if(categorie == null && nomProd == null){
 				if(ProduitAction.afficherProduitPrixMinMax(request, Double.parseDouble(prixMin), Double.parseDouble(prixMax))){
-					urlRedirect = "Test.jsp";
+					urlRedirect = linkR;
 				}
 			}
 		}
