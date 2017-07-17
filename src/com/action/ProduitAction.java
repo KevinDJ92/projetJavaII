@@ -8,7 +8,6 @@ import com.entities.Produit;
 import com.manager.ProduitManager;
 
 public class ProduitAction {
-
 	public static boolean afficherProduit(HttpServletRequest request) {
 
 		ArrayList<Produit> produits = ProduitManager.getAll();

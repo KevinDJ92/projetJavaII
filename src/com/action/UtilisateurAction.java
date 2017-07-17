@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.entities.Produit;
 import com.entities.Utilisateur;
+import com.manager.ProduitManager;
 import com.manager.UtilisateursManager;
 
 public class UtilisateurAction {
@@ -17,7 +19,17 @@ public class UtilisateurAction {
 
 		return (mesUtil != null ? true : false);
 	}
+	
+	public static boolean afficherUtilisateurParNom(HttpServletRequest request) {
+		boolean retour = false;
 
+		ArrayList<Utilisateur> mesUtil = UtilisateursManager.getAll();
+
+		request.setAttribute("listeUtil", mesUtil);
+
+		return (mesUtil != null ? true : false);
+	}
+	
 	public static boolean insertUtilisateur(Utilisateur utilToAdd) {
 		boolean retour = false;
 

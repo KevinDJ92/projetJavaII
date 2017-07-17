@@ -21,6 +21,12 @@ public class PhotoProduit {
 		this.alt = alt;
 		this.isDefault = isDefault;
 	}
+	
+	public PhotoProduit( String cheminFtp) {
+		super();
+		this.cheminFtp = cheminFtp;
+	}
+	
 
 	public PhotoProduit(String cheminFtp, String extensionPic, String alt, int isDefault) {
 		super();

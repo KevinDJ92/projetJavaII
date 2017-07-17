@@ -4,40 +4,39 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Achat implements Serializable{
-
 	private int idAchat;
 	private int idUtil;
 	private int idProd;
-	private String confimNum;
+	private String confirmNum;
 	private Date dateAchat;
 	private String adresseExp;
 	private String suivi;
 	
 	public Achat(){}
 
-	public Achat(int idAchat, int idUtil, int idProd, String confimNum, Date dateAchat, String adresseExp,
+	public Achat(int idAchat, int idUtil, int idProd, String confirmNum, Date dateAchat, String adresseExp,
 			String suivi) {
 		super();
 		this.idAchat = idAchat;
 		this.idUtil = idUtil;
 		this.idProd = idProd;
-		this.confimNum = confimNum;
+		this.confirmNum = confirmNum;
 		this.dateAchat = dateAchat;
 		this.adresseExp = adresseExp;
 		this.suivi = suivi;
 	}
 
-	public Achat(String confimNum, Date dateAchat, String adresseExp, String suivi) {
+	public Achat(String confirmNum, Date dateAchat, String adresseExp, String suivi) {
 		super();
-		this.confimNum = confimNum;
+		this.confirmNum = confirmNum;
 		this.dateAchat = dateAchat;
 		this.adresseExp = adresseExp;
 		this.suivi = suivi;
 	}
 
-	public Achat(String confimNum, Date dateAchat, String suivi) {
+	public Achat(String confirmNum, Date dateAchat, String suivi) {
 		super();
-		this.confimNum = confimNum;
+		this.confirmNum = confirmNum;
 		this.dateAchat = dateAchat;
 		this.suivi = suivi;
 	}
@@ -66,12 +65,12 @@ public class Achat implements Serializable{
 		this.idProd = idProd;
 	}
 
-	public String getConfimNum() {
-		return confimNum;
+	public String getConfirmNum() {
+		return confirmNum;
 	}
 
-	public void setConfimNum(String confimNum) {
-		this.confimNum = confimNum;
+	public void setConfirmNum(String confirmNum) {
+		this.confirmNum = confirmNum;
 	}
 
 	public Date getDateAchat() {

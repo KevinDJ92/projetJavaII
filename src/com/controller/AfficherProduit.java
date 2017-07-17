@@ -28,11 +28,13 @@ public class AfficherProduit extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String urlRedirect = Constante.cefErrorPage;
 		String linkR = request.getParameter("link");
 		if(linkR == null){
 			linkR = "index.jsp";
 		}
-		String urlRedirect = Constante.cefErrorPage;
+
+		
 		String categorie = request.getParameter("categorie");
 		String prixMin = request.getParameter("prixMin");
 		String prixMax = request.getParameter("prixMax");
@@ -81,7 +83,7 @@ public class AfficherProduit extends HttpServlet {
 			
 			else if(categorie == null && nomProd == null){
 				if(ProduitAction.afficherProduitPrixMinMax(request, Double.parseDouble(prixMin), Double.parseDouble(prixMax))){
-					urlRedirect = linkR;
+					urlRedirect =linkR;
 				}
 			}
 		}
