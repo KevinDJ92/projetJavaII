@@ -5,7 +5,6 @@
     pageEncoding="ISO-8859-1"%>
     <%
     	if(request.getAttribute("listeProd")==null){
-    		
     		request.getRequestDispatcher("AfficherProduit").forward(request, response);
     	}
     %>
@@ -130,7 +129,6 @@
 								if(photo.getIdProd() == produit.getId() && photo.getIsDefault()==1){
 									photoForProd = photo;
 								}
-								
 							}
 					%>
 					

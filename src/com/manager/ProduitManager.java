@@ -47,7 +47,6 @@ public class ProduitManager {
 				}
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -82,7 +81,6 @@ public class ProduitManager {
 				}
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -224,7 +222,6 @@ public class ProduitManager {
 				}
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -261,7 +258,6 @@ public class ProduitManager {
 				}
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -291,11 +287,9 @@ public class ProduitManager {
 			nbLigne = ps.executeUpdate();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
-//		System.out.println("nb ligne " + nbLigne);
 		if(nbLigne >0 )
 			retour = true;		
 		ConnexionBD.closeConnection();
@@ -321,7 +315,6 @@ public class ProduitManager {
 			idRetour = ps.getGeneratedKeys();
 			idRetour.next();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
@@ -334,7 +327,6 @@ public class ProduitManager {
 	}
 	
 	//UPDATE 
-	
 	public static boolean update(Produit prod){
 		boolean retour = false;
 		int nbLigne = 0;
@@ -353,7 +345,6 @@ public class ProduitManager {
 			
 			nbLigne = ps.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
@@ -376,7 +367,6 @@ public class ProduitManager {
 			
 			nbLigne = ps.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	

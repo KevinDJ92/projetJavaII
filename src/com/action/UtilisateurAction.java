@@ -50,7 +50,7 @@ public class UtilisateurAction {
 	public static boolean deleteUtilisateur(int idUtilisateur){
 		boolean retour= false;		
 		
-		if(UtilisateursManager.delete(idUtilisateur))
+		if (UtilisateursManager.delete(idUtilisateur))
 			retour =true;
 		
 		return retour;

@@ -11,7 +11,6 @@ public class Validation {
 			Integer.parseInt(nb);
 			retour = true;
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		
 		return retour;
