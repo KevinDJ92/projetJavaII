@@ -5,8 +5,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%
+    
     	if(request.getAttribute("listeProd")==null){
     		request.getRequestDispatcher("AfficherProduit").forward(request, response);
+    		
     	}
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -42,7 +44,7 @@
 	ArrayList<PhotoProduit> photoProds = (ArrayList<PhotoProduit>)request.getAttribute("listePhotoProd");
 	ArrayList<Rating> Ratings = (ArrayList<Rating>)request.getAttribute("listRatingProd");
 	PhotoProduit photoForProd = null ;
-	int note = 0;
+// 	int note = 0;
 %>
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -132,13 +134,18 @@
 									photoForProd = photo;
 								}
 
+								
+								
 							}
 							
-							for(Rating rating : Ratings){
-								if(rating.getIdProduit() == produit.getId()){
-									note ++;
-								}
-							}
+// 							for(Rating rating : Ratings){
+// // 								if(rating.getIdProduit() == produit.getId()){
+// // 									note ++;
+// // 								}
+								
+								
+
+// 							}
 					%>
 					
 					<div class="col-sm-4 col-lg-4 col-md-4">
@@ -151,25 +158,25 @@
                                 <p><%=produit.getDetail() %> .</p>
                             </div>
                             <div class="ratings">
-                                <p class="pull-right"><%= note %></p>
+                                <p class="pull-right"></p>
                                 <p><%
-                                for(int i=0 ; i<note ; i++){
+                               // for(int i=0 ; i<note ; i++){
                                 	
                                 
                                 %>
                                
-                                    <span class="start_<%=i+1 %> glyphicon glyphicon-star modifiable"></span>
+                                    <span class="start_ glyphicon glyphicon-star modifiable"></span>
                                     
                                 <%
-                                }
-                                if(note<5){
-                                	for(int j=note ; j<5 ; j++){
+                                //}
+                                //if(note<5){
+                                	//for(int j=note ; j<5 ; j++){
                                 		
                                 %>
-                                 <span class="start_<%=j+1 %> glyphicon glyphicon-star-empty modifiable"></span>
+                                 <span class="start_ glyphicon glyphicon-star-empty modifiable"></span>
                                 <%
-                                	}
-                                }
+                                	//}
+                            //    }
                                 %>
                                    
                                 </p>
@@ -178,7 +185,7 @@
                     </div>
 					
 					<%
-					note =0;
+					//note =0;
 						}
 					%>
 
