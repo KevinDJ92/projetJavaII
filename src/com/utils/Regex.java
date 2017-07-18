@@ -12,7 +12,7 @@ public class Regex {
 		boolean passwordIsValid = false;
 		
 		Pattern checkRegex = Pattern.compile(theRegex);
-		Matcher regexMatcher = checkRegex.matcher( str2Check );
+		Matcher regexMatcher = checkRegex.matcher(str2Check );
 				
 		// Cycle through the positive matches and print them to screen
 		// Make sure string isn't empty and trim off any whitespace
