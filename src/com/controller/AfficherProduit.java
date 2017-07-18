@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.action.PhotoAction;
 import com.action.ProduitAction;
+import com.action.RatingAction;
 import com.entities.PhotoProduit;
 import com.entities.Produit;
 import com.utils.Constante;
@@ -29,6 +30,8 @@ public class AfficherProduit extends HttpServlet {
 		String urlRedirect = Constante.cefErrorPage;
 		String linkR = request.getParameter("link");
 
+		System.out.println("on est dans urlRederict test");
+		
 		if(linkR == null){
 			linkR = "index.jsp";
 		}
@@ -45,6 +48,7 @@ public class AfficherProduit extends HttpServlet {
 			
 			if(ProduitAction.afficherProduit(request)){
 				urlRedirect = linkR;
+				
 				
 			}
 //			PhotoAction.afficherPhotoProd(request);
@@ -86,16 +90,17 @@ public class AfficherProduit extends HttpServlet {
 					urlRedirect =linkR;
 				}
 			}
-//			PhotoAction.afficherPhotoProd(request);
 		}
 		
 		//pour afficher les image des produits trouver
 		if(urlRedirect!= Constante.cefErrorPage){
-			ArrayList<Produit> produits = (ArrayList<Produit>)request.getAttribute("listeProd");
+//			Array
 			
 				PhotoAction.afficherPhotoProd(request);
+				RatingAction.afficherRatingProd(request);
 			
 		}
+		
 		request.getRequestDispatcher(urlRedirect).forward(request, response);
 	}
 
