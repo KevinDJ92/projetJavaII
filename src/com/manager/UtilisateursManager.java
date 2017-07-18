@@ -21,6 +21,8 @@ public class UtilisateursManager {
 	
 	private static String queryGetyAll = "SELECT * FROM utilisateurs";
 	private static String queryGetById = "SELECT * FROM utilisateurs WHERE id_ut = ?";
+	private static String queryGetByEmail = "SELECT * FROM utilisateurs WHERE email = ?";
+
 	private static String queryGetBy = "SELECT * FROM utilisateurs WHERE ? = ?";
 	
 	public static boolean insert(Utilisateur utilisateur){
@@ -139,8 +141,8 @@ public class UtilisateursManager {
 		int nbUtilisateurs = 0;
 		try {
 			ps = (PreparedStatement) ConnexionBD.getConnection().prepareStatement(queryConnexion);
-			ps.setString(1, utilisateurs.getEmail());
-			ps.setString(2, utilisateurs.getPassword());
+			ps.setString(3, utilisateurs.getEmail());
+			ps.setString(4, utilisateurs.getPassword());
 			ResultSet result = (ResultSet) ps.executeQuery();
 			while (result.next()) {
 				nbUtilisateurs++;
@@ -226,6 +228,40 @@ public class UtilisateursManager {
 		return retour;
 	}
 	
+	public static Utilisateur getByEmail(String email) {
+		Utilisateur retour = null;
+		
+		try {
+			PreparedStatement ps = (PreparedStatement) ConnexionBD.getConnection().prepareStatement(queryGetByEmail);
+			ps.setString(1, email);
+			
+			ResultSet result = (ResultSet) ps.executeQuery();
+
+			if (result.isBeforeFirst()) {
+				
+				retour = new Utilisateur();	
+				
+				while (result.next()) {					
+					retour.setId(result.getInt(tableList[0]));
+					retour.setNom(result.getString(tableList[1]));
+					retour.setPrenom(result.getString(tableList[2]));
+					retour.setEmail(result.getString(tableList[3]));
+					retour.setPassword(result.getString(tableList[4]));
+					retour.setTelNum(result.getString(tableList[5]));
+					retour.setAdresse(result.getString(tableList[6]));
+					retour.setCodePostal(result.getString(tableList[7]));
+					retour.setSecureQ(result.getString(tableList[8]));
+					retour.setRepSecureQ(result.getString(tableList[9]));
+					retour.setImgLink(result.getString(tableList[10]));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ConnexionBD.closeConnection();
+		return retour;
+	}
+	
 	public static  ArrayList<Utilisateur> getBy(UTILISATEUR_TABLE table, String nom){
 		String tableName = null;
 		ArrayList<Utilisateur> retour = null;
@@ -273,7 +309,7 @@ public class UtilisateursManager {
 		String tableName = null;
 		
 		switch(table){
-		// tableList[0] est "id_ut"
+		// tableList[0] est "id_ut" (unique)
 		
 		case  NOM:
 			tableName = tableList[1];
@@ -281,11 +317,9 @@ public class UtilisateursManager {
 		case PRENOM:
 			tableName = tableList[2];
 			break;
-		case EMAIL:
-			tableName = tableList[3];
-			break;
-			
-		// tableList[3] est password
+	
+		// tablelist[2] est email (unique)	
+		// tableList[3] est password (priver)
 			
 		case TELNUM:
 			tableName = tableList[5];

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.entities.Utilisateur;
 import com.manager.UtilisateursManager;
 import com.utils.Constante;
+import com.utils.GestionSession;
 
 @WebServlet("/LoginUtilisateur")
 public class LoginUtilisateur extends HttpServlet {
@@ -22,6 +23,7 @@ public class LoginUtilisateur extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String urlRedirect = Constante.pageIndex;
+		String emailName = null;
 		
 		Utilisateur util = new Utilisateur();
 		
@@ -29,8 +31,23 @@ public class LoginUtilisateur extends HttpServlet {
 		util.setPassword(request.getParameter("password"));
 		
 		if (UtilisateursManager.userExiste(util)){
+			emailName = util.getEmail();
+			util = UtilisateursManager.getByEmail(emailName);
+			
+			GestionSession.ajouterEtudianToSession(request, util);
+			if (request.getParameter("sauvegarde") == "yes"){
+//				Cookies
+			};
+			
+			System.out.println("User added to the Session");
+			
 			request.getRequestDispatcher(urlRedirect).forward(request, response);
 		}
+		
+		else {
+			
+		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
