@@ -17,7 +17,7 @@ public class Regex {
 		// Cycle through the positive matches and print them to screen
 		// Make sure string isn't empty and trim off any whitespace
 				
-		while ( regexMatcher.find() ){
+		while (regexMatcher.find()){
 			if (regexMatcher.group().length() != 0){
 				System.out.println( regexMatcher.group().trim() );
 						
