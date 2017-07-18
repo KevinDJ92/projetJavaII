@@ -132,17 +132,12 @@
 									photoForProd = photo;
 								}
 
-								
-								
 							}
 							
 							for(Rating rating : Ratings){
 								if(rating.getIdProduit() == produit.getId()){
 									note ++;
 								}
-								
-								
-
 							}
 					%>
 					
