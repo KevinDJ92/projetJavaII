@@ -22,7 +22,8 @@ public class LoginUtilisateur extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String urlRedirect = Constante.pageIndex;
+		String urlRedirectValid = Constante.pageIndex;
+		String urlRedirectInvalid = Constante.pageLogin;
 		String emailName = null;
 		
 		Utilisateur util = new Utilisateur();
@@ -36,16 +37,15 @@ public class LoginUtilisateur extends HttpServlet {
 			
 			GestionSession.ajouterEtudianToSession(request, util);
 			if (request.getParameter("sauvegarde") == "yes"){
-//				Cookies
 			};
 			
 			System.out.println("User added to the Session");
 			
-			request.getRequestDispatcher(urlRedirect).forward(request, response);
+			request.getRequestDispatcher(urlRedirectValid).forward(request, response);
 		}
 		
 		else {
-			
+			request.getRequestDispatcher(urlRedirectInvalid).forward(request, response);
 		}
 		
 	}
