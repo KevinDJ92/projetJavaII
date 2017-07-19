@@ -11,7 +11,7 @@ import com.service.ConnexionBD;
 
 public class ProduitManager {
 	private static String queryGetyAll = "select * from produits";
-	private static String queryGetAllCat = "select categorie_prod from produits";
+	private static String queryGetAllCat = "select distinct categorie_prod from produits";
 	private static String queryGetByName = "select * from produits where nom_prod like ?";
 	private static String queryGetByCategorie = "select * from produits where categorie_prod like ?";
 	private static String queryGetByEtat = "select * from produits where etat_prod like ?";
