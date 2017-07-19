@@ -44,6 +44,7 @@ public class AfficherProduit extends HttpServlet {
 				&& prixMax == null && nomProd == null &&
 				idProd == null){
 			
+			
 			if(ProduitAction.afficherProduit(request)){
 				urlRedirect = linkR;
 				
@@ -51,12 +52,16 @@ public class AfficherProduit extends HttpServlet {
 			}
 //			PhotoAction.afficherPhotoProd(request);
 		}else{
+
 			if(prixMin == null 
 					&& prixMax == null && nomProd == null &&
-					idProd == null){
+					idProd == null && categorie != null){
 				if(ProduitAction.afficherProduitParCategorie(request, categorie)){
 					urlRedirect = linkR;
+					
 				}
+
+				
 				
 			}
 			

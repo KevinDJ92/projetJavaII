@@ -8,6 +8,7 @@
     	ArrayList<Rating> Ratings = new ArrayList();
    		ArrayList<Produit> produits = new ArrayList();
    		ArrayList<PhotoProduit> photoProds = new ArrayList();
+   		ArrayList<String>categories = new ArrayList();
    		PhotoProduit photoForProd = null ; 
    		int note = 0;
     %>
@@ -25,6 +26,10 @@
     	if(produits != null && request.getAttribute("listePhotoValid")== null){
     		request.getRequestDispatcher("AffichePhotoProd").forward(request, response);
     		photoProds = (ArrayList<PhotoProduit>)request.getAttribute("listePhotoProd");	
+    	}
+    	if(request.getAttribute("listeCategorieValid")== null){
+    		request.getRequestDispatcher("AfficherCategorieProd").forward(request, response);
+    		categories = (ArrayList<String>)request.getAttribute("listeCatProd");	
     	}
     %>
    
@@ -96,9 +101,14 @@
             <div class="col-md-3">
                 <p class="lead">Shop Name</p>
                 <div class="list-group">
-                    <a href="#" class="list-group-item">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
-                    <a href="#" class="list-group-item">Category 3</a>
+                <%
+                	for(String categorie : categories){
+                %>
+                    <a href="AfficherProduit?categorie=<%=categorie %>" class="list-group-item"><%=categorie %></a>
+                <%
+                	}
+               System.out.println(request.getAttribute("listeProd")); 
+                %>
                 </div>
             </div>
 

@@ -11,6 +11,7 @@ import com.service.ConnexionBD;
 
 public class ProduitManager {
 	private static String queryGetyAll = "select * from produits";
+	private static String queryGetAllCat = "select categorie_prod from produits";
 	private static String queryGetByName = "select * from produits where nom_prod like ?";
 	private static String queryGetByCategorie = "select * from produits where categorie_prod like ?";
 	private static String queryGetByEtat = "select * from produits where etat_prod like ?";
@@ -44,6 +45,31 @@ public class ProduitManager {
 					prod.setQte(result.getInt("qte_stock"));
 
 					retour.add(prod);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		ConnexionBD.closeConnection();
+		
+		return retour;
+	}
+
+	public static ArrayList<String> getAllCategorie() {
+		ArrayList<String> retour = null;
+
+		try {
+			PreparedStatement ps = ConnexionBD.getConnection().prepareStatement(queryGetAllCat);
+
+			ResultSet result = ps.executeQuery();
+
+			if (result.isBeforeFirst()) {
+				
+				retour = new ArrayList<>();
+
+				while (result.next()) {
+					retour.add(result.getString("categorie_prod"));
 				}
 			}
 		} catch (SQLException e) {
@@ -91,7 +117,7 @@ public class ProduitManager {
 	
 	public static ArrayList<Produit> getByCategorie(String categorie) {
 		ArrayList<Produit> retour = null;
-
+		
 		try {
 			PreparedStatement ps = ConnexionBD.getConnection().prepareStatement(queryGetByCategorie);
 

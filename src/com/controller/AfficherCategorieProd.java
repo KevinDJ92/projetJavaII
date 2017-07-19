@@ -7,22 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.action.PhotoAction;
 import com.action.ProduitAction;
 import com.action.RatingAction;
 import com.utils.Constante;
 
 /**
- * Servlet implementation class AfficheCommentaires
+ * Servlet implementation class AfficherCategorieProd
  */
-@WebServlet("/AfficheCommentaires")
-public class AfficheCommentaires extends HttpServlet {
+@WebServlet("/AfficherCategorieProd")
+public class AfficherCategorieProd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AfficheCommentaires() {
+    public AfficherCategorieProd() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,6 +31,7 @@ public class AfficheCommentaires extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
 		String urlRedirect = Constante.cefErrorPage;
 		String linkR = request.getParameter("link");
 
@@ -40,48 +40,17 @@ public class AfficheCommentaires extends HttpServlet {
 		if(linkR == null){
 			linkR = "index.jsp";
 		}
-
-		String idProd = request.getParameter("idProd");
-		String idUtil = request.getParameter("idUtil");
 		
-		
-			if(idProd == null && idUtil == null){
-				if(RatingAction.afficherRatingProd(request)){
-					urlRedirect = linkR;
-					
-				}
-			}else{
-				if(idProd !=null && idUtil==null){
-					if(RatingAction.afficherRatingWithIdProd(request, Integer.parseInt(idProd))){
-						urlRedirect = linkR;
-						
-					}
-				}
-				if(idProd ==null && idUtil!=null){
-					if(RatingAction.afficherRatingWithIdUtil(request, Integer.parseInt(idProd))){
-						urlRedirect = linkR;
-					}
-				}
-			}
+		if(ProduitAction.afficherCategoriesProd(request)){
+			urlRedirect = linkR;
 			
-			
+		}
 		
-		
-		
-		//pour afficher les image des produits trouver
-//		if(urlRedirect!= Constante.cefErrorPage){
-////			Array
-//			
-//				PhotoAction.afficherPhotoProd(request);
-//				RatingAction.afficherRatingProd(request);
-//			
-//		}
-			//listeRateValid
-			request.setAttribute("listeRateValid", "true");
-			request.getRequestDispatcher(urlRedirect).forward(request, response);
-		
-	}
+		request.setAttribute("listeCategorieValid", "true");
+		request.getRequestDispatcher(urlRedirect).forward(request, response);
 	
+
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

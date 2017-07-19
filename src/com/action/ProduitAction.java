@@ -17,6 +17,15 @@ public class ProduitAction {
 		return (produits != null ? true : false);
 	}
 	
+	public static boolean afficherCategoriesProd(HttpServletRequest request) {
+
+		ArrayList<String> categorie = ProduitManager.getAllCategorie();
+
+		request.setAttribute("listeCatProd", categorie);
+
+		return (categorie != null ? true : false);
+	}
+	
 	public static boolean afficherProduitParCategorie(HttpServletRequest request, String categorie) {
 
 		ArrayList<Produit> produits = ProduitManager.getByCategorie(categorie);
