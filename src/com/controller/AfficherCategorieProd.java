@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.action.PhotoAction;
 import com.action.ProduitAction;
 import com.action.RatingAction;
 import com.utils.Constante;
@@ -33,21 +34,24 @@ public class AfficherCategorieProd extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String urlRedirect = Constante.cefErrorPage;
-		String linkR = request.getParameter("link");
+		String linkR = (String)request.getAttribute("link");
 
-		
+		//System.out.println(linkR);
 		
 		if(linkR == null){
+			request.setAttribute("listeCategorieValid", "true");
 			linkR = "index.jsp";
 		}
 		
 		if(ProduitAction.afficherCategoriesProd(request)){
 			urlRedirect = linkR;
+			request.setAttribute("listeCategorieValid", "true");
+			request.getRequestDispatcher(urlRedirect).forward(request, response);
 			
 		}
 		
-		request.setAttribute("listeCategorieValid", "true");
-		request.getRequestDispatcher(urlRedirect).forward(request, response);
+		
+//		request.getRequestDispatcher(urlRedirect).forward(request, response);
 	
 
 	}
@@ -58,6 +62,12 @@ public class AfficherCategorieProd extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	public static boolean RecupererAllCategorie(HttpServletRequest request){
+		request.setAttribute("listeCategorieValid", "true");
+
+		return ProduitAction.afficherCategoriesProd(request);
 	}
 
 }

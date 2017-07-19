@@ -32,7 +32,7 @@ public class AffichePhotoProd extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String urlRedirect = Constante.cefErrorPage;
-		String linkR = request.getParameter("link");
+		String linkR = (String)request.getAttribute("link");
 
 		
 		if(linkR == null){
@@ -52,13 +52,15 @@ public class AffichePhotoProd extends HttpServlet {
 				if(idProd !=null){
 					if(PhotoAction.afficherPhotoProdwithId(request, Integer.parseInt(idProd))){
 						urlRedirect = linkR;
+						request.setAttribute("listePhotoValid", "true");
+						request.getRequestDispatcher(urlRedirect).forward(request, response);
 						
 					}
 				}
 			}
 			
-			request.setAttribute("listePhotoValid", "true");
-			request.getRequestDispatcher(urlRedirect).forward(request, response);
+			
+//			request.getRequestDispatcher(urlRedirect).forward(request, response);
 	}
 
 	/**
@@ -68,5 +70,11 @@ public class AffichePhotoProd extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	public static boolean RecupererAllPhoto(HttpServletRequest request){
+		request.setAttribute("listePhotoValid", "true");
+		return PhotoAction.afficherPhotoProd(request);
+	}
+
 
 }

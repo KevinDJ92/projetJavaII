@@ -33,7 +33,7 @@ public class AfficheCommentaires extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String urlRedirect = Constante.cefErrorPage;
-		String linkR = request.getParameter("link");
+		String linkR = (String)request.getAttribute("link");
 
 		
 		
@@ -54,12 +54,16 @@ public class AfficheCommentaires extends HttpServlet {
 				if(idProd !=null && idUtil==null){
 					if(RatingAction.afficherRatingWithIdProd(request, Integer.parseInt(idProd))){
 						urlRedirect = linkR;
+						request.setAttribute("listeRateValid", "true");
+						request.getRequestDispatcher(urlRedirect).forward(request, response);
 						
 					}
 				}
 				if(idProd ==null && idUtil!=null){
 					if(RatingAction.afficherRatingWithIdUtil(request, Integer.parseInt(idProd))){
 						urlRedirect = linkR;
+						request.setAttribute("listeRateValid", "true");
+						request.getRequestDispatcher(urlRedirect).forward(request, response);
 					}
 				}
 			}
@@ -77,8 +81,7 @@ public class AfficheCommentaires extends HttpServlet {
 //			
 //		}
 			//listeRateValid
-			request.setAttribute("listeRateValid", "true");
-			request.getRequestDispatcher(urlRedirect).forward(request, response);
+			
 		
 	}
 	
@@ -91,4 +94,8 @@ public class AfficheCommentaires extends HttpServlet {
 		doGet(request, response);
 	}
 
+	public static boolean RecupererAllRating(HttpServletRequest request){
+		request.setAttribute("listeRateValid", "true");
+		return RatingAction.afficherRatingProd(request);
+	}
 }

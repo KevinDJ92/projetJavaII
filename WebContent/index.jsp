@@ -1,3 +1,7 @@
+<%@page import="com.controller.AfficherCategorieProd"%>
+<%@page import="com.controller.AffichePhotoProd"%>
+<%@page import="com.controller.AfficheCommentaires"%>
+<%@page import="com.controller.AfficherProduit"%>
 <%@page import="com.utils.Constante"%>
 <%@page import="com.entities.Rating"%>
 <%@page import="com.entities.PhotoProduit"%>
@@ -15,24 +19,37 @@
     %>
     <%
     	if(request.getAttribute("listeProd")==null && request.getAttribute("listeProdValid")== null){
-    		request.getRequestDispatcher("AfficherProduit").forward(request, response);
+    		request.setAttribute("link", "index.jsp");
+   		AfficherProduit.RecupererAllProd(request);
+//      		request.getRequestDispatcher("AfficherProduit").forward(request, response);
+    		
     	}
-    
+    		
     	if(produits != null && request.getAttribute("listeRateValid")== null){
-			request.getRequestDispatcher("AfficheCommentaires").forward(request, response);
+    		request.setAttribute("link", "index.jsp");
+			AfficheCommentaires.RecupererAllRating(request);
+//      		request.getRequestDispatcher("AfficheCommentaires").forward(request, response);
 		}
     	
     	if(produits != null && request.getAttribute("listePhotoValid")== null){
-    		request.getRequestDispatcher("AffichePhotoProd").forward(request, response);
+    		request.setAttribute("link", "index.jsp");
+	   		AffichePhotoProd.RecupererAllPhoto(request);
+
+//      		request.getRequestDispatcher("AffichePhotoProd").forward(request, response);
+    			
     	}
-    	
-    	if(request.getAttribute("listeCategorieValid")== null){
-    		request.getRequestDispatcher("AfficherCategorieProd").forward(request, response);
+    	if(produits != null && request.getAttribute("listeCategorieValid")== null){
+    		request.setAttribute("link", "index.jsp");
+   			AfficherCategorieProd.RecupererAllCategorie(request);
+//      		request.getRequestDispatcher("AfficherCategorieProd").forward(request, response);
+    			
     	}
+
+		
     	
-//     	if(request.getAttribute("listeProd")==null || request.getAttribute("listeRateValid")== null ||request.getAttribute("listePhotoValid")== null || request.getAttribute("listeCategorieValid")== null){
-//     		request.getRequestDispatcher(Constante.cefErrorPage).forward(request, response);
-//     	}
+    	if(request.getAttribute("listeProd")==null || request.getAttribute("listeRateValid")== null ||request.getAttribute("listePhotoValid")== null || request.getAttribute("listeCategorieValid")== null){
+    		request.getRequestDispatcher(Constante.cefErrorPage).forward(request, response);
+    	}
     	else{
 
         	produits = (ArrayList<Produit>)request.getAttribute("listeProd");
