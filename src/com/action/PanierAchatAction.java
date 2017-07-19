@@ -1,30 +1,33 @@
 package com.action;
 
+//import java.security.KeyStore.Entry;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
 public class PanierAchatAction {
-//	int nbProduit = 0;
-	
-	public static String ajouterProduitPanier(String codeProduit, int quantite){
-		Hashtable panier = new Hashtable();
+	 private static Hashtable panier = new Hashtable();
+	 
+	 public static void ajouterProduitPanier(String codeProduit){
+		int quantite = 1;
+		Enumeration clesProduits = panier.keys();
+		
+		while(clesProduits.hasMoreElements()){
+			if (clesProduits.nextElement().equals(codeProduit)){		
+				quantite = (int) panier.get(codeProduit);
+				quantite++;
+			}
+		}
+		
 		panier.put(codeProduit, quantite);
-		return "";
 	}
-
-//	String quantite = (String)panier.get(codeProduit);
-//
-//	panier.remove(codeProduit);
-//
-//	// list des clefs
-//	Enumeration clesProduits = panier.keys();
-//
-//	// hasMoreElements() et nextElement()
-//
-//	while( clesProduits.hasMoreElements() ) {
-//		codeProduit = (String) clesProduits.nextElement();
-//		quantite    = (String) panier.get(codeProduit);
-//		out.println( "Produit choisi:" + codeProduit +
-//				  "Quantite:"       + quantite);
-
+	
+	public static void retirerProduitPanier(String codeProduit){
+		Enumeration clesProduits = panier.keys();
+		
+		while(clesProduits.hasMoreElements()){
+			if (clesProduits.nextElement().equals(codeProduit)){		
+				panier.remove(codeProduit);
+			}
+		}
+	}
 }

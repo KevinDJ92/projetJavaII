@@ -90,7 +90,7 @@ public class AfficherProduit extends HttpServlet {
 			
 			else if(categorie == null && nomProd == null){
 				if(ProduitAction.afficherProduitPrixMinMax(request, Double.parseDouble(prixMin), Double.parseDouble(prixMax))){
-					urlRedirect =linkR;
+					urlRedirect = linkR;
 				}
 			}
 		}

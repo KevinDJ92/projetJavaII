@@ -19,16 +19,15 @@
     	}
     
     	if(produits != null && request.getAttribute("listeRateValid")== null){
-		request.getRequestDispatcher("AfficheCommentaires").forward(request, response);
+			request.getRequestDispatcher("AfficheCommentaires").forward(request, response);
 		}
     	
     	if(produits != null && request.getAttribute("listePhotoValid")== null){
     		request.getRequestDispatcher("AffichePhotoProd").forward(request, response);
-    			
     	}
+    	
     	if(request.getAttribute("listeCategorieValid")== null){
     		request.getRequestDispatcher("AfficherCategorieProd").forward(request, response);
-    			
     	}
     	
 //     	if(request.getAttribute("listeProd")==null || request.getAttribute("listeRateValid")== null ||request.getAttribute("listePhotoValid")== null || request.getAttribute("listeCategorieValid")== null){
