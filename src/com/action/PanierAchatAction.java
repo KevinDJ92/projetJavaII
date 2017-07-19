@@ -9,6 +9,7 @@ public class PanierAchatAction {
 	public static String ajouterProduitPanier(String codeProduit, int quantite){
 		Hashtable panier = new Hashtable();
 		panier.put(codeProduit, quantite);
+		return "";
 	}
 
 //	String quantite = (String)panier.get(codeProduit);

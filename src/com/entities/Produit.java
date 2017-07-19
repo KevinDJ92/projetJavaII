@@ -3,8 +3,6 @@ package com.entities;
 import java.io.Serializable;
 import java.util.Hashtable;
 
-import com.sun.org.apache.xml.internal.utils.SerializableLocatorImpl;
-
 public class Produit implements Serializable{
 	private int id;
 	private String nom;
