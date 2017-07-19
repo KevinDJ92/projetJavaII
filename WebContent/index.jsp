@@ -31,9 +31,9 @@
     			
     	}
     	
-    	if(request.getAttribute("listeProd")==null || request.getAttribute("listeRateValid")== null ||request.getAttribute("listePhotoValid")== null || request.getAttribute("listeCategorieValid")== null){
-    		request.getRequestDispatcher(Constante.cefErrorPage).forward(request, response);
-    	}
+//     	if(request.getAttribute("listeProd")==null || request.getAttribute("listeRateValid")== null ||request.getAttribute("listePhotoValid")== null || request.getAttribute("listeCategorieValid")== null){
+//     		request.getRequestDispatcher(Constante.cefErrorPage).forward(request, response);
+//     	}
     	else{
 
         	produits = (ArrayList<Produit>)request.getAttribute("listeProd");
@@ -84,7 +84,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="index.jsp">Acceuil</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -111,7 +111,7 @@
         <div class="row">
 
             <div class="col-md-3">
-                <p class="lead">Shop Name</p>
+                <p class="lead">Nos categories</p>
                 <div class="list-group">
                 <%
                 	for(String categorie : categories){
@@ -119,9 +119,14 @@
                     <a href="AfficherProduit?categorie=<%=categorie %>" class="list-group-item"><%=categorie %></a>
                 <%
                 	}
-               System.out.println(request.getAttribute("listeProd")); 
                 %>
                 </div>
+                 <div class="list-group">
+                 <form action="AfficherProduit" methode="get" class="list-group">
+                 	<input type="text" name="nomProd" placeholder="Ecrire ta recherche ici"  class="list-group-item">
+                 	<input type="submit" name="SubmitRecherche"  class="list-group-item">
+                 </form>
+                 </div>
             </div>
 
             <div class="col-md-9">
@@ -186,7 +191,7 @@
 					
 					<div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="img/produits/<%=(photoForProd!=null?photoForProd.getCheminFtp():"")  %>" alt="<%= (photoForProd!=null?photoForProd.getAlt():"") %>"
+                            <img src="img/produits/<%=(photoForProd!=null?photoForProd.getCheminFtp():"default.jpg")  %>" alt="<%= (photoForProd!=null?photoForProd.getAlt():"") %>"
                             	class="imgProd">
                             <div class="caption">
                                 <h4 class="pull-right">$<%= produit.getPrix() %></h4>
