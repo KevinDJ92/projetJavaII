@@ -29,8 +29,6 @@ public class AfficherProduit extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String urlRedirect = Constante.cefErrorPage;
 		String linkR = request.getParameter("link");
-
-		System.out.println("on est dans urlRederict test");
 		
 		if(linkR == null){
 			linkR = "index.jsp";
@@ -96,11 +94,11 @@ public class AfficherProduit extends HttpServlet {
 		if(urlRedirect!= Constante.cefErrorPage){
 //			Array
 			
-				PhotoAction.afficherPhotoProd(request);
-				RatingAction.afficherRatingProd(request);
+				//PhotoAction.afficherPhotoProd(request);
+//				RatingAction.afficherRatingProd(request);
 			
 		}
-		
+		request.setAttribute("listeProdValid", "true");
 		request.getRequestDispatcher(urlRedirect).forward(request, response);
 	}
 

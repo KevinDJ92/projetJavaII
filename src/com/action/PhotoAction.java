@@ -18,9 +18,9 @@ public class PhotoAction {
 		return (photoProd != null ? true : false);
 	}
 	
-	public static boolean afficherPhotoProdwithId(HttpServletRequest request,int id) {
+	public static boolean afficherPhotoProdwithId(HttpServletRequest request,int idProd) {
 
-		ArrayList<PhotoProduit> photoProd = PhotoProduitManager.getByIdProduit(id);
+		ArrayList<PhotoProduit> photoProd = PhotoProduitManager.getByIdProduit(idProd);
 
 		request.setAttribute("listePhotoProd", photoProd);
 

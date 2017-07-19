@@ -4,11 +4,30 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+     <%!
+    	ArrayList<Rating> Ratings = new ArrayList();
+   		ArrayList<Produit> produits = new ArrayList();
+   		ArrayList<PhotoProduit> photoProds = new ArrayList();
+   		PhotoProduit photoForProd = null ; 
+   		int note = 0;
+    %>
     <%
-    	if(request.getAttribute("listeProd")==null){
+    	if(request.getAttribute("listeProd")==null && request.getAttribute("listeProdValid")== null){
     		request.getRequestDispatcher("AfficherProduit").forward(request, response);
+    		produits = (ArrayList<Produit>)request.getAttribute("listeProd");
+    	}
+    
+    	if(produits != null && request.getAttribute("listeRateValid")== null){
+		request.getRequestDispatcher("AfficheCommentaires").forward(request, response);
+		Ratings = (ArrayList<Rating>)request.getAttribute("listRatingProd");
+		}
+    	
+    	if(produits != null && request.getAttribute("listePhotoValid")== null){
+    		request.getRequestDispatcher("AffichePhotoProd").forward(request, response);
+    		photoProds = (ArrayList<PhotoProduit>)request.getAttribute("listePhotoProd");	
     	}
     %>
+   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -37,14 +56,6 @@
 
 <body>
 
-<%
- 	ArrayList<Produit> produits = (ArrayList<Produit>)request.getAttribute("listeProd");
-	ArrayList<PhotoProduit> photoProds = (ArrayList<PhotoProduit>)request.getAttribute("listePhotoProd");
-
-	ArrayList<Rating> Ratings = (ArrayList<Rating>)request.getAttribute("listRatingProd");
-	PhotoProduit photoForProd = null ; 
-	int note = 0;
-%>
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -123,6 +134,10 @@
                     </div>
 
                 </div>
+                <%
+                	if(produits !=null){
+                %>
+                
 
                 <div class="row">
 
@@ -149,7 +164,8 @@
 					
 					<div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="img/produits/<%=(photoForProd!=null?photoForProd.getCheminFtp():"")  %>" alt="<%= (photoForProd!=null?photoForProd.getAlt():"") %>">
+                            <img src="img/produits/<%=(photoForProd!=null?photoForProd.getCheminFtp():"")  %>" alt="<%= (photoForProd!=null?photoForProd.getAlt():"") %>"
+                            	class="imgProd">
                             <div class="caption">
                                 <h4 class="pull-right">$<%= produit.getPrix() %></h4>
                                 <h4><a href="#"><%=produit.getNom() %></a>
@@ -186,6 +202,12 @@
 					<%
 					note =0;
 						}
+                	}
+                	else{%>
+                	
+                		<p>desole il ya aucun produits</p>
+                		<%
+                	}
 					%>
 
                 </div>
