@@ -20,7 +20,7 @@
     <%
     	if(request.getAttribute("listeProd")==null && request.getAttribute("listeProdValid")== null){
     		request.setAttribute("link", "index.jsp");
-   		AfficherProduit.RecupererAllProd(request);
+   			AfficherProduit.RecupererAllProd(request);
 //      		request.getRequestDispatcher("AfficherProduit").forward(request, response);
     		
     	}
