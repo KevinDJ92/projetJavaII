@@ -1,3 +1,4 @@
+<%@page import="com.utils.Constante"%>
 <%@page import="com.entities.Rating"%>
 <%@page import="com.entities.PhotoProduit"%>
 <%@page import="com.entities.Produit"%>
@@ -29,11 +30,19 @@
     		request.getRequestDispatcher("AfficherCategorieProd").forward(request, response);
     			
     	}
-    	produits = (ArrayList<Produit>)request.getAttribute("listeProd");
-		Ratings = (ArrayList<Rating>)request.getAttribute("listRatingProd");
-		photoProds = (ArrayList<PhotoProduit>)request.getAttribute("listePhotoProd");
-		categories = (ArrayList<String>)request.getAttribute("listeCatProd");
-		
+    	
+    	if(request.getAttribute("listeProd")==null || request.getAttribute("listeRateValid")== null ||request.getAttribute("listePhotoValid")== null || request.getAttribute("listeCategorieValid")== null){
+    		request.getRequestDispatcher(Constante.cefErrorPage).forward(request, response);
+    	}
+    	else{
+
+        	produits = (ArrayList<Produit>)request.getAttribute("listeProd");
+    		Ratings = (ArrayList<Rating>)request.getAttribute("listRatingProd");
+    		photoProds = (ArrayList<PhotoProduit>)request.getAttribute("listePhotoProd");
+    		categories = (ArrayList<String>)request.getAttribute("listeCatProd");
+    		
+    		
+    	}
     %>
    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
