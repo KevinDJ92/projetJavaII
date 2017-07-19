@@ -15,22 +15,25 @@
     <%
     	if(request.getAttribute("listeProd")==null && request.getAttribute("listeProdValid")== null){
     		request.getRequestDispatcher("AfficherProduit").forward(request, response);
-    		produits = (ArrayList<Produit>)request.getAttribute("listeProd");
     	}
     
     	if(produits != null && request.getAttribute("listeRateValid")== null){
 		request.getRequestDispatcher("AfficheCommentaires").forward(request, response);
-		Ratings = (ArrayList<Rating>)request.getAttribute("listRatingProd");
 		}
     	
     	if(produits != null && request.getAttribute("listePhotoValid")== null){
     		request.getRequestDispatcher("AffichePhotoProd").forward(request, response);
-    		photoProds = (ArrayList<PhotoProduit>)request.getAttribute("listePhotoProd");	
+    			
     	}
     	if(request.getAttribute("listeCategorieValid")== null){
     		request.getRequestDispatcher("AfficherCategorieProd").forward(request, response);
-    		categories = (ArrayList<String>)request.getAttribute("listeCatProd");	
+    			
     	}
+    	produits = (ArrayList<Produit>)request.getAttribute("listeProd");
+		Ratings = (ArrayList<Rating>)request.getAttribute("listRatingProd");
+		photoProds = (ArrayList<PhotoProduit>)request.getAttribute("listePhotoProd");
+		categories = (ArrayList<String>)request.getAttribute("listeCatProd");
+		
     %>
    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
