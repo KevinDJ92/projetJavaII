@@ -14,6 +14,7 @@ import com.action.ProduitAction;
 import com.action.RatingAction;
 import com.entities.PhotoProduit;
 import com.entities.Produit;
+import com.sun.research.ws.wadl.Request;
 import com.utils.Constante;
 
 
@@ -28,12 +29,13 @@ public class AfficherProduit extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String urlRedirect = Constante.cefErrorPage;
-		String linkR = request.getParameter("link");
+		String linkR = (String)request.getAttribute("link");
 		
 		if(linkR == null){
 			linkR = "index.jsp";
+			
 		}
-
+		
 		String categorie = request.getParameter("categorie");
 		String prixMin = request.getParameter("prixMin");
 		String prixMax = request.getParameter("prixMax");
@@ -47,10 +49,11 @@ public class AfficherProduit extends HttpServlet {
 			
 			if(ProduitAction.afficherProduit(request)){
 				urlRedirect = linkR;
+				request.getRequestDispatcher(urlRedirect).forward(request, response);
 				
 				
 			}
-//			PhotoAction.afficherPhotoProd(request);
+			PhotoAction.afficherPhotoProd(request);
 		}else{
 
 			if(prixMin == null 
@@ -58,6 +61,8 @@ public class AfficherProduit extends HttpServlet {
 					idProd == null && categorie != null){
 				if(ProduitAction.afficherProduitParCategorie(request, categorie)){
 					urlRedirect = linkR;
+					request.setAttribute("listeProdValid", "true");
+					request.getRequestDispatcher(urlRedirect).forward(request, response);
 					
 				}
 
@@ -69,6 +74,8 @@ public class AfficherProduit extends HttpServlet {
 					nomProd == null && idProd == null){
 				if(ProduitAction.afficherProduitParPrix(request, Double.parseDouble(prixMin))){
 					urlRedirect = linkR;
+					request.setAttribute("listeProdValid", "true");
+					request.getRequestDispatcher(urlRedirect).forward(request, response);
 				}
 			}
 			
@@ -77,6 +84,8 @@ public class AfficherProduit extends HttpServlet {
 					idProd == null){
 				if(ProduitAction.afficherProduitParNom(request, nomProd)){
 					urlRedirect = linkR;
+					request.setAttribute("listeProdValid", "true");
+					request.getRequestDispatcher(urlRedirect).forward(request, response);
 				}
 			}
 			
@@ -85,12 +94,16 @@ public class AfficherProduit extends HttpServlet {
 					nomProd == null){
 				if(ProduitAction.afficherProduitParId(request, Integer.parseInt(idProd))){
 					urlRedirect = linkR;
+					request.setAttribute("listeProdValid", "true");
+					request.getRequestDispatcher(urlRedirect).forward(request, response);
 				}
 			}
 			
 			else if(categorie == null && nomProd == null){
 				if(ProduitAction.afficherProduitPrixMinMax(request, Double.parseDouble(prixMin), Double.parseDouble(prixMax))){
 					urlRedirect =linkR;
+					request.setAttribute("listeProdValid", "true");
+					request.getRequestDispatcher(urlRedirect).forward(request, response);
 				}
 			}
 		}
@@ -104,11 +117,17 @@ public class AfficherProduit extends HttpServlet {
 			
 		}
 		request.setAttribute("listeProdValid", "true");
-		request.getRequestDispatcher(urlRedirect).forward(request, response);
+//		System.out.println(urlRedirect);
+//		request.getRequestDispatcher(urlRedirect).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+	}
+	
+	public static boolean RecupererAllProd(HttpServletRequest request){
+		request.setAttribute("listeProdValid", "true");
+		return ProduitAction.afficherProduit(request);
 	}
 
 }
