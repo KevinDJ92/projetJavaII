@@ -10,7 +10,7 @@ function getXMLHttpRequest(){
 		  }
 		//sinon c est mozilla ou chrome
 		} else {
-		xhr = new XMLHttpRequest(); 
+			xhr = new XMLHttpRequest(); 
 		}		
 		
 	}else{		
@@ -18,19 +18,15 @@ function getXMLHttpRequest(){
 		return null;
 	}
 	
-	
 	return xhr;
-	
 }
 
-
 window.onload = function(){
-	var monP = document.getElementById("monP");
-	
+	var maDiv = document.getElementById("maDiv");
 	var monBouton = document.getElementById("monBouton");
 	
 	monBouton.onclick = function() {
-	var xhr =getXMLHttpRequest();
+	var xhr = getXMLHttpRequest();
 		
 	xhr.open(
 			"GET",
@@ -38,28 +34,38 @@ window.onload = function(){
 			true
 	);
 	
-	
 	xhr.send(null);
-		
-	if(xhr.readyState == 4 && xhr.status == 200){
-		retour = xhr.responseText;
-		
-		monP.innerHTML = retour;
-	}
 	
 	var retour = null;	
 	
 	xhr.onreadystatechange = function (){
-		
+		if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200){
+			retour = xhr.responseText;
+			
+			maDiv.innerHtml = "";	
+			var obj = JSON.parse(retour);
+			
+			for(var etu in obj){
+				var etudiant = {
+					"nom":obj[etu]["nom"],
+					"prenom":obj[etu]["prenom"]
+				}
+			
+//				var div = document.createElement("div");
+//				div.className = "maClass";
+//				
+//				var h3 = document.createElement("h3");
+//				h3.innerHTML = etudiant.nom;
+//				
+//				var p = document.createElement("p");
+//				p.innerHTML = etudiant.prenom;
+//				
+//				div.appendChild(h3);
+//				div.appendChild(p);
+//			
+//				maDiv.appendChild(div);		
+				}
+			};
+		}; 
 	};
-	
-	
-	};
-	
-	
-	
-
-	
-	
-}; 
-
+}

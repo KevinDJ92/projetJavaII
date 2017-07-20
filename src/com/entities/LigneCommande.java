@@ -3,6 +3,7 @@ package com.entities;
 public class LigneCommande {
 	private int quantite;
 	private Produit produit;
+	
 	public int getQuantite() {
 		return quantite;
 	}

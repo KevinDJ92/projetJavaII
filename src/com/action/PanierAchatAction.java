@@ -17,7 +17,6 @@ public class PanierAchatAction {
 				quantite++;
 			}
 		}
-		
 		panier.put(codeProduit, quantite);
 	}
 	
