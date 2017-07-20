@@ -1,3 +1,8 @@
+<%@page import="org.omg.CORBA.SystemException"%>
+<%@page import="com.controller.AfficherCategorieProd"%>
+<%@page import="com.controller.AffichePhotoProd"%>
+<%@page import="com.controller.AfficheCommentaires"%>
+<%@page import="com.controller.AfficherProduit"%>
 <%@page import="com.utils.Constante"%>
 <%@page import="com.entities.Rating"%>
 <%@page import="com.entities.PhotoProduit"%>
@@ -6,39 +11,47 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
      <%!
-    	ArrayList<Rating> Ratings = new ArrayList();
-   		ArrayList<Produit> produits = new ArrayList();
-   		ArrayList<PhotoProduit> photoProds = new ArrayList();
-   		ArrayList<String>categories = new ArrayList();
+    	ArrayList<Rating> Ratings = null;
+   		ArrayList<Produit> produits = null;
+   		ArrayList<PhotoProduit> photoProds =null;
+   		ArrayList<String>categories = null;
    		PhotoProduit photoForProd = null ; 
    		int note = 0;
     %>
     <%
     	if(request.getAttribute("listeProd")==null && request.getAttribute("listeProdValid")== null){
-    		request.setAttribute("link", "produits.jsp");
-    		request.getRequestDispatcher("AfficherProduit").forward(request, response);
+    		request.setAttribute("link", "index.jsp");
+   			AfficherProduit.RecupererAllProd(request);
+//      		request.getRequestDispatcher("AfficherProduit").forward(request, response);
+    		
     	}
-    
+    		
     	if(produits != null && request.getAttribute("listeRateValid")== null){
-    		request.setAttribute("link", "produits.jsp");
-		request.getRequestDispatcher("AfficheCommentaires").forward(request, response);
+    		request.setAttribute("link", "index.jsp");
+			AfficheCommentaires.RecupererAllRating(request);
+//      		request.getRequestDispatcher("AfficheCommentaires").forward(request, response);
 		}
     	
     	if(produits != null && request.getAttribute("listePhotoValid")== null){
-    		request.setAttribute("link", "produits.jsp");
-    		request.getRequestDispatcher("AffichePhotoProd").forward(request, response);
+    		request.setAttribute("link", "index.jsp");
+	   		AffichePhotoProd.RecupererAllPhoto(request);
+
+//      		request.getRequestDispatcher("AffichePhotoProd").forward(request, response);
     			
     	}
     	if(request.getAttribute("listeCategorieValid")== null){
-    		request.setAttribute("link", "produits.jsp");
-    		request.getRequestDispatcher("AfficherCategorieProd").forward(request, response);
+    		request.setAttribute("link", "index.jsp");
+   			AfficherCategorieProd.RecupererAllCategorie(request);
+//      		request.getRequestDispatcher("AfficherCategorieProd").forward(request, response);
     			
     	}
+
+		
     	
 //     	if(request.getAttribute("listeProd")==null || request.getAttribute("listeRateValid")== null ||request.getAttribute("listePhotoValid")== null || request.getAttribute("listeCategorieValid")== null){
 //     		request.getRequestDispatcher(Constante.cefErrorPage).forward(request, response);
 //     	}
-    	else{
+//     	else{
 
         	produits = (ArrayList<Produit>)request.getAttribute("listeProd");
     		Ratings = (ArrayList<Rating>)request.getAttribute("listRatingProd");
@@ -46,9 +59,9 @@
     		categories = (ArrayList<String>)request.getAttribute("listeCatProd");
     		
     		
-    	}
+//     	}
     %>
-
+   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -58,7 +71,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Shop ProduitsPage</title>
+    <title>Shop Homepage</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -118,11 +131,19 @@
                 <p class="lead">Nos categories</p>
                 <div class="list-group">
                 <%
+                if(categories != null){
                 	for(String categorie : categories){
                 %>
                     <a href="AfficherProduit?categorie=<%=categorie %>" class="list-group-item"><%=categorie %></a>
                 <%
                 	}
+                }
+                
+                else{
+                	%>
+                	<p class="list-group-item"> il nya pas de categorie</p>
+                <%
+                }
                 %>
                 </div>
                  <div class="list-group">
@@ -135,31 +156,66 @@
 
             <div class="col-md-9">
 
-                <%
-                	if(produits !=null){
-                %>
+                <div class="row carousel-holder">
+
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
                 
 
                 <div class="row">
 
+				<%
+                	if(produits != null){
+                		//System.out.println("je test");
+                %>
+                
 					<%
 						for(Produit produit : produits){
+							if(photoProds != null){
 							for(PhotoProduit photo : photoProds){
 								if(photo.getIdProd() == produit.getId() && photo.getIsDefault()==1){
 									photoForProd = photo;
 								}
 
-								
+							}
 								
 							}
+							if(Ratings != null){
 							
-							for(Rating rating : Ratings){
-								if(rating.getIdProduit() == produit.getId()){
-									note ++;
+								for(Rating rating : Ratings){
+									if(rating.getIdProduit() == produit.getId()){
+										note ++;
+									}
+									
+									
+	
 								}
-								
-								
-
 							}
 					%>
 					

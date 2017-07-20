@@ -1,3 +1,4 @@
+<%@page import="org.omg.CORBA.SystemException"%>
 <%@page import="com.controller.AfficherCategorieProd"%>
 <%@page import="com.controller.AffichePhotoProd"%>
 <%@page import="com.controller.AfficheCommentaires"%>
@@ -10,10 +11,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
      <%!
-    	ArrayList<Rating> Ratings = new ArrayList();
-   		ArrayList<Produit> produits = new ArrayList();
-   		ArrayList<PhotoProduit> photoProds = new ArrayList();
-   		ArrayList<String>categories = new ArrayList();
+    	ArrayList<Rating> Ratings = null;
+   		ArrayList<Produit> produits = null;
+   		ArrayList<PhotoProduit> photoProds =null;
+   		ArrayList<String>categories = null;
    		PhotoProduit photoForProd = null ; 
    		int note = 0;
     %>
@@ -38,7 +39,7 @@
 //      		request.getRequestDispatcher("AffichePhotoProd").forward(request, response);
     			
     	}
-    	if(produits != null && request.getAttribute("listeCategorieValid")== null){
+    	if(request.getAttribute("listeCategorieValid")== null){
     		request.setAttribute("link", "index.jsp");
    			AfficherCategorieProd.RecupererAllCategorie(request);
 //      		request.getRequestDispatcher("AfficherCategorieProd").forward(request, response);
@@ -47,10 +48,10 @@
 
 		
     	
-    	if(request.getAttribute("listeProd")==null || request.getAttribute("listeRateValid")== null ||request.getAttribute("listePhotoValid")== null || request.getAttribute("listeCategorieValid")== null){
-    		request.getRequestDispatcher(Constante.cefErrorPage).forward(request, response);
-    	}
-    	else{
+//     	if(request.getAttribute("listeProd")==null || request.getAttribute("listeRateValid")== null ||request.getAttribute("listePhotoValid")== null || request.getAttribute("listeCategorieValid")== null){
+//     		request.getRequestDispatcher(Constante.cefErrorPage).forward(request, response);
+//     	}
+//     	else{
 
         	produits = (ArrayList<Produit>)request.getAttribute("listeProd");
     		Ratings = (ArrayList<Rating>)request.getAttribute("listRatingProd");
@@ -58,7 +59,7 @@
     		categories = (ArrayList<String>)request.getAttribute("listeCatProd");
     		
     		
-    	}
+//     	}
     %>
    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -130,11 +131,19 @@
                 <p class="lead">Nos categories</p>
                 <div class="list-group">
                 <%
+                if(categories != null){
                 	for(String categorie : categories){
                 %>
                     <a href="AfficherProduit?categorie=<%=categorie %>" class="list-group-item"><%=categorie %></a>
                 <%
                 	}
+                }
+                
+                else{
+                	%>
+                	<p class="list-group-item"> il nya pas de categorie</p>
+                <%
+                }
                 %>
                 </div>
                  <div class="list-group">
@@ -177,31 +186,36 @@
                     </div>
 
                 </div>
-                <%
-                	if(produits !=null){
-                %>
                 
 
                 <div class="row">
 
+				<%
+                	if(produits != null){
+                		//System.out.println("je test");
+                %>
+                
 					<%
 						for(Produit produit : produits){
+							if(photoProds != null){
 							for(PhotoProduit photo : photoProds){
 								if(photo.getIdProd() == produit.getId() && photo.getIsDefault()==1){
 									photoForProd = photo;
 								}
 
-								
+							}
 								
 							}
+							if(Ratings != null){
 							
-							for(Rating rating : Ratings){
-								if(rating.getIdProduit() == produit.getId()){
-									note ++;
+								for(Rating rating : Ratings){
+									if(rating.getIdProduit() == produit.getId()){
+										note ++;
+									}
+									
+									
+	
 								}
-								
-								
-
 							}
 					%>
 					

@@ -28,11 +28,12 @@ public class AfficherProduit extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String urlRedirect = Constante.cefErrorPage;
+//		String urlRedirect = Constante.cefErrorPage;
+		String urlRedirect ="";
 		String linkR = (String)request.getAttribute("link");
 		
 		if(linkR == null){
-			linkR = "index.jsp";
+			linkR = "produits.jsp";
 			
 		}
 		
@@ -45,15 +46,14 @@ public class AfficherProduit extends HttpServlet {
 		if(categorie == null && prixMin == null 
 				&& prixMax == null && nomProd == null &&
 				idProd == null){
-			
+//			System.out.println(urlRedirect);
 			
 			if(ProduitAction.afficherProduit(request)){
 				urlRedirect = linkR;
-				request.getRequestDispatcher(urlRedirect).forward(request, response);
+				
 				
 				
 			}
-			PhotoAction.afficherPhotoProd(request);
 		}else{
 
 			if(prixMin == null 
@@ -61,8 +61,9 @@ public class AfficherProduit extends HttpServlet {
 					idProd == null && categorie != null){
 				if(ProduitAction.afficherProduitParCategorie(request, categorie)){
 					urlRedirect = linkR;
-					request.setAttribute("listeProdValid", "true");
-					request.getRequestDispatcher(urlRedirect).forward(request, response);
+					
+					
+					
 					
 				}
 
@@ -74,8 +75,7 @@ public class AfficherProduit extends HttpServlet {
 					nomProd == null && idProd == null){
 				if(ProduitAction.afficherProduitParPrix(request, Double.parseDouble(prixMin))){
 					urlRedirect = linkR;
-					request.setAttribute("listeProdValid", "true");
-					request.getRequestDispatcher(urlRedirect).forward(request, response);
+					System.out.println(urlRedirect);
 				}
 			}
 			
@@ -84,8 +84,6 @@ public class AfficherProduit extends HttpServlet {
 					idProd == null){
 				if(ProduitAction.afficherProduitParNom(request, nomProd)){
 					urlRedirect = linkR;
-					request.setAttribute("listeProdValid", "true");
-					request.getRequestDispatcher(urlRedirect).forward(request, response);
 				}
 			}
 			
@@ -94,16 +92,12 @@ public class AfficherProduit extends HttpServlet {
 					nomProd == null){
 				if(ProduitAction.afficherProduitParId(request, Integer.parseInt(idProd))){
 					urlRedirect = linkR;
-					request.setAttribute("listeProdValid", "true");
-					request.getRequestDispatcher(urlRedirect).forward(request, response);
 				}
 			}
 			
 			else if(categorie == null && nomProd == null){
 				if(ProduitAction.afficherProduitPrixMinMax(request, Double.parseDouble(prixMin), Double.parseDouble(prixMax))){
 					urlRedirect =linkR;
-					request.setAttribute("listeProdValid", "true");
-					request.getRequestDispatcher(urlRedirect).forward(request, response);
 				}
 			}
 		}
@@ -117,8 +111,8 @@ public class AfficherProduit extends HttpServlet {
 			
 		}
 		request.setAttribute("listeProdValid", "true");
-//		System.out.println(urlRedirect);
-//		request.getRequestDispatcher(urlRedirect).forward(request, response);
+		
+		request.getRequestDispatcher(urlRedirect).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
