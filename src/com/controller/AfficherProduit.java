@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import com.action.ProduitAction;
 import com.action.RatingAction;
 import com.entities.PhotoProduit;
 import com.entities.Produit;
+import com.google.gson.Gson;
 import com.sun.research.ws.wadl.Request;
 import com.utils.Constante;
 
@@ -53,6 +55,7 @@ public class AfficherProduit extends HttpServlet {
 				
 				
 				
+				
 			}
 		}else{
 
@@ -84,6 +87,15 @@ public class AfficherProduit extends HttpServlet {
 					idProd == null){
 				if(ProduitAction.afficherProduitParNom(request, nomProd)){
 					urlRedirect = linkR;
+					Gson gson = new Gson();
+					gson.toJson((ArrayList<Produit>)request.getAttribute("listeProd"));
+					//System.out.println(gson.toString());
+					response.setContentType("application/json");
+					response.setCharacterEncoding("UTF-8");
+					try(PrintWriter out = response.getWriter()){
+						out.print(gson);
+					}
+					
 				}
 			}
 			

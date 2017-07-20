@@ -85,6 +85,27 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		$('.chercher').click(function(){
+    			var categorie = $(".categorie").val;
+    			$.ajax({
+    				type: 'post',
+    				data: {'categorie',categorie},
+    				dataType: "json",
+    				url: 'AfficherProduit',
+    				success: function(result){
+    					$('.resultat').html(nom de produit est);
+    				}
+    				
+    			});
+    			
+    		});
+    		
+    		
+    	};)
+    </script>
 
 </head>
 
@@ -148,9 +169,12 @@
                 </div>
                  <div class="list-group">
                  <form action="AfficherProduit" methode="get" class="list-group">
-                 	<input type="text" name="nomProd" placeholder="Ecrire ta recherche ici"  class="list-group-item">
-                 	<input type="submit" class="list-group-item">
+                 	<input type="text" name="nomProd" placeholder="Ecrire ta recherche ici"  class="list-group-item categorie">
+                 	<input type="submit" class="list-group-item chercher">
+                 	
+                 	<p class="list-group-item resultat"></p>
                  </form>
+                 
                  </div>
             </div>
 
@@ -299,6 +323,6 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
 </body>
-
+<script type="text/javascript" src="script/jquery-3.2.1.min.js"></script> 
 </html>
 

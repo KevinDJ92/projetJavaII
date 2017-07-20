@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import com.entities.Produit;
+import com.google.gson.Gson;
 import com.manager.ProduitManager;
 
 public class ProduitAction {
@@ -13,6 +14,7 @@ public class ProduitAction {
 		ArrayList<Produit> produits = ProduitManager.getAll();
 
 		request.setAttribute("listeProd", produits);
+		//System.out.println("on test");
 
 		return (produits != null ? true : false);
 	}
