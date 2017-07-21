@@ -16,6 +16,7 @@ import com.action.RatingAction;
 import com.entities.PhotoProduit;
 import com.entities.Produit;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.sun.research.ws.wadl.Request;
 import com.utils.Constante;
 
@@ -88,13 +89,22 @@ public class AfficherProduit extends HttpServlet {
 				if(ProduitAction.afficherProduitParNom(request, nomProd)){
 					urlRedirect = linkR;
 					Gson gson = new Gson();
-					gson.toJson((ArrayList<Produit>)request.getAttribute("listeProd"));
+//					gson.toJson((ArrayList<Produit>)request.getAttribute("listeProd"));
+//					System.out.println(gson.toJson((ArrayList<Produit>)request.getAttribute("listeProd")));
+					//System.out.println("test");
 					//System.out.println(gson.toString());
 					response.setContentType("application/json");
 					response.setCharacterEncoding("UTF-8");
+					System.out.println(gson.toJson((ArrayList<Produit>)request.getAttribute("listeProd")));
 					try(PrintWriter out = response.getWriter()){
-						out.print(gson);
+						out.print(gson.toJson((ArrayList<Produit>)request.getAttribute("listeProd")));
+						
+						out.flush();
+						
+						out.close();
 					}
+					
+					
 					
 				}
 			}
@@ -104,6 +114,7 @@ public class AfficherProduit extends HttpServlet {
 					nomProd == null){
 				if(ProduitAction.afficherProduitParId(request, Integer.parseInt(idProd))){
 					urlRedirect = linkR;
+					
 				}
 			}
 			
@@ -124,7 +135,7 @@ public class AfficherProduit extends HttpServlet {
 		}
 		request.setAttribute("listeProdValid", "true");
 		
-		request.getRequestDispatcher(urlRedirect).forward(request, response);
+		//request.getRequestDispatcher(urlRedirect).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

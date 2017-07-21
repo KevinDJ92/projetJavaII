@@ -87,24 +87,7 @@
     <![endif]-->
     
     <script type="text/javascript">
-    	$(document).ready(function(){
-    		$('.chercher').click(function(){
-    			var categorie = $(".categorie").val;
-    			$.ajax({
-    				type: 'post',
-    				data: {'categorie',categorie},
-    				dataType: "json",
-    				url: 'AfficherProduit',
-    				success: function(result){
-    					$('.resultat').html(nom de produit est);
-    				}
-    				
-    			});
-    			
-    		});
-    		
-    		
-    	};)
+    	
     </script>
 
 </head>
@@ -168,12 +151,12 @@
                 %>
                 </div>
                  <div class="list-group">
-                 <form action="AfficherProduit" methode="get" class="list-group">
-                 	<input type="text" name="nomProd" placeholder="Ecrire ta recherche ici"  class="list-group-item categorie">
-                 	<input type="submit" class="list-group-item chercher">
+                  <!--<form action="AfficherProduit" methode="get" class="list-group"> -->
+                 	<input type="text" placeholder="Ecrire ta recherche ici"  class="list-group-item " id="nomProd">
+                 	<input type="button" value="chercher" class="list-group-item chercher">
                  	
                  	<p class="list-group-item resultat"></p>
-                 </form>
+               <!-- </form> -->
                  
                  </div>
             </div>
@@ -212,7 +195,7 @@
                 </div>
                 
 
-                <div class="row">
+                <div class="row rowProds">
 
 				<%
                 	if(produits != null){
@@ -243,7 +226,7 @@
 							}
 					%>
 					
-					<div class="col-sm-4 col-lg-4 col-md-4">
+					<div class="col-sm-4 col-lg-4 col-md-4 produitsAffiche">
                         <div class="thumbnail">
                             <img src="img/produits/<%=(photoForProd!=null?photoForProd.getCheminFtp():"default.jpg")  %>" alt="<%= (photoForProd!=null?photoForProd.getAlt():"") %>"
                             	class="imgProd">
@@ -317,12 +300,13 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="bootstrap/js/jquery.js"></script>
+    <script type="text/javascript" src="bootstrap/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
 </body>
 <script type="text/javascript" src="script/jquery-3.2.1.min.js"></script> 
+<script type="text/javascript" src="script/ajaxTest.js"></script> 
 </html>
 
