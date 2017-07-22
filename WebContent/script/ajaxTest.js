@@ -118,6 +118,15 @@ $(document).ready(function(){
 		    		"</div>" +
 		    		"</div>" +
 		    		"</div>";
+//		    var gliphcon = "<span class='glyphicon glyphicon-star modifiable'></span>";
+//		    for(i=0 ; i<= product[0].){}
+		    
+		    
+		    
+		    
+		    
+		    
+		    
 		    
 		    $(".rowProds").append(code);
 		    },

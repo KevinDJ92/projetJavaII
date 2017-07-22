@@ -119,6 +119,10 @@
                     <li>
                         <a href="#">Contact</a>
                     </li>
+                    
+                    <li>
+                        <a href="#">Mon panier</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -196,7 +200,7 @@
                 
 
                 <div class="row rowProds">
-
+					
 				<%
                 	if(produits != null){
                 		//System.out.println("je test");
@@ -228,6 +232,7 @@
 					
 					<div class="col-sm-4 col-lg-4 col-md-4 produitsAffiche">
                         <div class="thumbnail">
+                        <input type="button" class="btn-panier" value="ajouter au panier">
                             <img src="img/produits/<%=(photoForProd!=null?photoForProd.getCheminFtp():"default.jpg")  %>" alt="<%= (photoForProd!=null?photoForProd.getAlt():"") %>"
                             	class="imgProd">
                             <div class="caption">
