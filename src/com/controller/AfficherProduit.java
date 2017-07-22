@@ -28,11 +28,13 @@ public class AfficherProduit extends HttpServlet {
  
     public AfficherProduit() {
         super();
+        System.out.println("test construct");
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		String urlRedirect = Constante.cefErrorPage;
 		String urlRedirect ="";
+		
 		String linkR = (String)request.getAttribute("link");
 		
 		if(linkR == null){
@@ -135,7 +137,7 @@ public class AfficherProduit extends HttpServlet {
 		}
 		request.setAttribute("listeProdValid", "true");
 		
-		//request.getRequestDispatcher(urlRedirect).forward(request, response);
+		request.getRequestDispatcher(urlRedirect).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
