@@ -149,7 +149,7 @@
                 
                 else{
                 	%>
-                	<p class="list-group-item"> il nya pas de categorie</p>
+                	<p class="list-group-item"> il n'y a pas de categorie</p>
                 <%
                 }
                 %>
