@@ -79,7 +79,7 @@ public class AfficheProduitAjax extends HttpServlet {
 			else if(categorie == null 
 					&& prixMin == null && prixMax == null &&
 					idProd == null){
-				if(ProduitAction.afficherProduitParNom(request, nomProd)){
+				if(ProduitAction.afficherProduitParNomPourRecherche(request, nomProd)){
 					
 					Gson gson = new Gson();
 //					gson.toJson((ArrayList<Produit>)request.getAttribute("listeProd"));

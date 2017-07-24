@@ -55,6 +55,15 @@ public class ProduitAction {
 		return (produits != null ? true : false);
 	}
 	
+	public static boolean afficherProduitParNomPourRecherche(HttpServletRequest request, String name) {
+
+		ArrayList<Produit> produits = ProduitManager.getByNameForSerch(name);
+
+		request.setAttribute("listeProd", produits);
+
+		return (produits != null ? true : false);
+	}
+	
 	public static boolean afficherProduitParNomEtCat(HttpServletRequest request, String name,String categorie) {
 
 		ArrayList<Produit> produits = ProduitManager.getByNameAndCat(name, categorie);
