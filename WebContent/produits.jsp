@@ -85,6 +85,10 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <script type="text/javascript">
+    	
+    </script>
 
 </head>
 
@@ -115,6 +119,10 @@
                     <li>
                         <a href="#">Contact</a>
                     </li>
+                    
+                    <li>
+                        <a href="#">Mon panier</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -141,16 +149,19 @@
                 
                 else{
                 	%>
-                	<p class="list-group-item"> il nya pas de categorie</p>
+                	<p class="list-group-item"> il n'y a pas de categorie</p>
                 <%
                 }
                 %>
                 </div>
                  <div class="list-group">
-                 <form action="AfficherProduit" methode="get" class="list-group">
-                 	<input type="text" name="nomProd" placeholder="Ecrire ta recherche ici"  class="list-group-item">
-                 	<input type="submit" class="list-group-item">
-                 </form>
+                  <form action="AfficherProduit" methode="get" class="list-group">
+                 	<input type="text" placeholder="Ecrire ta recherche ici" name="nomProd"  class="list-group-item " id="nomProd">
+                 	<input type="submit" value="chercher" class="list-group-item chercher">
+                 	
+                 	<p class="list-group-item resultat"></p>
+               	</form>
+                 
                  </div>
             </div>
 
@@ -188,8 +199,8 @@
                 </div>
                 
 
-                <div class="row">
-
+                <div class="row rowProds">
+					
 				<%
                 	if(produits != null){
                 		//System.out.println("je test");
@@ -219,8 +230,9 @@
 							}
 					%>
 					
-					<div class="col-sm-4 col-lg-4 col-md-4">
+					<div class="col-sm-4 col-lg-4 col-md-4 produitsAffiche">
                         <div class="thumbnail">
+                        <input type="button" class="btn-panier" value="ajouter au panier">
                             <img src="img/produits/<%=(photoForProd!=null?photoForProd.getCheminFtp():"default.jpg")  %>" alt="<%= (photoForProd!=null?photoForProd.getAlt():"") %>"
                             	class="imgProd">
                             <div class="caption">
@@ -293,12 +305,13 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="bootstrap/js/jquery.js"></script>
+    <script type="text/javascript" src="bootstrap/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
 </body>
-
+<script type="text/javascript" src="script/jquery-3.2.1.min.js"></script> 
+<script type="text/javascript" src="script/ajaxTest.js"></script> 
 </html>
 

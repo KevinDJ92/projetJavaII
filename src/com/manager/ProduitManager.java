@@ -13,6 +13,7 @@ public class ProduitManager {
 	private static String queryGetyAll = "select * from produits";
 	private static String queryGetAllCat = "select distinct categorie_prod from produits";
 	private static String queryGetByName = "select * from produits where nom_prod like ?";
+	private static String queryGetByNameAndCat = "select * from produits where nom_prod like ? and categorie_prod like ?";
 	private static String queryGetByCategorie = "select * from produits where categorie_prod like ?";
 	private static String queryGetByEtat = "select * from produits where etat_prod like ?";
 	private static String queryGetById = "select * from produits where id_prod = ?";
@@ -87,6 +88,42 @@ public class ProduitManager {
 		try {
 			PreparedStatement ps = ConnexionBD.getConnection().prepareStatement(queryGetByName);
 			ps.setString(1, name);
+			ResultSet result = ps.executeQuery();
+
+			if (result.isBeforeFirst()) {
+				
+				retour = new ArrayList<>();
+
+				while (result.next()) {
+					Produit prod = new Produit();
+					prod.setId(result.getInt("id_prod"));
+					prod.setNom(result.getString("nom_prod"));
+					prod.setCategorie(result.getString("categorie_prod"));
+					prod.setDetail(result.getString("detail_prod"));
+					prod.setEtat(result.getString("etat_prod"));
+					prod.setPrix(result.getDouble("prix_prod"));
+					prod.setQte(result.getInt("qte_stock"));
+
+					retour.add(prod);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		ConnexionBD.closeConnection();
+		
+		return retour;
+	}
+	
+	
+	public static ArrayList<Produit> getByNameAndCat(String name,String categorie) {
+		ArrayList<Produit> retour = null;
+
+		try {
+			PreparedStatement ps = ConnexionBD.getConnection().prepareStatement(queryGetByName);
+			ps.setString(1, name);
+			ps.setString(2, categorie);
 			ResultSet result = ps.executeQuery();
 
 			if (result.isBeforeFirst()) {
