@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   
     var lbBg = document.getElementById('lightBoxBg');
     var lb = document.getElementById('lightBox');
+    var idDuProduit = document.getElementById('idDuProduit');
     var nomDuProduit = document.getElementById('nomDuProduit');
     var prixDuProduit = document.getElementById('prixDuProduit');
     var img_lb = lb.getElementsByTagName('img');
@@ -18,11 +19,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	   console.log('openOptions');
 	   var parent = this.parentElement;
 	   	   
-	   var listProduitPrix = parent.getElementsByClassName('produitPrix');
-	   
+	   var listProduitId = parent.getElementsByClassName('produitId');
+	   var listProduitPrix = parent.getElementsByClassName('produitPrix');   
 	   var listProduitNom = parent.getElementsByClassName('produitNom');
-	   var listProduitNom = parent.getElementsByClassName('produitId');
 	   
+	   var idProduit = listProduitId[0].value;
 	   var prixProduit = listProduitPrix[0].innerHTML;
 	   var nomProduit = listProduitNom[0].innerHTML;
 	   
@@ -30,11 +31,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	   var imgSrc = imgProduit[0].src;
 	   var imgAlt = imgProduit[0].alt;
 	   
+	   idDuProduit.value = idProduit;
 	   nomDuProduit.innerHTML = nomProduit;
 	   prixDuProduit.innerHTML = prixProduit;
 	   
 	   img_lb[0].src = imgSrc;
 	   img_lb[0].alt = imgAlt;
+	   
+	   
 	   
 	   lbBg.style.display = "block";
 	   lb.style.display = "block";

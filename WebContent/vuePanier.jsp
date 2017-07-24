@@ -23,6 +23,8 @@
     	}
     	
     	HashMap<Integer,LigneCommande> monPanier=(HashMap<Integer,LigneCommande>)session.getAttribute("LePanier");
+    	
+    	System.out.println("monPanier" + monPanier);
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -31,6 +33,7 @@
 	<title>Ventes</title>
 </head>
 	<body>
+		<a href="index.jsp">Index</a>
 		<p>Nombre d'article dans votre panier : <a href=''><%=nombreAticle %></a></p>
 	
 		<table border='1' width='50%' height='50%'>

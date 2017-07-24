@@ -22,15 +22,18 @@ public class GererPanier extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String operation = request.getParameter("btsubmit");
-		int id = Integer.parseInt(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("idProduit"));
 		int quantite = Integer.parseInt(request.getParameter("quantite"));	
 		 
+		System.out.println("ID" + id);
+		
 		if(ProduitAction.afficherProduitParId(request, id)){
 			ArrayList<Produit> produits = (ArrayList<Produit>) request.getAttribute("listeProd");
 	
 			Produit produit = produits.get(0);
 		
 			ActionLigneCommande.gereLePanier(request, response, operation, quantite, produit);
+			response.sendRedirect("index.jsp");
 		}
 	}
 

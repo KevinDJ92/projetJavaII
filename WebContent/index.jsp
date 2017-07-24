@@ -131,7 +131,7 @@
                     </li>
                     
                     <li>
-                        <a href="#">Mon panier</a>
+                        <a href="vuePanier.jsp">Mon panier</a>
                     </li>
                 </ul>
             </div>
@@ -244,6 +244,7 @@
                             <img src="img/produits/<%=(photoForProd!=null?photoForProd.getCheminFtp():"default.jpg")  %>" alt="<%= (photoForProd!=null?photoForProd.getAlt():"") %>"
                             	class="imgProd">
                             <div class="caption">
+                            	<input type="hidden" class="produitId" value="<%= produit.getId() %>">
                                 <h4 class="pull-right produitPrix">$<%= produit.getPrix() %></h4>
                                 <h4><a href="#" class="produitNom"><%=produit.getNom() %></a>
                                 </h4>
@@ -302,8 +303,8 @@
 		<label>Prix: </label>
 		<label id="prixDuProduit"></label>
 		<form id="formQuantite" method="get" action="GererPanier">
-			<input type="hidden" value="" name="idProduit" />
-			<input type="text" value="" name="quantite" />
+			<input id="idDuProduit" type="hidden" value="" name="idProduit"/>
+			<input type="text" value="" name="quantite"/>
 			<input type="submit" name="btsubmit" value="Ajouter au Panier"/>
 		</form>
     </div>
