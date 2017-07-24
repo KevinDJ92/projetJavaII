@@ -7,7 +7,9 @@
 <%@page import="com.entities.Rating"%>
 <%@page import="com.entities.PhotoProduit"%>
 <%@page import="com.entities.Produit"%>
+<%@page import="com.entities.LigneCommande"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
      <%!
@@ -16,7 +18,7 @@
    		ArrayList<PhotoProduit> photoProds =null;
    		ArrayList<String>categories = null;
    		PhotoProduit photoForProd = null ; 
-   		int note = 0;
+   		int note = 0;	
     %>
     <%
     	if(request.getAttribute("listeProd")==null && request.getAttribute("listeProdValid")== null){
@@ -58,6 +60,17 @@
     		photoProds = (ArrayList<PhotoProduit>)request.getAttribute("listePhotoProd");
     		categories = (ArrayList<String>)request.getAttribute("listeCatProd");
     		
+    		boolean monPanierExist = false;
+          	int nombreAticle = 0;
+          	
+          	Integer testNombreArticle = (Integer) request.getAttribute("nombreArticle");
+          	
+          	if(testNombreArticle!=null){
+          		nombreAticle=testNombreArticle;
+          		monPanierExist=true;
+          	}
+          	
+          	HashMap<Integer,LigneCommande> monPanier = (HashMap<Integer,LigneCommande>)session.getAttribute("LePanier");
     		
 //     	}
     %>
@@ -86,8 +99,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-    <script type="text/javascript"></script>
-
+    <link href="css/light_box.css" rel="stylesheet">
 </head>
 
 <body>
@@ -130,7 +142,6 @@
 
     <!-- Page Content -->
     <div class="container">
-
         <div class="row">
 
             <div class="col-md-3">
@@ -164,7 +175,6 @@
             </div>
 
             <div class="col-md-9">
-
                 <div class="row carousel-holder">
 
                     <div class="col-md-12">
@@ -198,7 +208,7 @@
                 
 
                 <div class="row rowProds">
-					
+				
 				<%
                 	if(produits != null){
                 		//System.out.println("je test");
@@ -231,11 +241,10 @@
 					<div class="col-sm-4 col-lg-4 col-md-4 produitsAffiche">
                         <div class="thumbnail">
                         	<input type="button" class="btn-panier" value="ajouter au panier">
-                        	<input type="button" class="btn-panier" value="retirer au panier">
                             <img src="img/produits/<%=(photoForProd!=null?photoForProd.getCheminFtp():"default.jpg")  %>" alt="<%= (photoForProd!=null?photoForProd.getAlt():"") %>"
                             	class="imgProd">
                             <div class="caption">
-                                <h4 class="pull-right">$<%= produit.getPrix() %></h4>
+                                <h4 class="pull-right produitPrix">$<%= produit.getPrix() %></h4>
                                 <h4><a href="#" class="produitNom"><%=produit.getNom() %></a>
                                 </h4>
                                 <p><%=produit.getDetail() %> .</p>
@@ -285,8 +294,20 @@
         </div>
 
     </div>
+    <div id="lightBoxBg"></div>
+    <div id="lightBox">
+	    <img src="" alt="" class="imgProd"><br>
+		<label>Nom: </label>
+		<label id="nomDuProduit"></label><br>
+		<label>Prix: </label>
+		<label id="prixDuProduit"></label>
+		<form id="formQuantite" method="get" action="GererPanier">
+			<input type="hidden" value="" name="idProduit" />
+			<input type="text" value="" name="quantite" />
+			<input type="submit" name="btsubmit" value="Ajouter au Panier"/>
+		</form>
+    </div>
     <!-- /.container -->
-
     <div class="container">
 
         <hr>
@@ -313,5 +334,6 @@
 	<script type="text/javascript" src="script/jquery-3.2.1.min.js"></script> 
 	<script type="text/javascript" src="script/ajaxTest.js"></script> 
 	<script type="text/javascript" src="script/CookieProduit.js"></script> 
+	 <script type="text/javascript" src="script/lightBox.js"></script> 
 </html>
 

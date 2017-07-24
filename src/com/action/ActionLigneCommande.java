@@ -27,7 +27,7 @@ public class ActionLigneCommande {
 			session.setAttribute("LePanier", monPanier);
 		}
 		
-		if (operation.equals("+")) {
+		if (operation.equals("Ajouter au Panier")) {
 			ManagerLigneCommande.addProduit(quantite, produit, monPanier);
 		}
 		else {

@@ -4,7 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
     
     <%
-    
 	if(request.getAttribute("listeProd")==null && request.getAttribute("listeProdValid")== null){
 			AfficherProduit.RecupererAllProd(request);
 		//  request.getRequestDispatcher("AfficherProduit").forward(request, response);	
@@ -35,7 +34,7 @@
 		<p>Nombre d'article dans votre panier : <a href=''><%=nombreAticle %></a></p>
 	
 		<table border='1' width='50%' height='50%'>
-				<tr><td>Prix</td><td>Panier</td></tr>
+				<tr><td></td> <td>Prix</td><td>Panier</td></tr>
 				<%
 					for(Produit produit : listProduit){
 						int quantiteCommandee = 0;
