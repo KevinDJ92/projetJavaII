@@ -18,16 +18,17 @@ public class ActionLigneCommande {
 									String operation , int quantite, Produit produit) {
 		
 		HttpSession session = request.getSession(true);
-		
 		HashMap<Integer,LigneCommande> monPanier = (HashMap<Integer,LigneCommande>) session.getAttribute("LePanier");
 		
 		if (monPanier == null) {
-			
+			System.out.println("monPanier est null");
 			monPanier = new HashMap<Integer,LigneCommande>();
 			session.setAttribute("LePanier", monPanier);
 		}
-		
-		if (operation.equals("+")) {
+				
+		if (operation.equals("Ajouter au Panier")) {
+			System.out.println("Entre dans Produit Ajouter Manager");
+
 			ManagerLigneCommande.addProduit(quantite, produit, monPanier);
 		}
 		else {
@@ -38,10 +39,10 @@ public class ActionLigneCommande {
 		
 		request.setAttribute("nombreArticle", nombreArticle);
 		
-		try {
-			request.getRequestDispatcher("AfficheVuePanier").forward(request, response);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			request.getRequestDispatcher("AfficheVuePanier").forward(request, response);
+//		} catch (ServletException | IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 }
