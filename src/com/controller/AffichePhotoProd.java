@@ -11,26 +11,15 @@ import com.action.PhotoAction;
 import com.action.RatingAction;
 import com.utils.Constante;
 
-/**
- * Servlet implementation class AffichePhotoProd
- */
 @WebServlet("/AffichePhotoProd")
 public class AffichePhotoProd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public AffichePhotoProd() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String urlRedirect = Constante.cefErrorPage;
 		String linkR = (String)request.getAttribute("link");
 

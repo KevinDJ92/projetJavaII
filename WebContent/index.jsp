@@ -131,7 +131,7 @@
                     </li>
                     
                     <li>
-                        <a href="vuePanier.jsp">Mon panier</a>
+                        <a href="AfficheVuePanier">Mon panier</a>
                     </li>
                 </ul>
             </div>

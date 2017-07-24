@@ -65,15 +65,16 @@ public  static void  addProduit(Integer quantite, Produit produit, HashMap<Integ
 		Integer nbArticle = 0;
 		
 		if (monPanier.size() > 0) {
-			
+			System.out.println("monPanier plus grande que 0");
 			Set listeIdProduit = monPanier.keySet();
 			Iterator it = listeIdProduit.iterator();
 			
-			LigneCommande ligneCommandet;
+			LigneCommande ligneCommande;
 			
 			while (it.hasNext()) {
-				ligneCommandet=monPanier.get(it.next());
-				nbArticle+=ligneCommandet.getQuantite();
+				ligneCommande=monPanier.get(it.next());
+				nbArticle+=ligneCommande.getQuantite();
+				System.out.println("NbArticle: " + nbArticle);
 			}
 		}
 		

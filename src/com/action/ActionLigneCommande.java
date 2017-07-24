@@ -34,15 +34,23 @@ public class ActionLigneCommande {
 		else {
 			ManagerLigneCommande.removeProduit(produit, quantite, monPanier);
 		}
+	}
+	
+	public static boolean afficherLePanier(HttpServletRequest request){
+		HttpSession session = request.getSession(true);
+		HashMap<Integer,LigneCommande> monPanier = (HashMap<Integer,LigneCommande>) session.getAttribute("LePanier");
+	
+		request.setAttribute("monPanier", monPanier);
 		
-		int nombreArticle = ManagerLigneCommande.getNombreArticle(monPanier);
-		
+		return (monPanier != null ? true : false);
+	}
+	
+	public static boolean getNombreArticle(HttpServletRequest request){
+		HttpSession session = request.getSession(true);
+
+		int nombreArticle = ManagerLigneCommande.getNombreArticle((HashMap<Integer, LigneCommande>)request.getAttribute("monPanier"));
 		request.setAttribute("nombreArticle", nombreArticle);
 		
-//		try {
-//			request.getRequestDispatcher("AfficheVuePanier").forward(request, response);
-//		} catch (ServletException | IOException e) {
-//			e.printStackTrace();
-//		}
+		return (nombreArticle > 0 ? true : false);
 	}
 }

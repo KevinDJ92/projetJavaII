@@ -16,8 +16,10 @@
     	int nombreAticle = 0;
     	
     	Integer testNombreArticle = (Integer) request.getAttribute("nombreArticle");
+    	System.out.println("testNombreArticle: " + testNombreArticle);
     	
     	if(testNombreArticle!=null){
+			System.out.println("monPanierExist=true");
     		nombreAticle=testNombreArticle;
     		monPanierExist=true;
     	}
@@ -42,7 +44,9 @@
 					for(Produit produit : listProduit){
 						int quantiteCommandee = 0;
 						Integer idProduit=produit.getId();
+						System.out.println("produitList");
 						if(monPanierExist){
+							System.out.println("monPanierExist");
 							if (monPanier.containsKey(idProduit)) {
 								LigneCommande ligneCommande=monPanier.get(idProduit);
 								quantiteCommandee=ligneCommande.getQuantite();
