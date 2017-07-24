@@ -156,7 +156,11 @@
                 </div>
                  <div class="list-group">
                   <form action="AfficherProduit" methode="get" class="list-group">
-                 	<input type="text" placeholder="Ecrire ta recherche ici" name="nomProd"  class="list-group-item " id="nomProd">
+                 	<input list="nomRecherche" type="text" placeholder="Ecrire ta recherche ici" name="nomProd"  class="list-group-item " id="nomProd">
+                 	<datalist id="nomRecherche">
+					  
+					</datalist>
+                 	
                  	<input type="submit" value="chercher" class="list-group-item chercher">
                  	
                  	<p class="list-group-item resultat"></p>
