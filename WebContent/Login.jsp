@@ -9,7 +9,7 @@
 		<title>Login</title>
 	</head>
 	<body>
-		<form class="form-signin" action="LoginUtilisateur" method="get">
+		<form class="form-signin" action="LoginUtilisateur" method="post">
 			<input type="text"name="email" placeholder="Email" required autofocus>
 			<input type="password" name="password" placeholder="Password" required>
 		    <button type="submit"> Sign in</button>

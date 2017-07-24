@@ -11,7 +11,7 @@ import com.service.ConnexionBD;
 import com.enumeration.UTILISATEUR_TABLE;
 
 public class UtilisateursManager {
-	private static String tableList[] = new String[]{"id_ut", "nom", "prenom",  "email", "password", "tel_num", "adressed",
+	private static String tableList[] = new String[]{"id_ut", "nom", "prenom",  "email", "password", "tel_num", "adresse",
 											"code_postal", "secure_q","rep_secure_q","photo_profil"};
 	
 	private static String queryInsert = "INSERT INTO utilisateurs(nom, prenom, email, password, tel_num, adresse, code_postal, secure_q, rep_secure_q, photo_profil) VALUE(?,?,?,?,?,?,?,?,?,?)";
@@ -29,7 +29,6 @@ public class UtilisateursManager {
 		boolean retour = false;
 		int nbLigne = 0;
 		PreparedStatement ps;
-	
 		try {
 			ps = (PreparedStatement) ConnexionBD.getConnection().prepareStatement(queryInsert);
 			ps.setString(1, utilisateur.getNom());
@@ -141,8 +140,8 @@ public class UtilisateursManager {
 		int nbUtilisateurs = 0;
 		try {
 			ps = (PreparedStatement) ConnexionBD.getConnection().prepareStatement(queryConnexion);
-			ps.setString(3, utilisateurs.getEmail());
-			ps.setString(4, utilisateurs.getPassword());
+			ps.setString(1, utilisateurs.getEmail());
+			ps.setString(2, utilisateurs.getPassword());
 			ResultSet result = (ResultSet) ps.executeQuery();
 			while (result.next()) {
 				nbUtilisateurs++;
