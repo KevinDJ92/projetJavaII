@@ -123,6 +123,18 @@
                     <li>
                         <a href="#">Mon panier</a>
                     </li>
+                    <li>
+                    	<ul id="menu-deroulant">
+							<li><a href="#">Mon Compte</a>
+								<ul>
+									<li><a href="#">Achats</a></li>
+									<li><a href="#">Panier</a></li>
+									<li><a href="#">Parametre du compte</a></li>
+								</ul>
+							</li>
+                    
+                    	</ul>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
