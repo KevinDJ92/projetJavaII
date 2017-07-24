@@ -10,7 +10,7 @@ import com.entities.Utilisateur;
 
 public class GestionSession {
 	
-	public static void ajouterEtudianToSession(HttpServletRequest request, Utilisateur utilisateur ){
+	public static void ajouterUtilToSession(HttpServletRequest request, Utilisateur utilisateur ){
 			HttpSession mySession = request.getSession(); 
 			mySession.setAttribute(Constante.clefSession, utilisateur);
 	}

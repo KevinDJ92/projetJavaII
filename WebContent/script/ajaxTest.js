@@ -63,43 +63,18 @@
 
 $(document).ready(function(){
 	$('.chercher').click(function(){
-//		var categorie = $(".categorie").val;
-//		$.ajax({
-//			type: 'GET',
-//			url: 'AfficherProduit?idProd=1',
-//			headers:{
-//				Accept : "application/json; charset=utf-8",
-//				"Content-Type" : "application/json; charset=utf-8"
-//			},
-//			success: function(result){
-//				var product = $.parseJSON(result);
-////				$('.resultat').html(product.nom);
-////				alert(result.nom);
-//				alert("test");
-//				
-//			}
-//			
-			
-//		});
-//		$.post('AfficherProduit',{nomProd:'asdf'},function(data){
-//			//console.log(data);
-//			var product = data;
-//			
-//			alert(product.nom);
-//			
-//			
-//			
-//		});
+	
 		var nom = $("#nomProd").val();
-		console.log(nom);
+//		window.location=window.location.href.replace(window.location.search,'');
 		$.ajax({
-		    url : 'AfficherProduit', // La ressource ciblée
+		    url : 'afficheProduitAjax', // La ressource ciblée
 		    type : 'POST', // Le type de la requête HTTP.
-		    data : {nomProd:nom},
+		    data : {nomProd:nom },
 		    dataType : 'json',
 		    success : function(data, statut){
 		    var product = data;
-		    console.log(product[0].nom);
+//		    console.log(product[0].nom);
+
 		    $(".produitsAffiche").remove();
 		    var code ="<div class='col-sm-4 col-lg-4 col-md-4 produitsAffiche'>" +
 		    		"<div class='thumbnail'>" +

@@ -35,11 +35,11 @@ public class LoginUtilisateur extends HttpServlet {
 			emailName = util.getEmail();
 			util = UtilisateursManager.getByEmail(emailName);
 			
-			GestionSession.ajouterEtudianToSession(request, util);
-			if (request.getParameter("sauvegarde") == "yes"){
-			};
+			GestionSession.ajouterUtilToSession(request, util);
+//			if (request.getParameter("sauvegarde") == "yes"){
+//			}
 			
-			System.out.println("User added to the Session");
+			//System.out.println("User added to the Session");
 			
 			request.getRequestDispatcher(urlRedirectValid).forward(request, response);
 		}
