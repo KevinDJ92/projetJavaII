@@ -86,9 +86,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-    <script type="text/javascript">
-    	
-    </script>
+    <script type="text/javascript"></script>
 
 </head>
 
@@ -232,12 +230,13 @@
 					
 					<div class="col-sm-4 col-lg-4 col-md-4 produitsAffiche">
                         <div class="thumbnail">
-                        <input type="button" class="btn-panier" value="ajouter au panier">
+                        	<input type="button" class="btn-panier" value="ajouter au panier">
+                        	<input type="button" class="btn-panier" value="retirer au panier">
                             <img src="img/produits/<%=(photoForProd!=null?photoForProd.getCheminFtp():"default.jpg")  %>" alt="<%= (photoForProd!=null?photoForProd.getAlt():"") %>"
                             	class="imgProd">
                             <div class="caption">
                                 <h4 class="pull-right">$<%= produit.getPrix() %></h4>
-                                <h4><a href="#"><%=produit.getNom() %></a>
+                                <h4><a href="#" class="produitNom"><%=produit.getNom() %></a>
                                 </h4>
                                 <p><%=produit.getDetail() %> .</p>
                             </div>
@@ -311,7 +310,8 @@
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
 </body>
-<script type="text/javascript" src="script/jquery-3.2.1.min.js"></script> 
-<script type="text/javascript" src="script/ajaxTest.js"></script> 
+	<script type="text/javascript" src="script/jquery-3.2.1.min.js"></script> 
+	<script type="text/javascript" src="script/ajaxTest.js"></script> 
+	<script type="text/javascript" src="script/CookieProduit.js"></script> 
 </html>
 

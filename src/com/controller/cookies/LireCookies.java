@@ -38,11 +38,6 @@ public class LireCookies extends HttpServlet {
 		else {
 			out.println("<p> Pas cookies trouvees. </p>");
 		}
-		out.println("<p><a href='formulaire.html'>Formulaire</a></p>"
-				+ "<p><a href='../CookiesExample/SessionTrack'>SessionTrack</a></p>"
-				+ "<p><a href='../CookiesExample/SuprimerCookies'>SuprimerCookies</a></p>"
-				+ "</body>"
-				+ "</html>");
 	}
 
 

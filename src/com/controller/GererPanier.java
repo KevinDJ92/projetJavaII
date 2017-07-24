@@ -21,14 +21,16 @@ public class GererPanier extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nom;
-	
+		String operation = request.getParameter("btsubmit");
+
 		int id = Integer.parseInt(request.getParameter("id"));
 		int quantite = Integer.parseInt(request.getParameter("quantite"));	
 
 		 ArrayList<Produit> produits = ProduitManager.getById(id);
 		 Produit produit = produits.get(0);
 		
-//		ActionLigneCommande.gereLePanier(request, response, operation, quantite, produit);
+		 ActionLigneCommande.gereLePanier(request, response, operation, quantite, produit);
+		 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
