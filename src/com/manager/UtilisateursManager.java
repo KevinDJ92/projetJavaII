@@ -29,7 +29,6 @@ public class UtilisateursManager {
 		boolean retour = false;
 		int nbLigne = 0;
 		PreparedStatement ps;
-	
 		try {
 			ps = (PreparedStatement) ConnexionBD.getConnection().prepareStatement(queryInsert);
 			ps.setString(1, utilisateur.getNom());
