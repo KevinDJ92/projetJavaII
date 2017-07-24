@@ -128,9 +128,7 @@ public class AfficherProduit extends HttpServlet {
 		}
 		
 		//pour afficher les image des produits trouver
-		if(urlRedirect!= Constante.cefErrorPage){
-//			Array
-			
+		if(urlRedirect!= Constante.cefErrorPage){			
 				//PhotoAction.afficherPhotoProd(request);
 //				RatingAction.afficherRatingProd(request);
 			

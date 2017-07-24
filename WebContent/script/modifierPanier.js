@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     console.log("DOM fully loaded and parsed");
   
     var nom;
+    
     document.getElementById('ajouterProduit').addEventListener('change', function(e){
     	if (typeof(Storage) !== "undefined") {    
     		nom = e.previousSibling.src;
