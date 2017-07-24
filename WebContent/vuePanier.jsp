@@ -7,8 +7,7 @@
     
 	if(request.getAttribute("listeProd")==null && request.getAttribute("listeProdValid")== null){
 			AfficherProduit.RecupererAllProd(request);
-//  		request.getRequestDispatcher("AfficherProduit").forward(request, response);
-		
+		//  request.getRequestDispatcher("AfficherProduit").forward(request, response);	
 	}
     
     	ArrayList<Produit> listProduit=new ArrayList<Produit>();
