@@ -74,6 +74,7 @@ public class AfficheProduitAjax extends HttpServlet {
 				if(ProduitAction.afficherProduitParPrix(request, Double.parseDouble(prixMin))){
 					
 				}
+				
 			}
 			
 			else if(categorie == null 

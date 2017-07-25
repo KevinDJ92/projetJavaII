@@ -131,7 +131,7 @@
                         <a href="Login.jsp">Se Connecter</a>
                     </li>
                      <li id="img-panier">
-                        <a href="AfficheVuePanier"><img src="img/util/p-panier.png"></a>
+                        <a href="vuePanier2.jsp"><img src="img/util/p-panier.png"></a>
                     </li>
                     
                 </ul>
