@@ -67,6 +67,10 @@
                     <li>
                         <a href="#">Mon panier</a>
                     </li>
+                    
+                     <li>
+                        <a href="achats.jsp">Mes Achats</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

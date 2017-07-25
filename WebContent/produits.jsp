@@ -124,6 +124,9 @@
                         <a href="#">Mon panier</a>
                     </li>
                     <li>
+                        <a href="achats.jsp">Mes Achats</a>
+                    </li>
+                    <li>
                     	<ul id="menu-deroulant">
 							<li><a href="#">Mon Compte</a>
 								<ul>

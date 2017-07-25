@@ -126,12 +126,18 @@
                     <li>
                         <a href="#">Services</a>
                     </li>
+                    
                     <li>
                         <a href="#">Contact</a>
                     </li>
                     
+                    
                     <li>
                         <a href="AfficheVuePanier">Mon panier</a>
+                    </li>
+                    
+                     <li>
+                        <a href="achats.jsp">Mes Achats</a>
                     </li>
                 </ul>
             </div>
