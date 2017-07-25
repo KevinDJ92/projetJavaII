@@ -45,6 +45,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	   
 	   lbBg.style.display = "block";
 	   lb.style.display = "block";
+	   
+	  
     }
 
    	     function exitOptions(){
