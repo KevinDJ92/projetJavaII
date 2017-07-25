@@ -11,19 +11,20 @@ public class Achat implements Serializable{
 	private Date dateAchat;
 	private String adresseExp;
 	private String suivi;
+	private int qte;
 	
 	public Achat(){}
 
-	public Achat(int idAchat, int idUtil, int idProd, String confirmNum, Date dateAchat, String adresseExp,
-			String suivi) {
+	public Achat( int idUtil, int idProd, String confirmNum, Date dateAchat, String adresseExp,
+			String suivi,int qte) {
 		super();
-		this.idAchat = idAchat;
 		this.idUtil = idUtil;
 		this.idProd = idProd;
 		this.confirmNum = confirmNum;
 		this.dateAchat = dateAchat;
 		this.adresseExp = adresseExp;
 		this.suivi = suivi;
+		this.qte = qte;
 	}
 
 	public Achat(String confirmNum, Date dateAchat, String adresseExp, String suivi) {
@@ -95,6 +96,14 @@ public class Achat implements Serializable{
 
 	public void setSuivi(String suivi) {
 		this.suivi = suivi;
+	}
+
+	public int getQte() {
+		return qte;
+	}
+
+	public void setQte(int qte) {
+		this.qte = qte;
 	}
 	
 	

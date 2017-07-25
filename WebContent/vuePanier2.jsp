@@ -1,3 +1,4 @@
+<%@page import="java.sql.Date"%>
 <%@page import="com.utils.Constante"%>
 <%@page import="com.entities.*"%>
 <%@page import="java.util.*"%>
@@ -10,8 +11,11 @@
 		response.sendRedirect("Login.jsp");
 	}
     	HashMap<Integer,LigneCommande> monPanier=(HashMap<Integer,LigneCommande>)session.getAttribute("LePanier");
-  
+  		Achat achat= new Achat();
     	
+    %>
+    <%!
+    	ArrayList<Achat> achats = new ArrayList();
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -121,12 +125,18 @@
 	                    </div>
 
 	                   <%
+	                   Utilisateur util = ((Utilisateur)session.getAttribute(Constante.clefSession));
+	                   achat = new Achat(util.getId(),entry.getValue().getProduit().getId(),
+	                		   			"abc123",null,"dfsdf","envoyer",entry.getValue().getQuantite());
+	                  
+	                   achats.add(achat);
+	                  
 	                    	  }
 	                    	  %>
 	                    	  
 	                    	  <p>le total de votre achat est <%=total %>$ </p>
-	                    	  <form action="" methode="post">
-	                    	  	<input type="button" value="valider l'achat">
+	                    	  <form action="ajoutAchat" methode="post">
+	                    	  	<input type="submit" value="valider l'achat">
 	                    	  </form>
 	                    	 
 	                    	  
