@@ -20,6 +20,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
     buttonClose.addEventListener('click', exitOptions);
     
+    document.onkeydown = function(e) {
+        e = e || window.event;
+        if (e.keyCode == 27) {
+        	exitOptions();
+        }
+    };
+    
    function openOptions(){
 	   console.log('openOptions');
 	   var parent = this.parentElement;
