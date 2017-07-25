@@ -100,6 +100,7 @@
     <![endif]-->
     
     <link href="css/light_box.css" rel="stylesheet">
+    <link href="css/img.css" rel="stylesheet">
 </head>
 
 <body>
@@ -123,22 +124,13 @@
                     <li>
                         <a href="produits.jsp">Nos Produits</a>
                     </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                    
-                    
-                    <li>
-                        <a href="AfficheVuePanier">Mon panier</a>
-                    </li>
-                    
                      <li>
                         <a href="achats.jsp">Mes Achats</a>
                     </li>
+                     <li id="img-panier">
+                        <a href="AfficheVuePanier"><img src="img/util/p-panier.png"></a>
+                    </li>
+                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
