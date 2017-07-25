@@ -15,7 +15,9 @@ public class AchatManager {
 	private static String tableName = "achat";
 	private static String tableList[] = new String[]{"id_achat", "id_util", "id_prod", "confirmation_num", "date_achat", "adresse_exped", "suivi","qte"};
 
-	private static String queryInsert = "INSERT INTO " +  tableName + " ("+tableList[1]+tableList[2] + tableList[3] + tableList[4] + tableList[5] + tableList[6] + tableList[7]+") VALUE(?,?,?,?,?,?,?)";
+	//private static String queryInsert = "INSERT INTO " +  tableName + " ("+tableList[1]+tableList[2] + tableList[3] + tableList[4] + tableList[5] + tableList[6] + tableList[7]+") VALUE(?,?,?,?,?,?,?)";
+	private static String queryInsert = "insert into achat(id_util,id_prod,confirmation_num,adresse_exped,suivi,qte) value(?,?,?,?,?,?)";
+	
 	private static String queryUpdate = "UPDATE"  +  tableName + "SET " + tableList[3] + "= ?, " + tableList[4] + "= ?, " 
 										 + tableList[5] + " = ?, " + tableList[6] + "= ?";
 	private static String queryDelete = "DELETE FROM " + tableName + " WHERE " + tableList[0] + " = ?";
@@ -30,7 +32,9 @@ public class AchatManager {
 		boolean retour = false;
 		int nbLigne = 0;
 		PreparedStatement ps;
-	
+		
+		//"id_achat", "id_util", "id_prod", "confirmation_num", "date_achat", "adresse_exped", "suivi","qte"
+		//"INSERT INTO " +  tableName + " ("+tableList[1]+tableList[2] + tableList[3] + tableList[4] + tableList[5] + tableList[6] + tableList[7]+") VALUE(?,?,?,?,?,?,?)"
 		try {
 			ps = (PreparedStatement) ConnexionBD.getConnection().prepareStatement(queryInsert);
 			
@@ -38,9 +42,10 @@ public class AchatManager {
 			ps.setInt(1, table.getIdUtil());
 			ps.setInt(2, table.getIdProd());
 			ps.setString(3, table.getConfirmNum());
-			ps.setDate(4, (Date) table.getDateAchat());
-			ps.setString(5, table.getAdresseExp());
-			ps.setString(6, table.getSuivi());
+			
+			ps.setString(4, table.getAdresseExp());
+			ps.setString(5, table.getSuivi());
+			ps.setInt(6, table.getQte());
 			
 			nbLigne = ps.executeUpdate();
 			
