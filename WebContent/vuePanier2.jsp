@@ -125,7 +125,10 @@
 	                    	  %>
 	                    	  
 	                    	  <p>le total de votre achat est <%=total %>$ </p>
-	                    	  <input type="button" value="valider l'achat">
+	                    	  <form action="" methode="post">
+	                    	  	<input type="button" value="valider l'achat">
+	                    	  </form>
+	                    	 
 	                    	  
 	                    	  <%
 	                      }

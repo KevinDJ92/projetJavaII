@@ -1,20 +1,18 @@
 package com.action;
 
-import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-
-import com.entities.PhotoProduit;
-import com.manager.PhotoProduitManager;
+import com.entities.Achat;
+import com.manager.AchatManager;
 
 public class AchatAction {
 
-	public static boolean afficherPhotoProd(HttpServletRequest request) {
+	public static boolean ajoutAchat(Achat achat) {
+		boolean retour = false;
 
-		ArrayList<PhotoProduit> photoProd = PhotoProduitManager.getAll();
+		if (AchatManager.insert(achat)) {
+			retour = true;
+		}
 
-		request.setAttribute("listePhotoProd", photoProd);
-
-		return (photoProd != null ? true : false);
+		return retour;
 	}
 }
