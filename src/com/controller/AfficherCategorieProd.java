@@ -12,27 +12,17 @@ import com.action.ProduitAction;
 import com.action.RatingAction;
 import com.utils.Constante;
 
-/**
- * Servlet implementation class AfficherCategorieProd
- */
 @WebServlet("/AfficherCategorieProd")
 public class AfficherCategorieProd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+   
     public AfficherCategorieProd() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String urlRedirect = Constante.cefErrorPage;
 		String linkR = (String)request.getAttribute("link");
 
@@ -56,11 +46,8 @@ public class AfficherCategorieProd extends HttpServlet {
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 	

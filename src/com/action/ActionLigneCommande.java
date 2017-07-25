@@ -14,10 +14,9 @@ import com.enumeration.OPERATION;
 
 public class ActionLigneCommande {
 	@SuppressWarnings("unchecked")
-	public static void gereLePanier(HttpServletRequest request, HttpServletResponse response, 
+	public static void gereLePanier(HttpServletRequest request, HttpServletResponse response, HttpSession session,
 									String operation , int quantite, Produit produit) {
 		
-		HttpSession session = request.getSession(true);
 		HashMap<Integer,LigneCommande> monPanier = (HashMap<Integer,LigneCommande>) session.getAttribute("LePanier");
 		
 		if (monPanier == null) {

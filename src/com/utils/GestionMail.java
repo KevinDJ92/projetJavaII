@@ -13,11 +13,12 @@ import javax.mail.internet.MimeMessage;
 public class GestionMail {
 	
 	// parametre connexion serveur smtp
-		private static String user = "etudiant.isi.java2@gmail.com";
-		private static String pwd = "abc123...";
+		private static String user = "testkevinjohnston@gmail.com";
+		private static String pwd = "k123456789j";
 
 		// qui envoie
-		private static String from = "etudiant.isi.java2@gmail.com";
+		private static String from = user;
+		
 		public static void sendEmail(String msg, String to, String sujet){
 			Properties props = new Properties();
 			//le smtp de votre serveur web
@@ -31,12 +32,10 @@ public class GestionMail {
 			Session session = Session.getInstance(props,
 					new javax.mail.Authenticator() {
 						protected PasswordAuthentication getPasswordAuthentication() {
-							// Adresse mail et password de l emetteur sur le serveur
-							// smtp
+							// Adresse mail et password de l emetteur sur le serveur smtp
 							return new PasswordAuthentication(user, pwd);
 						}
 					});
-
 			try {
 				Message message = new MimeMessage(session);
 				// adresse mail de l emetteur

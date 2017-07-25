@@ -9,15 +9,14 @@ import javax.servlet.http.HttpSession;
 import com.entities.Utilisateur;
 
 public class GestionSession {
-	
 	public static void ajouterUtilToSession(HttpServletRequest request, Utilisateur utilisateur ){
-			HttpSession mySession = request.getSession(); 
-			mySession.setAttribute(Constante.clefSession, utilisateur);
+		HttpSession mySession = request.getSession(); 
+		mySession.setAttribute(Constante.clefSession, utilisateur);
 	}
 
 	public static void detruireSession(HttpServletRequest request,HttpServletResponse response) {
 		HttpSession session=request.getSession();
-		    session.invalidate();
+			session.invalidate();
 		
 		try {
 			request.getRequestDispatcher("Login.jsp").forward(request, response);

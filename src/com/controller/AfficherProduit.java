@@ -54,10 +54,7 @@ public class AfficherProduit extends HttpServlet {
 			
 			if(ProduitAction.afficherProduit(request)){
 				urlRedirect = linkR;
-				
-				
-				
-				
+			
 			}
 		}else{
 

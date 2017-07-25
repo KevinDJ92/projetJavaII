@@ -10,11 +10,9 @@ import com.manager.ProduitManager;
 
 public class ProduitAction {
 	public static boolean afficherProduit(HttpServletRequest request) {
-
 		ArrayList<Produit> produits = ProduitManager.getAll();
 
 		request.setAttribute("listeProd", produits);
-		//System.out.println("on test");
 
 		return (produits != null ? true : false);
 	}

@@ -25,7 +25,6 @@ public class AchatManager {
 	private static String queryGetById = "SELECT * FROM " + tableName + " WHERE " + tableList[0] + " = ?";
 	private static String queryGetBy = "SELECT * FROM " + tableName + " WHERE ? = ?";
 	
-	
 	public static boolean insert(Achat table){
 		boolean retour = false;
 		int nbLigne = 0;

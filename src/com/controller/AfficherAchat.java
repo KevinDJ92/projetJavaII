@@ -7,21 +7,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/AjoutAchat")
-public class AjoutAchat extends HttpServlet {
+import com.action.AchatAction;
+
+@WebServlet("/AfficherAchat")
+public class AfficherAchat extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
-    public AjoutAchat() {
+    
+    public AfficherAchat() {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("va au servlet afficherAchat");
+		
+		if (AchatAction.afficherAchat(request)){
+			System.out.println("entre dans la boucle afficherAchat");
+			request.getRequestDispatcher("achats2.jsp").forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }

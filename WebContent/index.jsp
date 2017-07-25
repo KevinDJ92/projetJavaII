@@ -125,7 +125,7 @@
                         <a href="produits.jsp">Nos Produits</a>
                     </li>
                      <li>
-                        <a href="achats.jsp">Mes Achats</a>
+                        <a href="AfficherAchat">Mes Achats</a>
                     </li>
                        <li>
                         <a href="Login.jsp">Se Connecter</a>
