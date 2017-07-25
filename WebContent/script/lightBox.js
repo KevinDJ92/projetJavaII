@@ -1,8 +1,11 @@
 document.addEventListener("DOMContentLoaded", function(event) {
     console.log('DOM Construit');
   
+    
     var lbBg = document.getElementById('lightBoxBg');
     var lb = document.getElementById('lightBox');
+    var buttonClose = document.getElementById('close');    
+    
     var idDuProduit = document.getElementById('idDuProduit');
     var nomDuProduit = document.getElementById('nomDuProduit');
     var prixDuProduit = document.getElementById('prixDuProduit');
@@ -14,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     for (var i = 0; i < buttonOptions.length; i++) {
     	buttonOptions[i].addEventListener('click', openOptions);
     }
+    
+    buttonClose.addEventListener('click', exitOptions);
     
    function openOptions(){
 	   console.log('openOptions');
@@ -38,18 +43,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	   img_lb[0].src = imgSrc;
 	   img_lb[0].alt = imgAlt;
 	   
-	   
-	   
 	   lbBg.style.display = "block";
 	   lb.style.display = "block";
     }
 
-   	 //    function exitOptions(){
-   	 //        lbBg.style.display = "none";
-   	 //        lb.style.display = "none";
-   	 //    }
-
-    //    var buttonEnd = document.getElementById('buttonEnd');
-    //    buttonEnd.addEventListener('click', exitOptions);
+   	     function exitOptions(){
+   	         lbBg.style.display = "none";
+   	         lb.style.display = "none";
+   	     }
 
 });

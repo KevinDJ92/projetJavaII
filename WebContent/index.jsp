@@ -127,6 +127,9 @@
                      <li>
                         <a href="achats.jsp">Mes Achats</a>
                     </li>
+                       <li>
+                        <a href="Login.jsp">Se Connecter</a>
+                    </li>
                      <li id="img-panier">
                         <a href="AfficheVuePanier"><img src="img/util/p-panier.png"></a>
                     </li>
@@ -295,6 +298,7 @@
     </div>
     <div id="lightBoxBg"></div>
     <div id="lightBox">
+    	<button id="close">X</button>
 	    <img src="" alt="" class="imgProd"><br>
 		<label>Nom: </label>
 		<label id="nomDuProduit"></label><br>

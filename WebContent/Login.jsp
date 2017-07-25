@@ -10,8 +10,8 @@
 	</head>
 	<body>
 		<form class="form-signin" action="LoginUtilisateur" method="post">
-			<input type="text"name="email" placeholder="Email" required autofocus>
-			<input type="password" name="password" placeholder="Password" required>
+			<input type="text"name="email" placeholder="Email" required autofocus><br>
+			<input type="password" name="password" placeholder="Password" required><br>
 		    <button type="submit"> Sign in</button>
 			<input type="checkbox" name="sauvegarde" value="yes">
 			Remember me </br>
