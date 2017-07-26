@@ -1,5 +1,7 @@
-
- 	<!-- Bootstrap Core CSS -->
+<%@page import="com.utils.Constante"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!-- Bootstrap Core CSS -->
    		 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     	<!-- Custom CSS -->
@@ -31,6 +33,7 @@
 	            <!-- Collect the nav links, forms, and other content for toggling -->
 	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	                <ul class="nav navbar-nav">
+<!-- 	                session.getAttribute(Constante.clefSession)==null -->
 	                    <li>
 	                        <a href="produits.jsp">Nos Produits</a>
 	                    </li>              
@@ -41,7 +44,7 @@
 	                        <a href="achats.jsp">Mes Achats</a>
 	                    </li>
 	                    <li>
-	                        <a href="Login.jsp">Se connecter</a>
+	                        <a href="<%=(session.getAttribute(Constante.clefSession)==null?"Login.jsp":"disconnect")  %>"><%=(session.getAttribute(Constante .clefSession)==null?"Se connecter":"Se deconnecter")  %></a>
 	                    </li>
 	                     <li id="img-panier">
                         	<a href="vuePanier.jsp"><img src="img/util/p-panier.png"></a>
