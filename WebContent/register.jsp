@@ -9,7 +9,7 @@
 %>    
 	<jsp:include page="util/headerPart1.html"/>
 	<title>Inscription</title>
-	<jsp:include page="util/headerPart2.html"/>
+	<jsp:include page="util/headerPart2.jsp"/>
 	 	
 	 	<h1>Inscription</h1>
 		<fieldset>

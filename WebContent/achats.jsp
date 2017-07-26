@@ -21,7 +21,7 @@
     %>
   	<jsp:include page="util/headerPart1.html"/>
   	<title>Achat</title>
-	<jsp:include page="util/headerPart2.html"/>
+	<jsp:include page="util/headerPart2.jsp"/>
 	
 	    <!-- Page Content -->
 	    <div class="container">
@@ -58,7 +58,7 @@
 	            </div>
 	        </div>
 	    </div>
-		
+	
 		<jsp:include page="util/footer.html"/>	
 
 		<script type="text/javascript" src="script/ajaxTest.js"></script> 

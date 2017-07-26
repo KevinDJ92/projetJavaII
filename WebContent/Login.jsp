@@ -3,7 +3,7 @@
 
   	<jsp:include page="util/headerPart1.html"/>
 	<link href="css/center.css" rel="stylesheet">
-	<jsp:include page="util/headerPart2.html"/>
+	<jsp:include page="util/headerPart2.jsp"/>
 
     <!-- Page Content -->
     <div class="container">

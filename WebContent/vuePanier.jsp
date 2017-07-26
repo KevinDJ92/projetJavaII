@@ -20,7 +20,7 @@
     
     <jsp:include page="util/headerPart1.html"/>  
     <title>Panier</title>
-	<jsp:include page="util/headerPart2.html"/>
+	<jsp:include page="util/headerPart2.jsp"/>
 
     <!-- Page Content -->
     <div class="container">

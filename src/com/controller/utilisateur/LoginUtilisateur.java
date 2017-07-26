@@ -22,7 +22,7 @@ public class LoginUtilisateur extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String urlRedirectValid = Constante.pageIndex;
+		String urlRedirectValid = Constante.pageProduit;
 		String urlRedirectInvalid = Constante.pageLogin;
 		String emailName = null;
 		

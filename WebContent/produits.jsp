@@ -60,7 +60,7 @@
    	<jsp:include page="util/headerPart1.html"/>
    	<title>Produits</title>
    	<link href="css/light_box.css" rel="stylesheet">
-	<jsp:include page="util/headerPart2.html"/>
+	<jsp:include page="util/headerPart2.jsp"/>
 	
     <!-- Page Content -->
     <div class="container">
@@ -132,8 +132,7 @@
 				
 				<%
                 	if(produits != null){
-                %>
-                
+                %>         
 					<%
 						for(Produit produit : produits){
 							if(photoProds != null){
@@ -151,8 +150,7 @@
 									}
 								}
 							}
-					%>
-					
+					%>			
 					<div class="col-sm-4 col-lg-4 col-md-4 produitsAffiche">
                         <div class="thumbnail">
                         	<input type="button" class="btn-panier" value="ajouter au panier">
@@ -168,15 +166,13 @@
                             <div class="ratings">
                                 <p class="pull-right"><%= note %></p>
                                 <p><%
-                                for(int i=0 ; i < note; i++){
-                               
-                                	%>
-                 
+                                for(int i=0 ; i < note; i++){                          
+                                	%>           
                                     <span class="start_<%=i+1 %> glyphicon glyphicon-star modifiable"></span>
                                   
                                 <%
                                 }
-                                if(note<5){
+                                if(note < 5){
                                 	for(int j=note; j<5; j++){
                                 		
                                 %>

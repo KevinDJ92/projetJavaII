@@ -38,24 +38,16 @@ public class AfficheProduitAjax extends HttpServlet {
 			if(ProduitAction.afficherProduit(request)){
 				
 				
-				
-				
-				
 			}
-		}else{
-
+		} else{
 			if(prixMin == null 
 					&& prixMax == null && nomProd == null &&
 					idProd == null && categorie != null){
 				if(ProduitAction.afficherProduitParCategorie(request, categorie)){
 					
 					
-					
-					
+			
 				}
-
-				
-				
 			}
 			
 			else if(categorie == null && prixMax == null &&
@@ -63,7 +55,6 @@ public class AfficheProduitAjax extends HttpServlet {
 				if(ProduitAction.afficherProduitParPrix(request, Double.parseDouble(prixMin))){
 					
 				}
-				
 			}
 			
 			else if(categorie == null 
@@ -86,9 +77,6 @@ public class AfficheProduitAjax extends HttpServlet {
 						
 						out.close();
 					}
-					
-					
-					
 				}
 			}
 			
@@ -111,9 +99,6 @@ public class AfficheProduitAjax extends HttpServlet {
 						
 						out.close();
 					}
-					
-					
-					
 				}
 			}
 			
@@ -132,9 +117,7 @@ public class AfficheProduitAjax extends HttpServlet {
 				}
 			}
 		}
-		
 		//pour afficher les image des produits trouver
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
