@@ -9,10 +9,13 @@ import com.mysql.jdbc.ResultSet;
 import com.service.ConnexionBD;
 
 public class AchatProduitManager {
-	private static String queryAchatProduitWhereIdUtilisateur = "SELECT p.id_prod, p.nom_prod, p.prix_prod, p.detail_prod, a.qte, a.date_achat" +
-																	" FROM achat a INNER JOIN produits p" +
-																	" ON a.id_prod = p.id_prod" +
-																	" WHERE a.id_util =  ?";
+	private static String queryAchatProduitWhereIdUtilisateur = "SELECT p.id_prod, p.nom_prod, p.prix_prod, p.detail_prod, a.qte, "+ 
+																	"a.date_achat, pp.chemin_ftp, pp.alt " +
+																	"FROM achat a INNER JOIN produits p " +
+																	"ON a.id_prod = p.id_prod " +
+																	"INNER JOIN photo_prod pp " +
+																	"ON pp.id_produit = p.id_prod " +
+																	"WHERE a.id_util =  ?";
 	
 	public static ArrayList<AchatProduit> getProduitAchater(int id_util) {
 		ArrayList<AchatProduit> retour = null;
@@ -36,7 +39,9 @@ public class AchatProduitManager {
 					achatProd.setQuantiteAchat(result.getInt("qte"));
 					achatProd.setQuantiteAchat(result.getInt("qte"));
 					achatProd.setDateAchat(result.getDate("date_achat"));
-			
+					achatProd.setFtpCheminImg(result.getString("chemin_ftp"));
+					achatProd.setAltImg(result.getString("alt"));
+					
 					retour.add(achatProd);
 				}
 			}

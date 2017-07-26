@@ -12,8 +12,12 @@
     	if(session.getAttribute(Constante.clefSession)==null){  		
     		response.sendRedirect("Login.jsp");
     	}
-    
-    	achatProduits = (ArrayList<AchatProduit>)request.getAttribute("mesAchats");
+    	
+    	else if (request.getAttribute("mesAchats") == null){
+    		request.getRequestDispatcher("AfficherAchat").forward(request, response);
+    	
+    		achatProduits = (ArrayList<AchatProduit>)request.getAttribute("mesAchats");
+    	}
     %>
   	<jsp:include page="util/headerPart1.html"/>
   	<title>Achat</title>
@@ -39,7 +43,8 @@
 						<%
 							for(AchatProduit achatProduit : achatProduits){
 						 %>
-							<div class="col-sm-4 col-lg-4 col-md-4 produitsAffiche">               
+							<div class="col-sm-4 col-lg-4 col-md-4 produitsAffiche">
+								<img src="<%= achatProduit.getFtpCheminImg() %>" alt="<%= achatProduit.getAltImg() %>"/>              			
 	                            <p>Nom: <%= achatProduit.getNomAchat() %></p>
 	                            <p>Prix: <%= achatProduit.getPrixAchat() %></p>
 	                            <p>Quantiter: <%= achatProduit.getQuantiteAchat() %></p>
