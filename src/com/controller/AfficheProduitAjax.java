@@ -15,26 +15,15 @@ import com.entities.Produit;
 import com.google.gson.Gson;
 import com.utils.Constante;
 
-/**
- * Servlet implementation class afficheProduitAjax
- */
 @WebServlet("/afficheProduitAjax")
 public class AfficheProduitAjax extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+   
     public AfficheProduitAjax() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String categorie = request.getParameter("categorie");
 		String prixMin = request.getParameter("prixMin");
 		String prixMax = request.getParameter("prixMax");
@@ -44,7 +33,7 @@ public class AfficheProduitAjax extends HttpServlet {
 		if(categorie == null && prixMin == null 
 				&& prixMax == null && nomProd == null &&
 				idProd == null){
-//			System.out.println(urlRedirect);
+		//	System.out.println(urlRedirect);
 			
 			if(ProduitAction.afficherProduit(request)){
 				
@@ -148,12 +137,7 @@ public class AfficheProduitAjax extends HttpServlet {
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

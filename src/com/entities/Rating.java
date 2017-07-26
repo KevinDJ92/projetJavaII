@@ -10,15 +10,15 @@ public class Rating implements Serializable{
 	private String commentaire;
 	private Date date;
 	//private Hashtable<Integer, Utilisateurs> monPanier;
+	
 	public Rating(){}
-	public Rating(String nom, String prenom, int idProduit, int note, String categorie, int idUtil,java.sql.Date date) {
+	public Rating(String nom, String prenom, int idProduit, int note, String categorie, int idUtil, java.sql.Date date) {
 		super();
 		this.idUtil = idUtil;	
 		this.idProduit = idProduit;
 		this.note = note;
 		this.commentaire = categorie;
-		this.date = date;
-			
+		this.date = date;		
 	}
 
 	public Rating( int note, String commentaire,java.sql.Date date) {
@@ -57,7 +57,4 @@ public class Rating implements Serializable{
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
-	
-	
 }

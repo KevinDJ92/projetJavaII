@@ -1,71 +1,105 @@
+<%@page import="java.sql.Date"%>
+<%@page import="com.utils.Constante"%>
 <%@page import="com.entities.*"%>
 <%@page import="java.util.*"%>
 <%@page import="com.controller.AfficherProduit"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
     
     <%
-	if(request.getAttribute("listeProd")==null && request.getAttribute("listeProdValid")== null){
-			AfficherProduit.RecupererAllProd(request);
-		//  request.getRequestDispatcher("AfficherProduit").forward(request, response);	
+    if(session.getAttribute(Constante.clefSession)==null){
+		
+		response.sendRedirect("Login.jsp");
 	}
-    
-    	ArrayList<Produit> listProduit=new ArrayList<Produit>();
-    	listProduit = (ArrayList<Produit>)request.getAttribute("listeProd");
-    	
-    	boolean monPanierExist = false;
-    	int nombreAticle = 0;
-    	
-    	Integer testNombreArticle = (Integer) request.getAttribute("nombreArticle");
-    	System.out.println("testNombreArticle: " + testNombreArticle);
-    	
-    	if(testNombreArticle!=null){
-			System.out.println("monPanierExist=true");
-    		nombreAticle=testNombreArticle;
-    		monPanierExist=true;
-    	}
-    	
     	HashMap<Integer,LigneCommande> monPanier=(HashMap<Integer,LigneCommande>)session.getAttribute("LePanier");
-    	System.out.println("monPanier" + monPanier);
+  		Achat achat= new Achat();
+    	
     %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Ventes</title>
-</head>
-	<body>
-		<a href="index.jsp">Index</a>
-		<p>Nombre d'article dans votre panier : <a href=''><%=nombreAticle %></a></p>
-	
-		<table border='1' width='50%' height='50%'>
-				<tr><td></td> <td>Prix</td><td>Panier</td></tr>
-				<%
-					for(Produit produit : listProduit){
-						int quantiteCommandee = 0;
-						Integer idProduit=produit.getId();
-						System.out.println("produitList");
-						if(monPanierExist){
-							System.out.println("monPanierExist");
-							if (monPanier.containsKey(idProduit)) {
-								LigneCommande ligneCommande=monPanier.get(idProduit);
-								quantiteCommandee=ligneCommande.getQuantite();
-							}
-						}
-				%>
-				<tr>
-				<td><%=produit.getNom() %></td>
-				<td><%=produit.getPrix() %></td>
-				<td>
-					<form id="formQuantite" method="get" action="GererPanier">
-						<input type="submit" name="btsubmit" value="+"/>
-						&nbsp;&nbsp;<input type="text" value="<%=quantiteCommandee %>" name="quantite" />&nbsp;&nbsp;
-						<input type="hidden" name="id" value="<%=idProduit %>" />
-						<input type="hidden" name="prix" value="<%=produit.getPrix() %>" />
-						<input type="submit" name="btsubmit" value="-"/>
-					</form>
-				</td>
-				</tr>
-				<% } %>
-		</table>
-	</body>
+    <%!
+    	ArrayList<Achat> achats = new ArrayList();
+    %>
+    
+    <jsp:include page="util/headerPart1.html"/>  
+    <title>Panier</title>
+	<jsp:include page="util/headerPart2.html"/>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead">Mon Compte</p>
+                <div class="list-group">
+                	<a href="#" class="list-group-item">Voir mon panier</a>
+                	<a href="#" class="list-group-item">Mes promotions</a>
+                	<a href="#" class="list-group-item">Modifier mon compte</a>
+                </div>
+                 
+            </div>
+
+            <div class="col-md-9">
+              
+                <div class="row rowProds">
+				
+					
+					<div class="col-sm-10 col-lg-10 col-md-10 produitsAffiche">
+                       <% 
+	                      if(monPanier != null){
+	                    	  double total = 0;
+	                    	  for(Map.Entry<Integer, LigneCommande> entry : monPanier.entrySet()){
+	                    		  total+=entry.getValue().getQuantite()*entry.getValue().getProduit().getPrix();
+	                    	 
+	                    	  
+	                   %>
+	                    	  
+	                    <div class="thumbnail">
+	                    	
+	                    	<p>nom de l'article <%=entry.getValue().getProduit().getNom() %></p>
+	                    	<p>La quantité de votre commande est : <%=entry.getValue().getQuantite() %></p>
+	                    	<p>Le prix total pour cette article est <%=entry.getValue().getQuantite() %> * <%=entry.getValue().getProduit().getPrix()%> = <%=entry.getValue().getQuantite()*entry.getValue().getProduit().getPrix() %>$</p>
+	                    </div>
+
+	                   <%
+	                   Utilisateur util = ((Utilisateur)session.getAttribute(Constante.clefSession));
+	                   achat = new Achat(util.getId(),entry.getValue().getProduit().getId(),
+	                		   			"abc123",null,"dfsdf","envoyer",entry.getValue().getQuantite());
+	                  
+	                   achats.add(achat);
+	                  
+	                    	  }
+	                    	  %>
+	                    	  
+	                    	  <p>le total de votre achat est <%=total %>$ </p>
+	                    	  <form action="ajoutAchat" methode="post">
+	                    	  	<input type="submit" value="valider l'achat">
+	                    	  </form>
+	                    	 
+	                    	  
+	                    	  <%
+	                      }
+                       
+	                      else{
+	                    	  
+	                   	 %>
+	                    	  <p>vous n'avez rien dans votre panier</p>
+	                   <%
+	                      }
+	                   %>
+                    </div>
+					
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+   	<jsp:include page="util/footer.html"/>	
+   	
+	<script type="text/javascript" src="script/ajaxTest.js"></script> 
+	<script type="text/javascript" src="script/CookieProduit.js"></script> 
 </html>
+

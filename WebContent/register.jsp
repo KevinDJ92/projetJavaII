@@ -1,19 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>  
 <%@page import="com.entities.Utilisateur"%>
 <%@page import="com.manager.UtilisateursManager"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+
 <%
 	Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur");
 %>    
-    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Inscription</title>
-	</head>
-	<body>
+	<jsp:include page="util/headerPart1.html"/>
+	<title>Inscription</title>
+	<jsp:include page="util/headerPart2.html"/>
+	 	
 	 	<h1>Inscription</h1>
 		<fieldset>
 			<legend>Veuillez entrer vos informations personnelles</legend>
@@ -38,5 +35,6 @@
 				<input type="submit" value="Envoyer" />
 			</form>
 		</fieldset>
-	</body>
-</html>
+
+	<jsp:include page="util/footer.html"/>	  
+</html> 

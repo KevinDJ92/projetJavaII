@@ -16,22 +16,16 @@ import com.utils.Constante;
 public class AfficherAchat extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
     public AfficherAchat() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("va au servlet afficherAchat");
-	
 		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute(Constante.clefSession);
 		int id = utilisateur.getId();
 		
-		System.out.println("id" + id);
-		
 		if (AchatAction.afficherAchat(request, id)){
-			System.out.println("entre dans la boucle afficherAchat");
-			request.getRequestDispatcher("achats2.jsp").forward(request, response);
+			request.getRequestDispatcher("achats.jsp").forward(request, response);
 		}
 	}
 

@@ -41,9 +41,7 @@ public class AfficherCategorieProd extends HttpServlet {
 		}
 		
 		
-//		request.getRequestDispatcher(urlRedirect).forward(request, response);
-	
-
+		//	request.getRequestDispatcher(urlRedirect).forward(request, response);
 	}
 
 
