@@ -20,8 +20,8 @@ public class SendMail extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String msg = "Bienvenue Mr Z bienvenue a ISI";
-		String to = "aahmedayed@gmail.com";
-		String sujet = "Ceci est un message important";
+		String to = "gracesoundron548@gmail.com";
+		String sujet = "Coucou Gracy lol";
 		PrintWriter out = response.getWriter();
 		out.println("Message transmis avec succes");
 		 out.println(

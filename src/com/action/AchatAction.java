@@ -2,9 +2,12 @@ package com.action;
 
 
 import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import com.entities.Achat;
+import com.entities.AchatProduit;
 import com.manager.AchatManager;
+import com.manager.AchatProduitManager;
 
 public class AchatAction {
 
@@ -18,9 +21,9 @@ public class AchatAction {
 		return retour;
 	}
 	
-	public static boolean afficherAchat(HttpServletRequest request) {
+	public static boolean afficherAchat(HttpServletRequest request, int id) {
 
-		ArrayList<Achat> mesAchats = AchatManager.getAll();
+		ArrayList<AchatProduit> mesAchats =  AchatProduitManager.getProduitAchater(id);
 		
 		System.out.println("mesAchats" + mesAchats);
 		

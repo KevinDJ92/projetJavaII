@@ -3,49 +3,41 @@ package com.manager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.entities.Achat;
-import com.entities.Produit;
+import com.entities.AchatProduit;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.ResultSet;
 import com.service.ConnexionBD;
 
 public class AchatProduitManager {
-	private static String tableName = "achat";
-	private static String tableName2 = "produits";
+	private static String queryAchatProduitWhereIdUtilisateur = "SELECT p.id_prod, p.nom_prod, p.prix_prod, p.detail_prod, a.qte, a.date_achat" +
+																	" FROM achat a INNER JOIN produits p" +
+																	" ON a.id_prod = p.id_prod" +
+																	" WHERE a.id_util =  ?";
 	
-	private static String tableListAchat[] = new String[]{"id_achat", "id_util", "id_prod", "confirmation_num", "date_achat", "adresse_exped", "suivi","qte"};
-	private static String tableListProduit[] = new String[]{"id_prod", "nom_prod", "detail_prod", "prix_prod", "etat_prod" ,"categorie_prod", "qte_stock"};
-	
-	private static String queryAchatProduitWhereIdUtilisateur  = "SELECT * FROM " + tableName + " INNER JOIN " + tableName2 
-		+ " ON " + tableName +"." + tableListAchat[2] 
-			+ " = " + tableName2 + "." + tableListProduit[2] 
-				+ " WHERE id_util = ?";
-	
-	public static ArrayList<Produit> getProduitAchater(int id_util) {
-		ArrayList<Produit> retour = null;
+	public static ArrayList<AchatProduit> getProduitAchater(int id_util) {
+		ArrayList<AchatProduit> retour = null;
 
 		try {
 			PreparedStatement ps =  (PreparedStatement) ConnexionBD.getConnection().prepareStatement(queryAchatProduitWhereIdUtilisateur);
-			ResultSet result = (ResultSet) ps.executeQuery();
 			ps.setInt(1, id_util);
+
+			ResultSet result = (ResultSet) ps.executeQuery();
 			
-			if (result.isBeforeFirst()) {
-				
+			if (result.isBeforeFirst()) {	
 				retour = new ArrayList<>();
 
 				while (result.next()) {
-					Produit prod = new Produit();
+					AchatProduit achatProd = new AchatProduit();
+					
+					achatProd.setIdAchat(result.getInt("id_prod"));
+					achatProd.setNomAchat(result.getString("nom_prod"));
+					achatProd.setPrixAchat(result.getString("prix_prod"));
+					achatProd.setDetailAchat(result.getString("detail_prod"));
+					achatProd.setQuantiteAchat(result.getInt("qte"));
+					achatProd.setQuantiteAchat(result.getInt("qte"));
+					achatProd.setDateAchat(result.getDate("date_achat"));
 			
-					prod.setId(result.getInt(tableListProduit[0]));
-					prod.setNom(result.getString(tableListProduit[1]));
-					prod.setCategorie(result.getString(tableListProduit[2]));
-					prod.setDetail(result.getString(tableListProduit[3]));
-					prod.setEtat(result.getString(tableListProduit[4]));
-					prod.setPrix(result.getDouble(tableListProduit[5]));
-					prod.setQte(result.getInt(tableListProduit[6]));
-				
-					retour.add(prod);
-							
+					retour.add(achatProd);
 				}
 			}
 		} catch (SQLException e) {

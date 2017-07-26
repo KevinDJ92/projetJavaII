@@ -1,12 +1,11 @@
-<%@page import="com.entities.Achat"%>
+<%@page import="com.entities.AchatProduit"%>
 <%@page import="com.utils.Constante"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
      <%!
-     	ArrayList<Achat> produits = null;
-    	ArrayList<Achat> achats = null;
+    	ArrayList<AchatProduit> achatProduits = null;
     %>
     
     <%
@@ -15,8 +14,7 @@
     		response.sendRedirect("Login.jsp");
     	}
     
-    	achats = (ArrayList<Achat>)request.getAttribute("mesAchats");
-    
+    	achatProduits = (ArrayList<AchatProduit>)request.getAttribute("mesAchats");
     %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -105,16 +103,19 @@
               
                 <div class="row rowProds">
 				<%
-                	if(achats != null){
+                	if(achatProduits != null){
                 		//System.out.println("je test");
                 %>
                 
 					<%
-						for(Achat achat : achats){
+						for(AchatProduit achatProduit : achatProduits){
 					 %>
 					 
 						<div class="col-sm-4 col-lg-4 col-md-4 produitsAffiche">               
-                           <p><%= achat.getIdProd() %></p>
+                            <p>Nom: <%= achatProduit.getNomAchat() %></p>\
+                            <p>Prix: <%= achatProduit.getPrixAchat() %></p>
+                            <p>Quantiter: <%= achatProduit.getQuantiteAchat() %></p>
+                           <p>Detail: <%= achatProduit.getDetailAchat() %></p>
                    		</div>
                     <%
 						}}
