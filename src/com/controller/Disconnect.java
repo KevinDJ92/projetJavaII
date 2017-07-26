@@ -18,7 +18,7 @@ public class Disconnect extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute(Constante.clefSession)==null) {
+		if(request.getSession().getAttribute(Constante.clefSession)!=null) {
 			request.getSession().invalidate();
 			response.sendRedirect("produits.jsp");
 		}

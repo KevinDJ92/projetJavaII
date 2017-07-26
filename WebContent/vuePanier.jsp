@@ -57,6 +57,8 @@
 	                    	<p>nom de l'article <%=entry.getValue().getProduit().getNom() %></p>
 	                    	<p>La quantité de votre commande est : <%=entry.getValue().getQuantite() %></p>
 	                    	<p>Le prix total pour cette article est <%=entry.getValue().getQuantite() %> * <%=entry.getValue().getProduit().getPrix()%> = <%=entry.getValue().getQuantite()*entry.getValue().getProduit().getPrix() %>$</p>
+	                    	<p class="deleteProd">X</p>
+	                    
 	                    </div>
 
 	                   <%
