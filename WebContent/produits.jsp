@@ -91,7 +91,6 @@
 	                 	<datalist id="nomRecherche">  
 						</datalist>               	
 	                 	<input type="submit" value="chercher" class="list-group-item chercher">	                 	
-	                 	<p class="list-group-item resultat"></p>
                		</form>           
                  </div>
             </div>
