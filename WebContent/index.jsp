@@ -5,6 +5,9 @@
   	<title>Accueil</title>
 	<jsp:include page="util/headerPart2.html"/>
 	    <!-- Page Content -->
+	   <hr>
+	   <h1>Bienvenue A Notre Site E-Commercial</h1>
+	   <hr>
 	    <div class="container">
 	        <div class="row">
 	            <div class="col-md-3">      
