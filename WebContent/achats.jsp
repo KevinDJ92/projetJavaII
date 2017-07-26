@@ -44,7 +44,8 @@
 							for(AchatProduit achatProduit : achatProduits){
 						 %>
 							<div class="col-sm-4 col-lg-4 col-md-4 produitsAffiche">
-								<img src="<%= achatProduit.getFtpCheminImg() %>" alt="<%= achatProduit.getAltImg() %>"/>              			
+								<img src="img/produits/<%=(achatProduit!=null?achatProduit.getFtpCheminImg():"default.jpg") %>" 
+									alt="<%= achatProduit.getAltImg() %>"/>              			
 	                            <p>Nom: <%= achatProduit.getNomAchat() %></p>
 	                            <p>Prix: <%= achatProduit.getPrixAchat() %></p>
 	                            <p>Quantiter: <%= achatProduit.getQuantiteAchat() %></p>
