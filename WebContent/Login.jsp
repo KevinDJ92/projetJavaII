@@ -16,6 +16,7 @@
 			   			<button type="submit"> Sign in</button>
 						<input type="checkbox" name="sauvegarde" value="yes">
 						Remember me </br>
+						<p>Vous n'avez pas de compte? <a href="register.jsp">S'inscrire</a></p>
 	   				</form>
                 </div>
             </div>
