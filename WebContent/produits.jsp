@@ -132,29 +132,23 @@
 				
 				<%
                 	if(produits != null){
-                		//System.out.println("je test");
                 %>
                 
 					<%
 						for(Produit produit : produits){
 							if(photoProds != null){
-							for(PhotoProduit photo : photoProds){
-								if(photo.getIdProd() == produit.getId() && photo.getIsDefault()==1){
-									photoForProd = photo;
-								}
+								for(PhotoProduit photo : photoProds){
+									if(photo.getIdProd() == produit.getId() && photo.getIsDefault()==1){
+										photoForProd = photo;
+									}
 
-							}
-								
+								}
 							}
 							if(Ratings != null){
-							
 								for(Rating rating : Ratings){
 									if(rating.getIdProduit() == produit.getId()){
-										note ++;
+										note++;
 									}
-									
-									
-	
 								}
 							}
 					%>
@@ -174,26 +168,23 @@
                             <div class="ratings">
                                 <p class="pull-right"><%= note %></p>
                                 <p><%
-                                for(int i=0 ; i<note ; i++){
-                                	
-                                
-                                %>
+                                for(int i=0 ; i < note; i++){
                                
+                                	%>
+                 
                                     <span class="start_<%=i+1 %> glyphicon glyphicon-star modifiable"></span>
-                                    
+                                  
                                 <%
                                 }
                                 if(note<5){
-                                	for(int j=note ; j<5 ; j++){
+                                	for(int j=note; j<5; j++){
                                 		
                                 %>
                                  <span class="start_<%=j+1 %> glyphicon glyphicon-star-empty modifiable"></span>
                                 <%
                                 	}
                                 }
-                                %>
-                                   
-                                </p>
+   								%></p>
                             </div>
                         </div>
                     </div>
