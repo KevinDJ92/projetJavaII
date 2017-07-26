@@ -41,7 +41,7 @@ public class LoginUtilisateur extends HttpServlet {
 			
 			//System.out.println("User added to the Session");
 			
-			request.getRequestDispatcher(urlRedirectValid).forward(request, response);
+			response.sendRedirect(urlRedirectValid);
 		}
 		
 		else {
