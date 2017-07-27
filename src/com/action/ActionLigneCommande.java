@@ -20,18 +20,13 @@ public class ActionLigneCommande {
 		HashMap<Integer,LigneCommande> monPanier = (HashMap<Integer,LigneCommande>) session.getAttribute("LePanier");
 		
 		if (monPanier == null) {
-			System.out.println("monPanier est null");
 			monPanier = new HashMap<Integer,LigneCommande>();
 			session.setAttribute("LePanier", monPanier);
 		}
 				
 		if (operation.equals("Ajouter au Panier")) {
-			System.out.println("Entre dans Produit Ajouter Manager");
 
 			ManagerLigneCommande.addProduit(quantite, produit, monPanier);
-		}
-		else {
-			ManagerLigneCommande.removeProduit(produit, quantite, monPanier);
 		}
 	}
 	
@@ -52,4 +47,13 @@ public class ActionLigneCommande {
 		
 		return (nombreArticle > 0 ? true : false);
 	}
+	
+	public static void suprimerProdPanier(HttpServletRequest request, HttpSession session,int idProduit) {
+
+			HashMap<Integer,LigneCommande> monPanier = (HashMap<Integer,LigneCommande>) session.getAttribute("LePanier");
+			
+			ManagerLigneCommande.removeProduit(idProduit, monPanier);
+			
+	}
+	
 }

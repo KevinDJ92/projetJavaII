@@ -26,6 +26,7 @@ public class GererPanier extends HttpServlet {
 		String operation = request.getParameter("btsubmit");
 		int id = Integer.parseInt(request.getParameter("idProduit"));
 		int quantite = Integer.parseInt(request.getParameter("quantite"));
+		
 		HttpSession session = request.getSession(true); 
 	
 		if(session.getAttribute(Constante.clefSession) == null){

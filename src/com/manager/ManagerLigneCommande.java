@@ -31,22 +31,14 @@ public  static void  addProduit(Integer quantite, Produit produit, HashMap<Integ
 		
 	}
 	
-	public static void removeProduit(Produit produit, Integer quantite, HashMap<Integer, LigneCommande> monPanier){
+	public static void removeProduit(int idProduit, HashMap<Integer, LigneCommande> monPanier){
 		
 		LigneCommande ligneCommande;
-		Integer idProduit = produit.getId();
 		if (monPanier.containsKey(idProduit)) {
 			
 			ligneCommande = monPanier.get(idProduit);
-			Integer soustraction = ligneCommande.getQuantite() - quantite;
-		
-			if (soustraction > 0) {
-				ligneCommande.setQuantite(soustraction);
-				monPanier.put(idProduit, ligneCommande);
-			}
-			else{
 				monPanier.remove(idProduit);
-			}
+			
 		}
 	}
 	
