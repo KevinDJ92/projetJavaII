@@ -83,12 +83,20 @@ body {
 }
 
 .thumbnail {
+	position:relative;
     padding: 0;
 }
 
 .thumbnail .caption-full {
     padding: 9px;
     color: #333;
+}
+
+.deleteProd{
+	position:absolute;
+	top:5px;
+	right: 10px;
+	cursor:pointer;
 }
 
 footer {

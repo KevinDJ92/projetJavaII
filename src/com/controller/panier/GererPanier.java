@@ -38,7 +38,7 @@ public class GererPanier extends HttpServlet {
 				Produit produit = produits.get(0);
 		
 				ActionLigneCommande.gereLePanier(request, response, session, operation, quantite, produit);
-				response.sendRedirect("index.jsp");
+				response.sendRedirect("produits.jsp");
 			}
 		}
 	}
