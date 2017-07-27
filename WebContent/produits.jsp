@@ -149,9 +149,7 @@
 								for(Rating rating : Ratings){
 									if(rating.getIdProduit() == produit.getId()){
 										note += rating.getNote();
-										System.out.println("note: " + note);
 										count++;
-										System.out.println("count: " + count);
 									}
 								}
 								if (count != 0){

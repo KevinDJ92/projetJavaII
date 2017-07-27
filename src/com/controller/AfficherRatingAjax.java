@@ -32,10 +32,15 @@ public class AfficherRatingAjax extends HttpServlet {
 
 		HttpSession session = request.getSession(true);
 		Utilisateur util = (Utilisateur) session.getAttribute(Constante.clefSession);
-	
 		Rating rating = new Rating(util.getId(), idProd, starNumber, "");
 		
-		RatingAction.updateRating(rating);
+		if (RatingAction.afficherRatingWithIdUtilNIdProd(request, util.getId(), idProd)){
+			RatingAction.updateRating(rating);
+
+		}
+		else {
+			RatingAction.insertRating(rating);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
