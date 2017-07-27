@@ -10,11 +10,13 @@ import com.service.ConnexionBD;
 public class RatingManager {
 
 	private static String queryGetyAll = "select * from rating";
-	private static String queryGetByIdUtil = "select * from rating where id_util like ?";
-	private static String queryGetByIdProd = "select * from rating where id_prod like ?";
+	private static String queryGetByIdUtil = "select * from rating where id_util = ?";
+	private static String queryGetByIdProd = "select * from rating where id_prod = ?";
+	private static String queryGetByIdUtilNIdProd = "SELECT * FROM rating WHERE id_util = ? AND id_prod = ?";
+	
 	private static String queryGetByDate = "select * from rating where date_ajout like ?";
 	private static String queryGetByDateBetween = "select * from rating where date_ajout between ? and ?";
-	private static String queryInsert = "insert into rating(id_util,id_prod,note,commentaire,date_ajout) value(?,?,?,?,?)";
+	private static String queryInsert = "insert into rating(id_util,id_prod,note,commentaire) value(?,?,?,?)";
 	private static String queryUpdate = "update rating set note =?,commentaire =? WHERE id_util = ? and id_prod = ?";
 	private static String querydelete = "delete from rating where id_util =? and id_prod =?";
 	
@@ -85,6 +87,38 @@ public class RatingManager {
 		return retour;
 	}
 	
+	public static ArrayList<Rating> getByIdUtilNIdProd(int idUtil, int idProd) {
+		ArrayList<Rating> retour = null;
+
+		try {
+			PreparedStatement ps = ConnexionBD.getConnection().prepareStatement(queryGetByIdUtilNIdProd);
+			ps.setInt(1, idUtil);
+			ps.setInt(2, idProd);
+			ResultSet result = ps.executeQuery();
+
+			if (result.isBeforeFirst()) {
+				
+				retour = new ArrayList<>();
+
+				while (result.next()) {
+					Rating rating = new Rating();
+					rating.setIdProduit(result.getInt("id_prod"));
+					rating.setIdUtil(result.getInt("id_util"));
+					rating.setNote(result.getInt("note"));
+					rating.setCommentaire(result.getString("commentaire"));
+					rating.setDate(result.getDate("date_ajout"));
+
+					retour.add(rating);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		ConnexionBD.closeConnection();
+		
+		return retour;
+	}
 	
 	public static ArrayList<Rating> getByIdProd(int idProd) {
 		ArrayList<Rating> retour = null;
@@ -117,7 +151,6 @@ public class RatingManager {
 		
 		return retour;
 	}
-	
 	
 	public static ArrayList<Rating> getByDate(java.sql.Date date) {
 		ArrayList<Rating> retour = null;
@@ -199,12 +232,10 @@ public class RatingManager {
 				ps.setInt(2,rating.getIdProduit());
 				ps.setInt(3,rating.getNote());
 				ps.setString(4,rating.getCommentaire());
-				ps.setDate(5,(java.sql.Date)rating.getDate());
 				
 				nbLigne = ps.executeUpdate();
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			if(nbLigne >0 )

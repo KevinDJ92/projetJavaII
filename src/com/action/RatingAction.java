@@ -38,6 +38,15 @@ public class RatingAction {
 		return (rating != null ? true : false);
 	}
 	
+	public static boolean afficherRatingWithIdUtilNIdProd(HttpServletRequest request,int idUtil, int idProd) {
+
+		ArrayList<Rating> rating = RatingManager.getByIdUtilNIdProd(idUtil, idProd);
+
+		request.setAttribute("listRatingUtilProd", rating);
+
+		return (rating != null ? true : false);
+	}
+	
 	public static boolean insertRating(Rating rating) {
 		boolean retour = false;
 
