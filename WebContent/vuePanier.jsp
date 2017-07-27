@@ -44,7 +44,7 @@
 					
 					<div class="col-sm-10 col-lg-10 col-md-10 produitsAffiche">
                        <% 
-	                      if(monPanier != null){
+	                      if(monPanier != null && !monPanier.isEmpty()){
 	                    	  double total = 0;
 	                    	  for(Map.Entry<Integer, LigneCommande> entry : monPanier.entrySet()){
 	                    		  total+=entry.getValue().getQuantite()*entry.getValue().getProduit().getPrix();
@@ -58,6 +58,7 @@
 	                    	<p>La quantité de votre commande est : <%=entry.getValue().getQuantite() %></p>
 	                    	<p>Le prix total pour cette article est <%=entry.getValue().getQuantite() %> * <%=entry.getValue().getProduit().getPrix()%> = <%=entry.getValue().getQuantite()*entry.getValue().getProduit().getPrix() %>$</p>
 	                    	<p class="deleteProd">X</p>
+	                    	<input id="idProdPanier" type="hidden" value="<%=entry.getValue().getProduit().getId() %>">
 	                    
 	                    </div>
 

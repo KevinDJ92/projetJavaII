@@ -24,7 +24,7 @@ public  static void  addProduit(Integer quantite, Produit produit, HashMap<Integ
 		}
 		else{
 			ligneCommande = new LigneCommande();
-			ligneCommande.setProduit(produit);;
+			ligneCommande.setProduit(produit);
 			ligneCommande.setQuantite(quantite);
 			monPanier.put(idProduit, ligneCommande);
 		}
@@ -57,7 +57,6 @@ public  static void  addProduit(Integer quantite, Produit produit, HashMap<Integ
 		Integer nbArticle = 0;
 		
 		if (monPanier.size() > 0) {
-			System.out.println("monPanier plus grande que 0");
 			Set listeIdProduit = monPanier.keySet();
 			Iterator it = listeIdProduit.iterator();
 			
