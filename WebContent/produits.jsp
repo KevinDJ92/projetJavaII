@@ -18,7 +18,8 @@
    		ArrayList<PhotoProduit> photoProds =null;
    		ArrayList<String>categories = null;
    		PhotoProduit photoForProd = null ; 
-   		int note = 0;	
+   		int note = 0;
+   		int count = 0;
     %>
     <%
     	if(request.getAttribute("listeProd")==null && request.getAttribute("listeProdValid")== null){
@@ -35,6 +36,7 @@
     		request.setAttribute("link", "index.jsp");
 	   		AffichePhotoProd.RecupererAllPhoto(request);
     	}
+    	
     	if(request.getAttribute("listeCategorieValid")== null){
     		request.setAttribute("link", "index.jsp");
    			AfficherCategorieProd.RecupererAllCategorie(request);		
@@ -146,8 +148,14 @@
 							if(Ratings != null){
 								for(Rating rating : Ratings){
 									if(rating.getIdProduit() == produit.getId()){
-										note++;
+										note += rating.getNote();
+										System.out.println("note: " + note);
+										count++;
+										System.out.println("count: " + count);
 									}
+								}
+								if (count != 0){
+									note = note/count;
 								}
 							}
 					%>			
@@ -185,7 +193,8 @@
                     </div>
 					
 					<%
-					note =0;
+					note = 0;
+					count = 0;
 						}
                 	}
                 	else{%>
