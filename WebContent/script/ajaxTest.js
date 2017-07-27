@@ -101,34 +101,27 @@ $(document).ready(function(){
 	//suprimer produit du panier
 	
 $('.deleteProd').click(function(){
-		
-		var nom = $("#nomProd").val();
-		if(nom != ""){$.ajax({
-		    url : 'afficheProduitAjax', 
+		var clicked = $(this);
+		var id = $(this).parent().find('#idProdPanier').val();
+//		console.log(id);
+			$.ajax({
+		    url : 'GererPanier', 
 		    type : 'POST',
-		    data : {nomProd:nom },
-		    dataType : 'json',
+		    data : {idProdDelet:id },
 		    success : function(data, statut){
-			    var product = data;
-			    var optionData="";
-			    $("#nomRecherche").children().remove();
-			    for(var prod in product){
-			    	
-			    	optionData+='<option value="'+product[prod].nom+'">';
-			    }
-
-			    $("#nomRecherche").append(optionData);
+		    	var msgDelete="<p>le produit a ete suprimer de votre panier<p>"
+		    		clicked.parent().empty().append(msgDelete).fadeTo(300, 0);
+		    	
+			    
 		    
 		    },
 		    error : function(resultat, statut, erreur){
 		    	
 		    }
 		 
-		});}
+		});
 		
-		else{
-			$("#nomRecherche").children().remove();
-		}
+		
 		
 		
 		

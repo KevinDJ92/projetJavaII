@@ -24,23 +24,41 @@ public class GererPanier extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String operation = request.getParameter("btsubmit");
-		int id = Integer.parseInt(request.getParameter("idProduit"));
-		int quantite = Integer.parseInt(request.getParameter("quantite"));
+		int id=0;
+		int quantite=0;
+		if(request.getParameter("idProduit")!=null &&request.getParameter("quantite")!=null) {
+			id = Integer.parseInt(request.getParameter("idProduit"));
+			quantite = Integer.parseInt(request.getParameter("quantite"));
+			
+		}
+		
+		String idProdDelet = request.getParameter("idProdDelet");
 		
 		HttpSession session = request.getSession(true); 
+		
 	
 		if(session.getAttribute(Constante.clefSession) == null){
     		response.sendRedirect("Login.jsp");
     	}
 		else {
-			if(ProduitAction.afficherProduitParId(request, id)){
-				ArrayList<Produit> produits = (ArrayList<Produit>) request.getAttribute("listeProd");
-	
-				Produit produit = produits.get(0);
-		
-				ActionLigneCommande.gereLePanier(request, response, session, operation, quantite, produit);
-				response.sendRedirect("produits.jsp");
+			if(idProdDelet==null) {
+				if(ProduitAction.afficherProduitParId(request, id)){
+					ArrayList<Produit> produits = (ArrayList<Produit>) request.getAttribute("listeProd");
+					
+					Produit produit = produits.get(0);
+			
+					ActionLigneCommande.gereLePanier(request, response, session, operation, quantite, produit);
+					response.sendRedirect("produits.jsp");
+				}
+				
+				
 			}
+			else {
+				ActionLigneCommande.suprimerProdPanier(request, session, Integer.parseInt(idProdDelet));
+				System.out.println("suprimer");
+			}
+				
+			
 		}
 	}
 

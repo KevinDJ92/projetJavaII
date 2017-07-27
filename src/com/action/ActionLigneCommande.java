@@ -54,6 +54,8 @@ public class ActionLigneCommande {
 			
 			ManagerLigneCommande.removeProduit(idProduit, monPanier);
 			
+		
+			
 	}
 	
 }
