@@ -193,7 +193,9 @@
 					<%
 					note = 0;
 					count = 0;
+					photoForProd=null;
 						}
+					
                 	}
                 	else{%>
                 	
