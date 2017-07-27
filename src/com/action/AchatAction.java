@@ -25,8 +25,6 @@ public class AchatAction {
 
 		ArrayList<AchatProduit> mesAchats =  AchatProduitManager.getProduitAchater(id);
 		
-		System.out.println("mesAchats" + mesAchats);
-		
 		request.setAttribute("mesAchats", mesAchats);
 
 		return (mesAchats != null ? true : false);

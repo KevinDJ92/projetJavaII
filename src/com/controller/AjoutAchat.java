@@ -54,10 +54,8 @@ public class AjoutAchat extends HttpServlet {
 						"	                    	<p>Le prix total pour cette article est "+entry.getValue().getQuantite()+" * "+entry.getValue().getProduit().getPrix()+" = "+entry.getValue().getQuantite()*entry.getValue().getProduit().getPrix()+"$</p>\r\n" + 
 						"	                  <hr color=\"black\"> ";
 			
-			
+//                monPanier.remove(entry.getKey(),entry.getValue() )	;
 		}
-		
-		System.out.println(achats);
 		if(achats != null) {
 			
 			
@@ -66,8 +64,11 @@ public class AjoutAchat extends HttpServlet {
 				AchatAction.ajoutAchat(achat);
 				
 			}
-			response.sendRedirect("achats.jsp");
+			
+			
 			GestionMail.sendEmail(msg, to, sujet);
+			response.sendRedirect("achats.jsp");
+			monPanier.clear();
 			
 		}
 		
