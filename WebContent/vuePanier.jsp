@@ -58,7 +58,8 @@
 	                    	<p>La quantité de votre commande est : <%=entry.getValue().getQuantite() %></p>
 	                    	<p>Le prix total pour cette article est <%=entry.getValue().getQuantite() %> * <%=entry.getValue().getProduit().getPrix()%> = <%=entry.getValue().getQuantite()*entry.getValue().getProduit().getPrix() %>$</p>
 	                    	<p class="deleteProd">X</p>
-	                    	<input id="idProdPanier" type="hidden" value="<%=entry.getValue().getProduit().getId() %>">
+	                    	<input class="idProdPanier" type="hidden" value="<%=entry.getValue().getProduit().getId() %>">
+	                    	<input class="totalProd" type="hidden" value="<%=entry.getValue().getQuantite() * entry.getValue().getProduit().getPrix() %>">
 	                    
 	                    </div>
 
@@ -71,8 +72,8 @@
 	                  
 	                    	  }
 	                    	  %>
-	                    	  
-	                    	  <p>le total de votre achat est <%=total %>$ </p>
+	                    	  <input class="total" type="hidden" value="<%=total %>">
+	                    	  <p class="totalText">le total de votre achat est <%=total %>$ </p>
 	                    	  <form action="ajoutAchat" methode="post">
 	                    	  	<input type="submit" value="valider l'achat">
 	                    	  </form>

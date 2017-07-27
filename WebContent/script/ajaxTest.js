@@ -102,15 +102,34 @@ $(document).ready(function(){
 	
 $('.deleteProd').click(function(){
 		var clicked = $(this);
-		var id = $(this).parent().find('#idProdPanier').val();
-//		console.log(id);
+		var id = $(this).parent().find('.idProdPanier').val();
+
+		var total= $(".total").val();
+		var totalProd= $(this).parent().find('.totalProd').val();
+		
 			$.ajax({
 		    url : 'GererPanier', 
 		    type : 'POST',
 		    data : {idProdDelet:id },
 		    success : function(data, statut){
 		    	var msgDelete="<p>le produit a ete suprimer de votre panier<p>"
-		    		clicked.parent().empty().append(msgDelete).fadeTo(300, 0);
+		    	clicked.parent().empty().append(msgDelete).fadeTo(1000, 0);
+		    	total-=totalProd;
+		    	
+		    	$(".total").val(total);
+		    	if(total>0){
+		    		
+		    		$(".totalText").text("le total de votre achat est "+total);
+		    	}
+		    	else{
+		    		$(".totalText").text("vous n'avez rien dans votre panier");
+		    		setTimeout(function(){
+		    			location.reload();
+		    			}, 800);
+		    		 
+		    		
+		    	}
+		    	
 		    	
 			    
 		    
