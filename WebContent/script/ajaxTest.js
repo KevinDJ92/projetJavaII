@@ -106,7 +106,7 @@ $('.deleteProd').click(function(){
 
 		var total= $(".total").val();
 		var totalProd= $(this).parent().find('.totalProd').val();
-		
+		var parent = $(this).parent();
 			$.ajax({
 		    url : 'GererPanier', 
 		    type : 'POST',
@@ -114,6 +114,10 @@ $('.deleteProd').click(function(){
 		    success : function(data, statut){
 		    	var msgDelete="<p>le produit a ete suprimer de votre panier<p>"
 		    	clicked.parent().empty().append(msgDelete).fadeTo(1000, 0);
+		    	setTimeout(function(){
+	    			parent.remove();
+	    			}, 800);
+		    		
 		    	total-=totalProd;
 		    	
 		    	$(".total").val(total);
