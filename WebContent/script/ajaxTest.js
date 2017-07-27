@@ -62,60 +62,45 @@
 //}
 
 $(document).ready(function(){
-//	$('.chercher').click(function(){
-//	
-//		var nom = $("#nomProd").val();
-////		window.location=window.location.href.replace(window.location.search,'');
-//		$.ajax({
-//		    url : 'afficheProduitAjax', // La ressource ciblée
-//		    type : 'POST', // Le type de la requête HTTP.
-//		    data : {nomProd:nom },
-//		    dataType : 'json',
-//		    success : function(data, statut){
-//		    var product = data;
-////		    console.log(product[0].nom);
-//
-//		    $(".produitsAffiche").remove();
-//		    var code ="<div class='col-sm-4 col-lg-4 col-md-4 produitsAffiche'>" +
-//		    		"<div class='thumbnail'>" +
-//		    		"<img src='img/produits/default.jpg' alt='' class='imgProd'>" +
-//		    		"<div class='caption'>" +
-//		    		"<h4 class='pull-right'>"+product[0].prix+" $</h4>" +
-//		    		"<h4><a href='#'>"+product[0].nom+"</a></h4>" +
-//		    		"<p>"+product[0].detail+" .</p>" +
-//		    		"</div>" +
-//		    		" <div class='ratings'>" +
-//		    		"<p class='pull-right'></p>" +
-//		    		"<p>" +
-//		    		"<span class='glyphicon glyphicon-star modifiable'></span>" +
-//		    		"<span class='glyphicon glyphicon-star-empty modifiable'></span>" +
-//		    		"</p>" +
-//		    		"</div>" +
-//		    		"</div>" +
-//		    		"</div>";
-////		    var gliphcon = "<span class='glyphicon glyphicon-star modifiable'></span>";
-////		    for(i=0 ; i<= product[0].){}
-//		    
-//		    
-//		    
-//		    
-//		    
-//		    
-//		    
-//		    
-//		    $(".rowProds").append(code);
-//		    },
-//		    error : function(resultat, statut, erreur){
-//		      alert("Can't add now");
-//		    }
-//		 
-//		});
-//		
-//		
-//		
-//	});
-	
+
 	$('#nomProd').keyup(function(){
+		
+		var nom = $("#nomProd").val();
+		if(nom != ""){$.ajax({
+		    url : 'afficheProduitAjax', 
+		    type : 'POST',
+		    data : {nomProd:nom },
+		    dataType : 'json',
+		    success : function(data, statut){
+			    var product = data;
+			    var optionData="";
+			    $("#nomRecherche").children().remove();
+			    for(var prod in product){
+			    	
+			    	optionData+='<option value="'+product[prod].nom+'">';
+			    }
+
+			    $("#nomRecherche").append(optionData);
+		    
+		    },
+		    error : function(resultat, statut, erreur){
+		    	
+		    }
+		 
+		});}
+		
+		else{
+			$("#nomRecherche").children().remove();
+		}
+		
+		
+		
+		
+	});
+	
+	//suprimer produit du panier
+	
+$('.deleteProd').click(function(){
 		
 		var nom = $("#nomProd").val();
 		if(nom != ""){$.ajax({
