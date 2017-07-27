@@ -168,15 +168,14 @@
                                 <p><%
                                 for(int i=0 ; i < note; i++){                          
                                 	%>           
-                                    <span class="start_<%=i+1 %> glyphicon glyphicon-star modifiable"></span>
-                                  
+                                    <span class="star_<%=i+1 %> glyphicon glyphicon-star modifiable"></span>                             
                                 <%
                                 }
                                 if(note < 5){
-                                	for(int j=note; j<5; j++){
+                                	for(int j = note; j < 5; j++){
                                 		
                                 %>
-                                 <span class="start_<%=j+1 %> glyphicon glyphicon-star-empty modifiable"></span>
+                                 <span class="star_<%=j+1 %> glyphicon glyphicon-star-empty modifiable"></span>
                                 <%
                                 	}
                                 }
@@ -220,6 +219,7 @@
   	
   	<jsp:include page="util/footer.html"/>	
 	
+	<script type="text/javascript" src="script/starListener.js"></script> 
 	<script type="text/javascript" src="script/ajaxTest.js"></script> 
 	<script type="text/javascript" src="script/CookieProduit.js"></script> 
 	<script type="text/javascript" src="script/lightBox.js"></script> 
