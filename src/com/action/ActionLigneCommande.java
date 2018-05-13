@@ -52,10 +52,7 @@ public class ActionLigneCommande {
 
 			HashMap<Integer,LigneCommande> monPanier = (HashMap<Integer,LigneCommande>) session.getAttribute("LePanier");
 			
-			ManagerLigneCommande.removeProduit(idProduit, monPanier);
-			
-		
-			
+			ManagerLigneCommande.removeProduit(idProduit, monPanier);	
 	}
 	
 }
